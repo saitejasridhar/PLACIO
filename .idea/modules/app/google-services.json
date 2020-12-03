@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "690061764321",
+    "firebase_url": "https://placio-2d4d3.firebaseio.com",
+    "project_id": "placio-2d4d3",
+    "storage_bucket": "placio-2d4d3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:690061764321:android:ade4ee3103ea76f38a79a0",
+        "android_client_info": {
+          "package_name": "com.example.placio"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "690061764321-nm2hi0vepnkd62ea6hn1fhhaum481867.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.placio",
+            "certificate_hash": "d3bed3269d8df21f79227bbe776beff292ffb5ec"
+          }
+        },
+        {
+          "client_id": "690061764321-dje1fl7sr6h3r84p6m5susepatqbeng0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBe1f5Df0Bxf4qvF2o4MbOwaA9KUB3xNKk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "690061764321-dje1fl7sr6h3r84p6m5susepatqbeng0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
