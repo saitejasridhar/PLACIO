@@ -49,31 +49,6 @@ public class Signup extends AppCompatActivity implements View.OnClickListener {
         String email = editTextEmail.getText().toString().trim();
         String password = editTextPassword.getText().toString().trim();
 
-        if (email.isEmpty()) {
-            editTextEmail.setError("Email is required");
-            editTextEmail.requestFocus();
-            return;
-        }
-
-        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            editTextEmail.setError("Please enter a valid email");
-            editTextEmail.requestFocus();
-            return;
-        }
-
-        if (password.isEmpty()) {
-            editTextPassword.setError("Password is required");
-            editTextPassword.requestFocus();
-            return;
-        }
-
-        if (password.length() < 6) {
-            editTextPassword.setError("Minimum length of password should be 6");
-            editTextPassword.requestFocus();
-            return;
-        }
-
-
 
         mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
@@ -104,6 +79,46 @@ public class Signup extends AppCompatActivity implements View.OnClickListener {
                 }
             }
         });
+    }
+
+    public int SetValidation() {
+
+        String email = editTextEmail.getText().toString().trim();
+        String password = editTextPassword.getText().toString().trim();
+        boolean isEmailValid,isPasswordValid;
+
+
+        if (email.isEmpty()) {
+            editTextEmail.setError("Email is required");
+            editTextEmail.requestFocus();
+            isEmailValid = false;
+        }
+        else if(!email.endsWith("nie.ac.in")){
+            editTextEmail.setError("Enter college email");
+            editTextEmail.requestFocus();
+            isEmailValid = false;
+        }
+        else  {
+            isEmailValid = true;
+        }
+
+
+        if (password.isEmpty()) {
+            editTextPassword.setError("Password is required");
+            editTextPassword.requestFocus();
+            isPasswordValid = false;
+        } else if (password.length() < 6) {
+            editTextPassword.setError("Password is not secure");
+            editTextPassword.requestFocus();
+            isPasswordValid = false;
+        } else  {
+            isPasswordValid = true;
+        }
+
+        if (isEmailValid && isPasswordValid)
+            return 1;
+            else
+                return 0;
 
     }
 
@@ -115,8 +130,10 @@ public class Signup extends AppCompatActivity implements View.OnClickListener {
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        startActivity(new Intent(Signup.this, Login.class));
-                        registerUser();
+                        if(SetValidation()==1) {
+                            registerUser();
+                            startActivity(new Intent(Signup.this, Login.class));
+                        }
                     }
                 },3000);
 
