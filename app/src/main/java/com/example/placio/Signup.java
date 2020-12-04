@@ -93,7 +93,7 @@ public class Signup extends AppCompatActivity implements View.OnClickListener {
             editTextEmail.requestFocus();
             isEmailValid = false;
         }
-        else if(!email.endsWith("nie.ac.in")){
+        else if(!email.endsWith("@nie.ac.in")){
             editTextEmail.setError("Enter college email");
             editTextEmail.requestFocus();
             isEmailValid = false;
@@ -132,6 +132,7 @@ public class Signup extends AppCompatActivity implements View.OnClickListener {
                     public void run() {
                         if(SetValidation()==1) {
                             registerUser();
+                            finish();
                             startActivity(new Intent(Signup.this, Login.class));
                         }
                     }
