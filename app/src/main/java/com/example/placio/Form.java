@@ -94,6 +94,14 @@ public class Form extends AppCompatActivity {
 
         firebaseAuth = FirebaseAuth.getInstance();
 
+        register = findViewById(R.id.register);
+
+        register.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openNewActivity(Register.class);
+            }
+        });
 
         firestore = FirebaseFirestore.getInstance();
 

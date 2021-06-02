@@ -30,37 +30,37 @@ public class Home extends AppCompatActivity {
         startActivity(intent);
     }
     public void mca(View view) {
-        Intent intent = new Intent(this, Register.class);
+        Intent intent = new Intent(this, Form.class);
         intent.putExtra("key","MCA");
         startActivity(intent);
     }
 
     public void ise(View view) {
-        Intent intent = new Intent(this, Register.class);
+        Intent intent = new Intent(this, Form.class);
         intent.putExtra("key","ISE");
         startActivity(intent);
     }
     public void ec(View view) {
-        Intent intent = new Intent(this, Register.class);
+        Intent intent = new Intent(this, Form.class);
         intent.putExtra("key","EC");
         startActivity(intent);
     }  public void mech(View view) {
-        Intent intent = new Intent(this, Register.class);
+        Intent intent = new Intent(this, Form.class);
         intent.putExtra("key","MECH");
         startActivity(intent);
     }
     public void ipe(View view) {
-        Intent intent = new Intent(this, Register.class);
+        Intent intent = new Intent(this, Form.class);
         intent.putExtra("key","IPE");
         startActivity(intent);
     }
     public void civil(View view) {
-        Intent intent = new Intent(this, Register.class);
+        Intent intent = new Intent(this, Form.class);
         intent.putExtra("key","CIVIL");
         startActivity(intent);
     }
     public void eee(View view) {
-        Intent intent = new Intent(this, Register.class);
+        Intent intent = new Intent(this, Form.class);
         intent.putExtra("key","EEE");
         startActivity(intent);
     }
@@ -73,12 +73,6 @@ public class Home extends AppCompatActivity {
         startActivity(a);
     }
 
-    @Override
-    public void onPause() {
-        super.onPause();
-        final FirebaseAuth auth = FirebaseAuth.getInstance();
-        auth.signOut();
-    }
 
     private void openNewActivity( final Class<? extends Activity> ActivityToOpen)
     {

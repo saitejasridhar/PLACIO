@@ -29,10 +29,7 @@ public class MainActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
 
-//        SharedPreferences sharedpreferences = getSharedPreferences("mypreference",0);
-//        SharedPreferences.Editor spreferencesEditor = sharedpreferences.edit();
-//        spreferencesEditor.remove("isFirst");
-//        spreferencesEditor.putString("isFirst", "False");
+
 
         getSupportActionBar().hide();
         setContentView(R.layout.activity_main);
@@ -40,8 +37,6 @@ public class MainActivity extends AppCompatActivity {
         Button signup_button=(Button) findViewById(R.id.signup);
         FirebaseAuth auth = FirebaseAuth.getInstance();
 
-//        SharedPreferences mPrefs = getSharedPreferences("mypreference",0);
-//        String str = mPrefs.getString("isFirst", "");
 
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         String str =preferences.getString("isFirst", "");

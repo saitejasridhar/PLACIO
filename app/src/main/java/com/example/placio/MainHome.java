@@ -77,6 +77,11 @@ public class MainHome extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+
+    }
+
     private void openNewActivity( final Class<? extends Activity> ActivityToOpen)
     {
         startActivity(new Intent(getBaseContext(), ActivityToOpen));

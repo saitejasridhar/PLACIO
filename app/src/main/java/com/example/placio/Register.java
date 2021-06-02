@@ -8,12 +8,14 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -40,7 +42,7 @@ import java.util.Map;
 public class Register extends AppCompatActivity {
 
 
-    Button upload,selectFile;
+    Button upload,selectFile,next;
     TextView notification;
     Uri pdfUri;
 
@@ -50,6 +52,7 @@ public class Register extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         getSupportActionBar().hide();
@@ -57,10 +60,18 @@ public class Register extends AppCompatActivity {
         Intent intent = getIntent();
         String str = intent.getStringExtra("key");
 
-        Toast.makeText(Register.this,str,Toast.LENGTH_SHORT).show();
+        next = findViewById(R.id.next);
+
+        next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openNewActivity(MainHome.class);
+            }
+        });
+
 
      storage=FirebaseStorage.getInstance();
-     firestore=FirebaseFirestore.getInstance().collection(str).document("students");
+     firestore=FirebaseFirestore.getInstance().collection("str").document("students");
 
 
      selectFile=findViewById(R.id.selectFile);
@@ -94,6 +105,7 @@ public class Register extends AppCompatActivity {
     }
 
     private void uploadFile(Uri pdfUri) {
+        final Button next = (Button)findViewById(R.id.next);
         progressDialog=new ProgressDialog(this);
         progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
         progressDialog.setTitle("Uploading file...");
@@ -101,9 +113,10 @@ public class Register extends AppCompatActivity {
         progressDialog.show();
         final String fileName=System.currentTimeMillis()+"";
         final StorageReference storageReference=storage.getReference();
-      final String user=FirebaseAuth.getInstance().getUid().toString();
+      final String user=FirebaseAuth.getInstance().getCurrentUser().getUid();
 
        final StorageReference ref=storageReference.child("Resumes").child(fileName);
+       Log.d("hrellll","11111");
 
        ref.putFile(pdfUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
@@ -111,6 +124,8 @@ public class Register extends AppCompatActivity {
                 ref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                     @Override
                     public void onSuccess(Uri uri) {
+                        Log.d("hrellll","22222");
+
                         Uri downloadUrl = uri;
                         String url=downloadUrl.toString();
                         Map<String, Object> data = new HashMap<>();
@@ -122,10 +137,15 @@ public class Register extends AppCompatActivity {
                                 if (task.isSuccessful()) {
                                     progressDialog.dismiss();
                                     Toast.makeText(Register.this,"Upload successfull",Toast.LENGTH_SHORT).show();
+                                    next.setVisibility(View.VISIBLE);
+                                    Log.d("hrellll","2222");
+
                                 }
                                 else {
+                                    Log.d("hrellll","33333");
+
                                     progressDialog.dismiss();
-                                    Toast.makeText(Register.this, "Upload noooot successfull", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(Register.this, "Upload not successfull", Toast.LENGTH_SHORT).show();
                                 }
                             }
                         });
@@ -136,6 +156,8 @@ public class Register extends AppCompatActivity {
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
+                Log.d("hrellll","444444");
+
                 Toast.makeText(Register.this,"Upload not successfull",Toast.LENGTH_SHORT).show();
             }
         }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
@@ -143,6 +165,7 @@ public class Register extends AppCompatActivity {
             public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
         int currentProgress=(int) (100*snapshot.getBytesTransferred()/snapshot.getTotalByteCount());
         progressDialog.setProgress(currentProgress);
+                Log.d("hrellll","55555");
 
             }
         });
@@ -178,6 +201,15 @@ public class Register extends AppCompatActivity {
         else {
             Toast.makeText(Register.this, "Please select file", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    public void onBackPressed() {
+
+    }
+
+    private void openNewActivity( final Class<? extends Activity> ActivityToOpen)
+    {
+        startActivity(new Intent(getBaseContext(), ActivityToOpen));
     }
 
 
