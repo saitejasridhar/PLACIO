@@ -7,7 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
+
 
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -20,20 +20,20 @@ public class Home extends AppCompatActivity {
         setContentView(R.layout.activity_home);
         getSupportActionBar().hide();
 
-//        Button logout_button = (Button) findViewById(R.id.logout);
-//        logout_button.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                auth.signOut();
-//                finish();
-//                openNewActivity(MainActivity.class);
-//            }
-//        });
+        Button logout_button = (Button) findViewById(R.id.logout);
+        logout_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                auth.signOut();
+                finish();
+                openNewActivity(MainActivity.class);
+            }
+        });
 
     }
 
     public void cse(View view) {
-        Intent intent = new Intent(this, Register.class);
+        Intent intent = new Intent(this, Form.class);
         intent.putExtra("key","CSE");
         startActivity(intent);
     }
@@ -74,13 +74,16 @@ public class Home extends AppCompatActivity {
     }
 
 
-
-
     public void onBackPressed(){
         Intent a = new Intent(Intent.ACTION_MAIN);
         a.addCategory(Intent.CATEGORY_HOME);
         a.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(a);
+    }
+
+    private void openNewActivity( final Class<? extends Activity> ActivityToOpen)
+    {
+        startActivity(new Intent(getBaseContext(), ActivityToOpen));
     }
 
 }

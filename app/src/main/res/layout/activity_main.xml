@@ -4,8 +4,91 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFC30B"
+    android:background="@color/primary"
     tools:context=".MainActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:background="#fff"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="58dp"
+                android:layout_height="57dp"
+                android:layout_marginTop="55dp"
+                android:layout_marginBottom="55dp"
+                android:src="@drawable/nie"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.526" />
+
+            <View
+                android:id="@+id/view2"
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="46dp"
+                android:layout_marginBottom="46dp"
+                android:background="@color/primary"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/imageView2"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="46dp"
+                android:text="PLACEMENT"
+                android:textColor="@color/primary"
+                android:textSize="25dp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/view2"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginBottom="46dp"
+                android:text="PORTAL"
+                android:textColor="#242466"
+                android:textSize="25dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/view2" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
 
     <Button
         android:id="@+id/signup"
@@ -13,11 +96,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
         android:layout_marginLeft="50dp"
-        android:layout_marginBottom="100dp"
         android:text="SIGN UP"
-        android:textColor="@color/yellow"
+        android:textColor="#fff"
         android:textSize="17dp"
-        android:background="@drawable/main_buttons"
+        android:background="@color/secondary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/login"
         app:layout_constraintStart_toStartOf="parent" />
@@ -30,11 +112,10 @@
         android:layout_marginLeft="20dp"
         android:layout_marginEnd="50dp"
         android:layout_marginRight="50dp"
-        android:layout_marginBottom="100dp"
         android:text="LOG IN"
-        android:textColor="@color/yellow"
+        android:textColor="#fff"
         android:textSize="17dp"
-        android:background="@drawable/main_buttons"
+        android:background="@color/secondary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/signup" />
@@ -47,9 +128,9 @@
         android:layout_marginLeft="100dp"
         android:layout_marginEnd="100dp"
         android:layout_marginRight="100dp"
-        android:layout_marginBottom="200dp"
-        android:textColor="#000"
-        android:text="Lorem Ipsum is simply dummy text of \n the printing and typesetting industry"
+        android:layout_marginBottom="80dp"
+        android:text="The solution to all your problems"
+        android:textColor="#fff"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -62,32 +143,14 @@
         android:layout_marginLeft="1dp"
         android:layout_marginEnd="1dp"
         android:layout_marginRight="1dp"
-        android:layout_marginBottom="20dp"
-        android:text="PLACIO"
+        android:layout_marginBottom="0dp"
+        android:text="PLACEMENT PORTAL"
         android:textStyle="bold"
-        android:textSize="40dp"
-        android:textColor="#000"
+        android:textSize="30dp"
+        android:textColor="#fff"
         app:layout_constraintBottom_toTopOf="@+id/subtitle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-
-    <ImageView
-        android:id="@+id/logo"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginLeft="1dp"
-        android:layout_marginTop="100dp"
-        android:layout_marginEnd="1dp"
-        android:layout_marginRight="1dp"
-        android:layout_marginBottom="30dp"
-        app:layout_constraintBottom_toTopOf="@+id/title"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.731"
-        android:src="@drawable/knowledge"
-        />
-
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -34,6 +34,7 @@ public class Signup extends AppCompatActivity implements View.OnClickListener {
 
 
 
+
         editTextEmail = (EditText) findViewById(R.id.editTextEmail);
         editTextPassword = (EditText) findViewById(R.id.editTextPassword);
 
@@ -48,7 +49,7 @@ public class Signup extends AppCompatActivity implements View.OnClickListener {
     private void registerUser() {
         String email = editTextEmail.getText().toString().trim();
         String password = editTextPassword.getText().toString().trim();
-
+        final FirebaseAuth auth = FirebaseAuth.getInstance();
 
         mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
@@ -60,7 +61,7 @@ public class Signup extends AppCompatActivity implements View.OnClickListener {
                             if(task.isSuccessful())
                             {
                                 Toast.makeText(getApplicationContext(),"Registration Successful Please Verify mail and log in",Toast.LENGTH_LONG).show();
-
+                                auth.signOut();
                             }
                             else {
                                 Toast.makeText(getApplicationContext(),task.getException().getMessage(),Toast.LENGTH_LONG).show();

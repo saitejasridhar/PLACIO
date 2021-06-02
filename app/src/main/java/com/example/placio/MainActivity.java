@@ -28,8 +28,7 @@ public class MainActivity extends AppCompatActivity {
         Button signup_button=(Button) findViewById(R.id.signup);
         FirebaseAuth auth = FirebaseAuth.getInstance();
         if (auth.getCurrentUser() != null) {
-            Toast.makeText(getApplicationContext(),"hello",Toast.LENGTH_SHORT).show();
-            openNewActivity(Home.class);
+            openNewActivity(Form.class);
         }
         signup_button.setOnClickListener(new View.OnClickListener() {
             @Override

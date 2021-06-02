@@ -103,25 +103,33 @@ public class Register extends AppCompatActivity {
         final StorageReference storageReference=storage.getReference();
       final String user=FirebaseAuth.getInstance().getUid().toString();
 
-        storageReference.child("Resumes").child(fileName).putFile(pdfUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+       final StorageReference ref=storageReference.child("Resumes").child(fileName);
+
+       ref.putFile(pdfUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-
-
-                String url=taskSnapshot.getMetadata().getReference().getDownloadUrl().toString();
-                Map<String, Object> data = new HashMap<>();
-                data.put("resumee", url);
-            firestore.collection(user).document("profile").set(data).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
+                ref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                     @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful()) {
-                            progressDialog.dismiss();
-                            Toast.makeText(Register.this,"Upload successfull",Toast.LENGTH_SHORT).show();
-                        }
-                        else
-                            progressDialog.dismiss();
-                            Toast.makeText(Register.this,"Upload not successfull",Toast.LENGTH_SHORT).show();
+                    public void onSuccess(Uri uri) {
+                        Uri downloadUrl = uri;
+                        String url=downloadUrl.toString();
+                        Map<String, Object> data = new HashMap<>();
+                        data.put("resume", url);
+                        firestore.collection(user).document("profile").set(data).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()) {
+                                    progressDialog.dismiss();
+                                    Toast.makeText(Register.this,"Upload successfull",Toast.LENGTH_SHORT).show();
+                                }
+                                else {
+                                    progressDialog.dismiss();
+                                    Toast.makeText(Register.this, "Upload noooot successfull", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+
                     }
                 });
             }
@@ -165,9 +173,12 @@ public class Register extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 86 && resultCode == RESULT_OK && data != null) {
             pdfUri = data.getData();
-            notification.setText("A file is selected: "+ data.getData().getLastPathSegment());
-        } else {
+            notification.setText("File selected");
+        }
+        else {
             Toast.makeText(Register.this, "Please select file", Toast.LENGTH_SHORT).show();
         }
     }
+
+
 }
