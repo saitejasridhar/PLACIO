@@ -40,11 +40,20 @@ tools:context=".MainHome">
                 android:id="@+id/editprofile"
                 android:layout_width="27dp"
                 android:layout_height="29dp"
-                android:layout_alignParentRight="true"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="28dp"
                 android:background="@color/secondary" />
 
+            <Button
+                android:id="@+id/logout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="logout"
+                android:layout_alignParentRight="true"
+                android:textColor="#fff"
+                android:background="@color/secondary"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
         </RelativeLayout>
 

@@ -2,6 +2,8 @@ package com.example.placio;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -19,16 +22,34 @@ public class MainActivity extends AppCompatActivity {
 
     FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
+
+//        SharedPreferences sharedpreferences = getSharedPreferences("mypreference",0);
+//        SharedPreferences.Editor spreferencesEditor = sharedpreferences.edit();
+//        spreferencesEditor.remove("isFirst");
+//        spreferencesEditor.putString("isFirst", "False");
+
         getSupportActionBar().hide();
         setContentView(R.layout.activity_main);
         Button login_button = (Button) findViewById(R.id.login);
         Button signup_button=(Button) findViewById(R.id.signup);
         FirebaseAuth auth = FirebaseAuth.getInstance();
+
+//        SharedPreferences mPrefs = getSharedPreferences("mypreference",0);
+//        String str = mPrefs.getString("isFirst", "");
+
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        String str =preferences.getString("isFirst", "");
+
+
         if (auth.getCurrentUser() != null) {
-            openNewActivity(Form.class);
+            if(str.equals("False"))
+            openNewActivity(MainHome.class);
         }
         signup_button.setOnClickListener(new View.OnClickListener() {
             @Override

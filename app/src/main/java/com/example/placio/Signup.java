@@ -5,8 +5,10 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.EditText;
@@ -23,7 +25,10 @@ public class Signup extends AppCompatActivity implements View.OnClickListener {
 
     EditText editTextEmail, editTextPassword;
     private FirebaseAuth mAuth;
+    SharedPreferences sharedpreferences;
 
+    public static final String mypreference = "mypref";
+    public static final String isFirst = "false";
 
 
     @Override
@@ -62,6 +67,15 @@ public class Signup extends AppCompatActivity implements View.OnClickListener {
                             {
                                 Toast.makeText(getApplicationContext(),"Registration Successful Please Verify mail and log in",Toast.LENGTH_LONG).show();
                                 auth.signOut();
+                                SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                                SharedPreferences.Editor editor = prefs.edit();
+                                editor.putString("isFirst", "True");
+                                editor.apply();
+//                                sharedpreferences = getSharedPreferences(mypreference, 0);
+//                                SharedPreferences.Editor editor = sharedpreferences.edit();
+//                                editor.putString(isFirst, "false");
+//                                editor.apply();
+
                             }
                             else {
                                 Toast.makeText(getApplicationContext(),task.getException().getMessage(),Toast.LENGTH_LONG).show();
