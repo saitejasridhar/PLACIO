@@ -1,5 +1,8 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <dimen name="app_bar_height">180dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="text_margin">16dp</dimen>
+    <dimen name="design_bottom_navigation_text_size" tools:override="true" tools:ignore="PrivateResource">10dp</dimen>
+    <dimen name="design_bottom_navigation_active_text_size" tools:override="true">10dp</dimen>
+    <dimen name="design_bottom_navigation_height" tools:override="true">48dp</dimen>
 </resources>

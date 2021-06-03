@@ -28,15 +28,18 @@ import com.google.firebase.auth.FirebaseAuth;
 public class MainHome extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
     Button editpro;
+    TabLayout tabs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         final FirebaseAuth auth = FirebaseAuth.getInstance();
-
+        getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_home);
+        SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
         ViewPager viewPager = findViewById(R.id.view_pager);
-        TabLayout tabs = findViewById(R.id.tabs);
+        viewPager.setAdapter(sectionsPagerAdapter);
+        tabs = findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
 
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
@@ -45,18 +48,18 @@ public class MainHome extends AppCompatActivity {
         editor.apply();
 
 
-        Button logout_button = (Button) findViewById(R.id.logout);
-        logout_button.setOnClickListener(new View.OnClickListener() {
+        Button profile = (Button) findViewById(R.id.profile);
+
+        profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                auth.signOut();
-                finish();
-                openNewActivity(MainActivity.class);
+                openNewActivity(Profile.class);
             }
         });
 
 
         bottomNavigationView=(BottomNavigationView) findViewById(R.id.navbar);
+        bottomNavigationView.getMenu().getItem(0).setEnabled(false);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -65,8 +68,11 @@ public class MainHome extends AppCompatActivity {
                     case R.id.home:
                         openNewActivity(MainHome.class);
                         break;
-                    case R.id.tickets:
-                        openNewActivity(MainHome.class);
+                    case R.id.Announcemtns:
+                        openNewActivity(Announcements.class);
+                        break;
+                    case R.id.events:
+                        openNewActivity(Events.class);
                         break;
 
                 }

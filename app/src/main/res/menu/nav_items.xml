@@ -11,17 +11,17 @@
         />
 
     <item
-        android:id="@+id/tickets"
+        android:id="@+id/events"
         android:enabled="true"
         android:icon="@drawable/events"
-        android:title="Tickets"
+        android:title="Events"
         app:showAsAction="ifRoom"
         />
     <item
-        android:id="@+id/profile"
+        android:id="@+id/Announcemtns"
         android:enabled="true"
         android:icon="@drawable/announcments"
-        android:title="Profile"
+        android:title="Announcements"
         app:showAsAction="ifRoom"
         />
 
