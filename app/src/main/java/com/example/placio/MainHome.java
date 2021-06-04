@@ -45,7 +45,8 @@ public class MainHome extends AppCompatActivity {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         SharedPreferences.Editor editor = preferences.edit();
         editor.putString("isFirst","False");
-        editor.putString("openres","False");
+        editor.putString("isHome","True");
+        editor.putString("isReg","True");
         editor.apply();
 
 

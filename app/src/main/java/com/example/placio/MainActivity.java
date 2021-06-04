@@ -22,17 +22,18 @@ public class MainActivity extends AppCompatActivity {
         FirebaseAuth auth = FirebaseAuth.getInstance();
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         String str =preferences.getString("isFirst", "");
-
-        SharedPreferences prefs1 = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        String str1 =prefs1.getString("openres", "");
+        String str1 =preferences.getString("isForm", "");
+        String str2 =preferences.getString("isHome", "");
+        String str3 =preferences.getString("isReg", "");
 
 
         if (auth.getCurrentUser() != null) {
             if(str.equals("False"))
             openNewActivity(MainHome.class);
-            else if(str1.equals("True")){
+            if(str2.equals("False"))
+                openNewActivity(Home.class);
+            if(str3.equals("False"))
                 openNewActivity(Register.class);
-            }
         }
         signup_button.setOnClickListener(new View.OnClickListener() {
             @Override

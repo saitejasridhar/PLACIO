@@ -89,7 +89,12 @@ public class Form extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         final String value = getIntent().getExtras().getString("branch");
-
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("isFirst","True");
+        editor.putString("isHome","False");
+        editor.putString("isReg","True");
+        editor.apply();
         getSupportActionBar().hide();
         setContentView(R.layout.activity_form);
         section = findViewById(R.id.section);
@@ -197,23 +202,36 @@ public class Form extends AppCompatActivity {
                         dataMap.put("PreUniInstitute",institutenamediploma.getText().toString());
                     }
 
-
-                    reference.document(auth.getUid().toString()).collection("Details").add(dataMap).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                        @Override
-                        public void onSuccess(DocumentReference documentReference) {
-                            Toast.makeText(getApplicationContext(),"Success",Toast.LENGTH_LONG).show();
-                            SharedPreferences prefs1 = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-                            SharedPreferences.Editor editor1 = prefs1.edit();
-                            editor1.putString("openres", "True");
-                            editor1.apply();
-                            openNewActivity(Register.class);
-                        }
-                    }).addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(getApplicationContext(),"Failure",Toast.LENGTH_LONG).show();
-                        }
-                    });
+                    reference.document(auth.getUid().toString()).collection("Details").document(auth.getUid().toString())
+                            .set(dataMap)
+                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                    Toast.makeText(getApplicationContext(),"Success",Toast.LENGTH_LONG).show();
+                                    openNewActivity(Register.class);                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Toast.makeText(getApplicationContext(),"Failure",Toast.LENGTH_LONG).show();
+                                }
+                            });
+//                    reference.document(auth.getUid().toString()).collection("Details").add(dataMap).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+//                        @Override
+//                        public void onSuccess(DocumentReference documentReference) {
+//                            Toast.makeText(getApplicationContext(),"Success",Toast.LENGTH_LONG).show();
+//                            SharedPreferences prefs1 = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+//                            SharedPreferences.Editor editor1 = prefs1.edit();
+//                            editor1.putString("openres", "True");
+//                            editor1.apply();
+//                            openNewActivity(Register.class);
+//                        }
+//                    }).addOnFailureListener(new OnFailureListener() {
+//                        @Override
+//                        public void onFailure(@NonNull Exception e) {
+//                            Toast.makeText(getApplicationContext(),"Failure",Toast.LENGTH_LONG).show();
+//                        }
+//                    });
                 }
                 else
                     Toast.makeText(getApplicationContext(),"Some Fields are invalid",Toast.LENGTH_LONG).show();
@@ -372,12 +390,12 @@ public class Form extends AppCompatActivity {
             cgpa.setError("This field is required");
             ret++;
         } else {
-                String input=cgpa.getText().toString();
-                int value= Integer.parseInt(input);
-                if(value>10){
-                    cgpa.setError("Enter valid CGPA below 10");
-                    ret++;
-                }
+            String input=cgpa.getText().toString();
+            int value= Integer.parseInt(input);
+            if(value>10){
+                cgpa.setError("Enter valid CGPA below 10");
+                ret++;
+            }
         }
 
         if (currentsem.length() == 0) {
@@ -392,7 +410,7 @@ public class Form extends AppCompatActivity {
             }
         }
         // after all validation return true.
-            return ret == 0;
+        return ret == 0;
     }
 
 

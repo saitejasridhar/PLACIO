@@ -11,10 +11,12 @@ import android.Manifest;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -30,6 +32,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
@@ -52,12 +55,12 @@ public class Register extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_register);
         getSupportActionBar().hide();
         next = findViewById(R.id.next);
+
 
         next.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,8 +68,16 @@ public class Register extends AppCompatActivity {
                 openNewActivity(MainHome.class);
             }
         });
+
+
         String Uid = FirebaseAuth.getInstance().getUid();
 
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("isFirst","True");
+        editor.putString("isHome","True");
+        editor.putString("isReg","False");
+        editor.apply();
 
      storage=FirebaseStorage.getInstance();
      firestore=FirebaseFirestore.getInstance().collection("students").document(Uid);
@@ -124,20 +135,36 @@ public class Register extends AppCompatActivity {
                         String url=downloadUrl.toString();
                         Map<String, Object> data = new HashMap<>();
                         data.put("resume", url);
-                        firestore.collection("Resume").add(data).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                            @Override
-                            public void onSuccess(DocumentReference documentReference) {
-                                progressDialog.dismiss();
-                                Toast.makeText(Register.this,"Upload successfull",Toast.LENGTH_SHORT).show();
-                                next.setVisibility(View.VISIBLE);
-                            }
-                        }).addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                progressDialog.dismiss();
-                                Toast.makeText(Register.this, "Upload not successfull", Toast.LENGTH_SHORT).show();
-                            }
-                        });
+                        String Uid = FirebaseAuth.getInstance().getUid();
+                        firestore.collection("Resume").document(Uid).set(data)
+                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void aVoid) {
+                                        progressDialog.dismiss();
+                                        Toast.makeText(Register.this,"Upload successfull",Toast.LENGTH_SHORT).show();
+                                        next.setVisibility(View.VISIBLE);
+                                    }
+                                })
+                                .addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        progressDialog.dismiss();
+                                        Toast.makeText(Register.this, "Upload not successfull", Toast.LENGTH_SHORT).show();                                    }
+                                });
+//                        firestore.collection("Resume").document(Uid).set(data).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+//                            @Override
+//                            public void onSuccess(DocumentReference documentReference) {
+//                                progressDialog.dismiss();
+//                                Toast.makeText(Register.this,"Upload successfull",Toast.LENGTH_SHORT).show();
+//                                next.setVisibility(View.VISIBLE);
+//                            }
+//                        }).addOnFailureListener(new OnFailureListener() {
+//                            @Override
+//                            public void onFailure(@NonNull Exception e) {
+//                                progressDialog.dismiss();
+//                                Toast.makeText(Register.this, "Upload not successfull", Toast.LENGTH_SHORT).show();
+//                            }
+//                        });
                     }
                 });
             }

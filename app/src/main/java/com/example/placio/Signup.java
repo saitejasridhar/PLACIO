@@ -23,7 +23,7 @@ import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 public class Signup extends AppCompatActivity implements View.OnClickListener {
 
 
-    EditText editTextEmail, editTextPassword;
+    EditText editTextEmail, editTextPassword,editTextConfirmPassword;
     private FirebaseAuth mAuth;
     SharedPreferences sharedpreferences;
 
@@ -39,7 +39,7 @@ public class Signup extends AppCompatActivity implements View.OnClickListener {
 
 
 
-
+        editTextConfirmPassword = (EditText) findViewById(R.id.editTextConfirmPassword);
         editTextEmail = (EditText) findViewById(R.id.editTextEmail);
         editTextPassword = (EditText) findViewById(R.id.editTextPassword);
 
@@ -96,7 +96,8 @@ public class Signup extends AppCompatActivity implements View.OnClickListener {
 
         String email = editTextEmail.getText().toString().trim();
         String password = editTextPassword.getText().toString().trim();
-        boolean isEmailValid,isPasswordValid;
+        String cpassword=editTextConfirmPassword.getText().toString().trim();
+        boolean isEmailValid,isPasswordValid,isCPasswordValid;
 
 
         if (email.isEmpty()) {
@@ -125,8 +126,19 @@ public class Signup extends AppCompatActivity implements View.OnClickListener {
         } else  {
             isPasswordValid = true;
         }
+        if (cpassword.isEmpty()) {
+            editTextConfirmPassword.setError("Password Confirmation is required");
+            editTextConfirmPassword.requestFocus();
+            isCPasswordValid = false;
+        } else if (!cpassword.equals(password)) {
+            editTextConfirmPassword.setError("Passwords don't match");
+            editTextConfirmPassword.requestFocus();
+            isCPasswordValid = false;
+        } else  {
+            isCPasswordValid = true;
+        }
 
-        if (isEmailValid && isPasswordValid)
+        if (isEmailValid && isPasswordValid && isCPasswordValid)
             return 1;
             else
                 return 0;

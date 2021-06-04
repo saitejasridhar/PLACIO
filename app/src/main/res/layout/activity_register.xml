@@ -178,7 +178,7 @@
         android:layout_marginEnd="40dp"
         android:layout_marginRight="40dp"
         android:background="@color/secondary"
-        android:text="Next"
+        android:text="Confirm"
         android:textColor="#fff"
         android:textSize="17dp"
         android:visibility="invisible"
