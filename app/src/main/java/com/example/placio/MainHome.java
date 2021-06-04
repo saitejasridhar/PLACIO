@@ -45,7 +45,9 @@ public class MainHome extends AppCompatActivity {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         SharedPreferences.Editor editor = preferences.edit();
         editor.putString("isFirst","False");
+        editor.putString("openres","False");
         editor.apply();
+
 
 
         Button profile = (Button) findViewById(R.id.profile);

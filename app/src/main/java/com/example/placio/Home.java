@@ -26,42 +26,42 @@ public class Home extends AppCompatActivity {
 
     public void cse(View view) {
         Intent intent = new Intent(this, Form.class);
-        intent.putExtra("key","CSE");
+        intent.putExtra("branch","CSE");
         startActivity(intent);
     }
     public void mca(View view) {
         Intent intent = new Intent(this, Form.class);
-        intent.putExtra("key","MCA");
+        intent.putExtra("branch","MCA");
         startActivity(intent);
     }
 
     public void ise(View view) {
         Intent intent = new Intent(this, Form.class);
-        intent.putExtra("key","ISE");
+        intent.putExtra("branch","ISE");
         startActivity(intent);
     }
     public void ec(View view) {
         Intent intent = new Intent(this, Form.class);
-        intent.putExtra("key","EC");
+        intent.putExtra("branch","EC");
         startActivity(intent);
     }  public void mech(View view) {
         Intent intent = new Intent(this, Form.class);
-        intent.putExtra("key","MECH");
+        intent.putExtra("branch","MECH");
         startActivity(intent);
     }
     public void ipe(View view) {
         Intent intent = new Intent(this, Form.class);
-        intent.putExtra("key","IPE");
+        intent.putExtra("branch","IPE");
         startActivity(intent);
     }
     public void civil(View view) {
         Intent intent = new Intent(this, Form.class);
-        intent.putExtra("key","CIVIL");
+        intent.putExtra("branch","CIVIL");
         startActivity(intent);
     }
     public void eee(View view) {
         Intent intent = new Intent(this, Form.class);
-        intent.putExtra("key","EEE");
+        intent.putExtra("branch","EEE");
         startActivity(intent);
     }
 
@@ -72,13 +72,4 @@ public class Home extends AppCompatActivity {
         a.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(a);
     }
-
-
-    private void openNewActivity( final Class<? extends Activity> ActivityToOpen)
-    {
-        startActivity(new Intent(getBaseContext(), ActivityToOpen));
-    }
-
-
-
 }

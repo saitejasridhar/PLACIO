@@ -54,12 +54,9 @@ public class Register extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_register);
         getSupportActionBar().hide();
-
-        Intent intent = getIntent();
-        String str = intent.getStringExtra("key");
-
         next = findViewById(R.id.next);
 
         next.setOnClickListener(new View.OnClickListener() {
@@ -68,10 +65,11 @@ public class Register extends AppCompatActivity {
                 openNewActivity(MainHome.class);
             }
         });
+        String Uid = FirebaseAuth.getInstance().getUid();
 
 
      storage=FirebaseStorage.getInstance();
-     firestore=FirebaseFirestore.getInstance().collection("str").document("students");
+     firestore=FirebaseFirestore.getInstance().collection("students").document(Uid);
 
 
      selectFile=findViewById(R.id.selectFile);
@@ -113,10 +111,8 @@ public class Register extends AppCompatActivity {
         progressDialog.show();
         final String fileName=System.currentTimeMillis()+"";
         final StorageReference storageReference=storage.getReference();
-      final String user=FirebaseAuth.getInstance().getCurrentUser().getUid();
 
        final StorageReference ref=storageReference.child("Resumes").child(fileName);
-       Log.d("hrellll","11111");
 
        ref.putFile(pdfUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
@@ -124,40 +120,30 @@ public class Register extends AppCompatActivity {
                 ref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                     @Override
                     public void onSuccess(Uri uri) {
-                        Log.d("hrellll","22222");
-
                         Uri downloadUrl = uri;
                         String url=downloadUrl.toString();
                         Map<String, Object> data = new HashMap<>();
                         data.put("resume", url);
-                        firestore.collection(user).document("profile").set(data).addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
+                        firestore.collection("Resume").add(data).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                             @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                if (task.isSuccessful()) {
-                                    progressDialog.dismiss();
-                                    Toast.makeText(Register.this,"Upload successfull",Toast.LENGTH_SHORT).show();
-                                    next.setVisibility(View.VISIBLE);
-                                    Log.d("hrellll","2222");
-
-                                }
-                                else {
-                                    Log.d("hrellll","33333");
-
-                                    progressDialog.dismiss();
-                                    Toast.makeText(Register.this, "Upload not successfull", Toast.LENGTH_SHORT).show();
-                                }
+                            public void onSuccess(DocumentReference documentReference) {
+                                progressDialog.dismiss();
+                                Toast.makeText(Register.this,"Upload successfull",Toast.LENGTH_SHORT).show();
+                                next.setVisibility(View.VISIBLE);
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                progressDialog.dismiss();
+                                Toast.makeText(Register.this, "Upload not successfull", Toast.LENGTH_SHORT).show();
                             }
                         });
-
                     }
                 });
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Log.d("hrellll","444444");
-
                 Toast.makeText(Register.this,"Upload not successfull",Toast.LENGTH_SHORT).show();
             }
         }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
@@ -165,8 +151,6 @@ public class Register extends AppCompatActivity {
             public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
         int currentProgress=(int) (100*snapshot.getBytesTransferred()/snapshot.getTotalByteCount());
         progressDialog.setProgress(currentProgress);
-                Log.d("hrellll","55555");
-
             }
         });
     }

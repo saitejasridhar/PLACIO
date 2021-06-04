@@ -5,8 +5,10 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
@@ -88,29 +90,42 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                 if (task.isSuccessful()) {
                     if(mAuth.getCurrentUser().isEmailVerified()) {
                         String currentuser = FirebaseAuth.getInstance().getCurrentUser().getUid();
-                        DocumentReference docIdRef = firestore.collection("CSE").document(currentuser);
-                        docIdRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                            @Override
-                            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                                if (task.isSuccessful()) {
-                                    DocumentSnapshot document = task.getResult();
-                                    if (document.exists()) {
-                                        Log.d("TAG", "Document exists!");
-                                        Intent intent = new Intent(Login.this, MainHome.class);
-                                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                        startActivity(intent);
-                                    } else {
-                                        Log.d("TAG", "Document does not exist!");
-                                        Intent intent = new Intent(Login.this, Home.class);
-                                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                        startActivity(intent);
-                                    }
-                                } else {
-                                    Log.d("TAG", "Failed with: ", task.getException());
-                                }
-                                finish();
-                            }
-                        });
+                        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                        String str =preferences.getString("isFirst", "");
+                        if(str.equals("False")){
+                            Intent intent = new Intent(Login.this, MainHome.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            startActivity(intent);
+                        }
+                        else {
+                            Intent intent = new Intent(Login.this, Home.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            startActivity(intent);
+                        }
+
+//                        DocumentReference docIdRef = firestore.collection("students").document(currentuser);
+//                        docIdRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+//                            @Override
+//                            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+//                                if (task.isSuccessful()) {
+//                                    DocumentSnapshot document = task.getResult();
+//                                    if (document.exists()) {
+//                                        Log.d("TAG", "Document exists!");
+//                                        Intent intent = new Intent(Login.this, MainHome.class);
+//                                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//                                        startActivity(intent);
+//                                    } else {
+//                                        Log.d("TAG", "Document does not exist!");
+//                                        Intent intent = new Intent(Login.this, Home.class);
+//                                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//                                        startActivity(intent);
+//                                    }
+//                                } else {
+//                                    Log.d("TAG", "Failed with: ", task.getException());
+//                                }
+//                                finish();
+//                            }
+//                        });
                     }
                     else {
                         Toast.makeText(getApplicationContext(), "Please Verify your mail address", Toast.LENGTH_SHORT).show();

@@ -71,10 +71,6 @@ public class Signup extends AppCompatActivity implements View.OnClickListener {
                                 SharedPreferences.Editor editor = prefs.edit();
                                 editor.putString("isFirst", "True");
                                 editor.apply();
-//                                sharedpreferences = getSharedPreferences(mypreference, 0);
-//                                SharedPreferences.Editor editor = sharedpreferences.edit();
-//                                editor.putString(isFirst, "false");
-//                                editor.apply();
 
                             }
                             else {
