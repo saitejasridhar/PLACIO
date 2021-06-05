@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:weightSum="2"
+    android:orientation="horizontal"
+    android:id="@+id/rootView1"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+
+
+    android:elevation="10dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:id="@+id/rootView2"
+        android:orientation="vertical">
+
+
+
+        <TextView
+            android:paddingBottom="5dp"
+            android:textColor="@color/primary"
+            android:layout_marginLeft="10dp"
+            android:id="@+id/tname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:textSize="16dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:id="@+id/rootView3"
+            android:orientation="horizontal">
+
+            <TextView
+                android:paddingBottom="5dp"
+                android:textColor="@color/primary"
+                android:id="@+id/ttime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:textSize="11dp" />
+
+
+
+        </LinearLayout>
+        <TextView
+            android:paddingBottom="5dp"
+            android:textColor="@color/secondary"
+            android:id="@+id/taddress"
+            android:layout_width="100dp"
+            android:layout_marginLeft="10dp"
+            android:layout_height="wrap_content"
+            android:textSize="11dp" />
+
+
+        <TextView
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
+            android:id="@+id/tissuedesc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:scaleType="fitXY" />
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

@@ -45,8 +45,8 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
         mAuth = FirebaseAuth.getInstance();
 
-        editTextEmail = (EditText) findViewById(R.id.editTextEmail);
-        editTextPassword = (EditText) findViewById(R.id.editTextPassword);
+        editTextEmail = findViewById(R.id.editTextEmail);
+        editTextPassword = findViewById(R.id.editTextPassword);
 
         findViewById(R.id.buttonLogin).setOnClickListener(this);
         findViewById(R.id.textViewSignup).setOnClickListener(this);
@@ -141,7 +141,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                                     Log.d("TAG", "Failed with: ", task.getException());
                                 }
  //                              finish();
-
                             }
                         });
                     }

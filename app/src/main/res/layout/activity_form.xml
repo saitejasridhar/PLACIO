@@ -378,7 +378,7 @@ tools:context=".Form">
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:id="@+id/marks10"
-            android:inputType="number"
+            android:inputType="numberDecimal"
             android:textColorHint="#A3242466"
             />
         </LinearLayout>
@@ -531,9 +531,8 @@ tools:context=".Form">
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:id="@+id/marks12"
-            android:inputType="number"
+            android:inputType="numberDecimal"
             android:textColorHint="#A3242466"
-
             />
             </LinearLayout>
             <LinearLayout
@@ -652,7 +651,7 @@ tools:context=".Form">
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:id="@+id/marksdiploma"
-            android:inputType="number"
+            android:inputType="numberDecimal"
             android:textColorHint="#A3242466"
 
             />

@@ -184,7 +184,7 @@ public class Form extends AppCompatActivity {
                     dataMap.put("CurAddress",currentaddress.getText().toString());
                     dataMap.put("ClearArr",clarrears.getText().toString());
                     dataMap.put("CurArr",carrears.getText().toString());
-                    dataMap.put("CGPS",cgpa.getText().toString());
+                    dataMap.put("CGPA",cgpa.getText().toString());
                     dataMap.put("CurSem",currentsem.getText().toString());
                     dataMap.put("PreUni",isdiploma.getSelectedItem().toString());
                     dataMap.put("Section",section.getSelectedItem().toString());
@@ -216,22 +216,6 @@ public class Form extends AppCompatActivity {
                                     Toast.makeText(getApplicationContext(),"Failure",Toast.LENGTH_LONG).show();
                                 }
                             });
-//                    reference.document(auth.getUid().toString()).collection("Details").add(dataMap).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-//                        @Override
-//                        public void onSuccess(DocumentReference documentReference) {
-//                            Toast.makeText(getApplicationContext(),"Success",Toast.LENGTH_LONG).show();
-//                            SharedPreferences prefs1 = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-//                            SharedPreferences.Editor editor1 = prefs1.edit();
-//                            editor1.putString("openres", "True");
-//                            editor1.apply();
-//                            openNewActivity(Register.class);
-//                        }
-//                    }).addOnFailureListener(new OnFailureListener() {
-//                        @Override
-//                        public void onFailure(@NonNull Exception e) {
-//                            Toast.makeText(getApplicationContext(),"Failure",Toast.LENGTH_LONG).show();
-//                        }
-//                    });
                 }
                 else
                     Toast.makeText(getApplicationContext(),"Some Fields are invalid",Toast.LENGTH_LONG).show();
@@ -297,7 +281,7 @@ public class Form extends AppCompatActivity {
             ret++;
         }else {
             String input=marks10.getText().toString();
-            int value= Integer.parseInt(input);
+            float value=Float.parseFloat(input);
             if(value>100){
                 marks10.setError("Enter valid percentage");
                 ret++;
@@ -325,7 +309,7 @@ public class Form extends AppCompatActivity {
                 ret++;
             } else {
                 String input = marks12.getText().toString();
-                int value = Integer.parseInt(input);
+                float value=Float.parseFloat(input);
                 if (value > 100) {
                     marks12.setError("Enter valid percentage");
                     ret++;
@@ -353,7 +337,7 @@ public class Form extends AppCompatActivity {
                 ret++;
             } else {
                 String input = marksdiploma.getText().toString();
-                int value = Integer.parseInt(input);
+                float value=Float.parseFloat(input);
                 if (value > 100) {
                     marksdiploma.setError("Enter valid percentage");
                     ret++;
@@ -391,7 +375,7 @@ public class Form extends AppCompatActivity {
             ret++;
         } else {
             String input=cgpa.getText().toString();
-            int value= Integer.parseInt(input);
+            float value=Float.parseFloat(input);
             if(value>10){
                 cgpa.setError("Enter valid CGPA below 10");
                 ret++;

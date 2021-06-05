@@ -71,7 +71,6 @@ public class Signup extends AppCompatActivity implements View.OnClickListener {
                                 SharedPreferences.Editor editor = prefs.edit();
                                 editor.putString("isFirst", "True");
                                 editor.apply();
-
                             }
                             else {
                                 Toast.makeText(getApplicationContext(),task.getException().getMessage(),Toast.LENGTH_LONG).show();
