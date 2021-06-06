@@ -24,6 +24,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.Arrays;
 
 public class VCompanyAdapter extends FirestoreRecyclerAdapter<VCompany,VCompanyAdapter.VCompanyHolder> {
+    private OnItemClickListener listener;
+
     Float cgpa;
     String branch;
     Float m12th;
@@ -96,8 +98,23 @@ public class VCompanyAdapter extends FirestoreRecyclerAdapter<VCompany,VCompanyA
             Offer= itemView.findViewById(R.id.offering);
             LastDate= itemView.findViewById(R.id.lastDate);
             Category= itemView.findViewById(R.id.category);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getAdapterPosition();
+                    if (position != RecyclerView.NO_POSITION && listener != null) {
+                        listener.onItemClick(getSnapshots().getSnapshot(position), position);
+                    }
+                }
+            });
         }
     }
-
+    public interface OnItemClickListener {
+        void onItemClick(DocumentSnapshot documentSnapshot, int position);
+    }
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.listener = listener;
+    }
 
 }

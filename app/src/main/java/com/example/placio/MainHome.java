@@ -18,6 +18,7 @@ import androidx.annotation.NonNull;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.os.Parcelable;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Menu;
@@ -32,7 +33,16 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-public class MainHome extends AppCompatActivity {
+import java.io.Serializable;
+
+public class MainHome extends AppCompatActivity implements tab1.OnDataPass {
+
+    @Override
+    public void onDataPass(String data) {
+        Intent intent = new Intent(this, CompanyDetails.class);
+        intent.putExtra("Name", data);
+        startActivity(intent);
+    }
     BottomNavigationView bottomNavigationView;
     Button editpro;
     TabLayout tabs;
@@ -52,11 +62,7 @@ public class MainHome extends AppCompatActivity {
         editor.apply();
 
         setContentView(R.layout.activity_main_home);
-        SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
-        ViewPager viewPager = findViewById(R.id.view_pager);
-        viewPager.setAdapter(sectionsPagerAdapter);
-        tabs = findViewById(R.id.tabs);
-        tabs.setupWithViewPager(viewPager);
+
 
         firestore = FirebaseFirestore.getInstance();
 
@@ -88,6 +94,12 @@ public class MainHome extends AppCompatActivity {
                         editor.putString("Branch",bran);
                         editor.putString("Batch",bat);
                         editor.apply();
+
+                        SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(getBaseContext(), getSupportFragmentManager());
+                        ViewPager viewPager = findViewById(R.id.view_pager);
+                        viewPager.setAdapter(sectionsPagerAdapter);
+                        tabs = findViewById(R.id.tabs);
+                        tabs.setupWithViewPager(viewPager);
 
                     } else {
                         Log.d("please","help");

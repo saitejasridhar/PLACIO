@@ -1,6 +1,7 @@
 package com.example.placio;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -8,12 +9,16 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import com.google.firebase.firestore.DocumentSnapshot;
+
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
@@ -26,8 +31,15 @@ public class tab1 extends Fragment {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference companyRef = db.collection("Companys");
     private VCompanyAdapter adapter;
+    SwipeRefreshLayout swipeRefreshLayout;
 
+    OnDataPass dataPasser;
 
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        dataPasser = (OnDataPass) context;
+    }
 
     @Nullable
     @Override
@@ -43,6 +55,7 @@ public class tab1 extends Fragment {
         String bat =preferences.getString("Batch", "");
 
 
+
         View view= inflater.inflate(R.layout.tab1,container,false);
         Query query = companyRef.orderBy("Name", Query.Direction.ASCENDING);
         FirestoreRecyclerOptions<VCompany> options = new FirestoreRecyclerOptions.Builder<VCompany>()
@@ -53,7 +66,23 @@ public class tab1 extends Fragment {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
         recyclerView.setAdapter(adapter);
+
+
+
+        adapter.setOnItemClickListener(new VCompanyAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
+                VCompany note = documentSnapshot.toObject(VCompany.class);
+                String id = documentSnapshot.getString("Name");
+                String path = documentSnapshot.getReference().getPath();
+                dataPasser.onDataPass(path);
+
+            }
+        });
         return view;
+
+
+
     }
 
     @Override
@@ -66,4 +95,10 @@ public class tab1 extends Fragment {
         super.onStop();
         adapter.stopListening();
     }
+
+    public interface OnDataPass {
+        public void onDataPass(String data);
+    }
 }
+
+
