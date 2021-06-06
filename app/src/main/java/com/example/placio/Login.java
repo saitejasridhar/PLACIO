@@ -19,14 +19,12 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AdditionalUserInfo;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QuerySnapshot;
 
 public class Login extends AppCompatActivity implements View.OnClickListener {
 
@@ -90,18 +88,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                 if (task.isSuccessful()) {
                     if(mAuth.getCurrentUser().isEmailVerified()) {
                         String currentuser = FirebaseAuth.getInstance().getCurrentUser().getUid();
-//                        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-//                        String str =preferences.getString("isFirst", "");
-//                        if(str.equals("False")){
-//                            Intent intent = new Intent(Login.this, MainHome.class);
-//                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//                            startActivity(intent);
-//                        }
-//                        else {
-//                            Intent intent = new Intent(Login.this, Home.class);
-//                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//                            startActivity(intent);
-//                        }
 
                         DocumentReference docIdRef = firestore.collection("students").document(currentuser).collection("Details").document(currentuser);
                         docIdRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {

@@ -80,7 +80,7 @@ public class Form extends AppCompatActivity {
     boolean isAllFieldsChecked;
     boolean is12th=true;
     EditText fname, sname, usn, pphone,pemail,gphone,board10,institutename10,marks10,qyear10,qyear12,marks12,institutename12,
-            board12,qyeardiploma,marksdiploma,institutenamediploma,boarddiploma,permanentaddress,currentaddress,
+            board12,qyeardiploma,marksdiploma,institutenamediploma,boarddiploma,permanentaddress,currentaddress,batch,
             clarrears,carrears,cgpa,currentsem;
     FirebaseAuth auth = FirebaseAuth.getInstance();
 
@@ -124,6 +124,7 @@ public class Form extends AppCompatActivity {
         carrears = findViewById(R.id.carrears);
         cgpa = findViewById(R.id.cgpa);
         currentsem = findViewById(R.id.currentsem);
+        batch =findViewById(R.id.batch);
 
 
         final String[] items = new String[]{"A", "B", "C","D"};
@@ -188,6 +189,8 @@ public class Form extends AppCompatActivity {
                     dataMap.put("CurSem",currentsem.getText().toString());
                     dataMap.put("PreUni",isdiploma.getSelectedItem().toString());
                     dataMap.put("Section",section.getSelectedItem().toString());
+                    dataMap.put("Batch",batch.getText().toString());
+
 
                     if(is12th){
                         dataMap.put("PreUniBoard",board12.getText().toString());
@@ -293,6 +296,14 @@ public class Form extends AppCompatActivity {
             ret++;
         } else if (qyear10.length() > 4  ) {
             qyear10.setError("Enter a valid year");
+            ret++;
+        }
+
+        if (batch.length() == 0) {
+            batch.setError("This field is required");
+            ret++;
+        } else if (batch.length() > 4) {
+            batch.setError("Enter a valid year");
             ret++;
         }
 

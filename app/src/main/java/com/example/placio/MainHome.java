@@ -6,7 +6,10 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 
         import com.example.placio.R;
-        import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
         import com.google.android.material.floatingactionbutton.FloatingActionButton;
         import com.google.android.material.snackbar.Snackbar;
         import com.google.android.material.tabs.TabLayout;
@@ -16,6 +19,7 @@ import android.os.Bundle;
         import androidx.appcompat.app.AppCompatActivity;
 
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.Menu;
         import android.view.MenuItem;
         import android.view.View;
@@ -24,6 +28,9 @@ import android.view.Menu;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class MainHome extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
@@ -35,12 +42,7 @@ public class MainHome extends AppCompatActivity {
         final FirebaseAuth auth = FirebaseAuth.getInstance();
         getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_home);
-        SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
-        ViewPager viewPager = findViewById(R.id.view_pager);
-        viewPager.setAdapter(sectionsPagerAdapter);
-        tabs = findViewById(R.id.tabs);
-        tabs.setupWithViewPager(viewPager);
+
 
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         SharedPreferences.Editor editor = preferences.edit();
@@ -48,6 +50,13 @@ public class MainHome extends AppCompatActivity {
         editor.putString("isHome","True");
         editor.putString("isReg","True");
         editor.apply();
+
+        setContentView(R.layout.activity_main_home);
+        SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
+        ViewPager viewPager = findViewById(R.id.view_pager);
+        viewPager.setAdapter(sectionsPagerAdapter);
+        tabs = findViewById(R.id.tabs);
+        tabs.setupWithViewPager(viewPager);
 
 
 
