@@ -30,26 +30,30 @@ public class VCompanyAdapter extends FirestoreRecyclerAdapter<VCompany,VCompanyA
     Float m10th;
     int curarr;
     int clarr;
-    int bat;
+    String bat;
 
-    public VCompanyAdapter(@NonNull FirestoreRecyclerOptions<VCompany> options) {
+    public VCompanyAdapter(@NonNull FirestoreRecyclerOptions<VCompany> options,String test1,String test2,String test3,String test4
+            ,String test5,String test6,String test7) {
         super(options);
-//        Log.d("test",test5);
-//         cgpa= Float.parseFloat(test1);
-//         branch=test6;
-//        curarr=Integer.parseInt(test5);
-//        clarr=Integer.parseInt(test4);
-//        bat=Integer.parseInt(test7);
-//        m10th=Float.parseFloat(test2);
-//        m12th=Float.parseFloat(test3);
+        Log.d("test",test5);
+         cgpa= Float.parseFloat(test1);
+         branch=test6;
+        curarr=Integer.parseInt(test5);
+        clarr=Integer.parseInt(test4);
+        bat=test7;
+        m10th=Float.parseFloat(test2);
+        m12th=Float.parseFloat(test3);
 
     }
 
     @Override
     protected void onBindViewHolder(@NonNull VCompanyHolder holder, int position, @NonNull VCompany model) {
-//        Log.d("test",cgpa.toString());
-//        if(model.getCgpa() <= cgpa && model.getBranch().contains(branch) && model.getTenth() <= m10th && model.getTwelfth() <= m12th
-//        && model.getCLBacklog() <= clarr  && model.getBacklog() <= curarr && model.getBatches().contains(bat)){
+        Log.d("test",model.getBatches()+"test");
+        Log.d("test",model.getBatches()+"test");
+        if(model.getCgpa() <= cgpa && model.getBranch().contains(branch) && model.getTenth() <= m10th &&
+        model.getTwelfth() <= m12th && model.getCLBacklog() >= clarr && model.getBacklog() >= curarr &&
+                model.getBatches().contains(bat)
+                ){
             String str = Arrays.toString(model.getRoles().toArray());
             str = str.substring(1, str.length() - 1);
             holder.Name.setText(model.getName());
@@ -58,11 +62,11 @@ public class VCompanyAdapter extends FirestoreRecyclerAdapter<VCompany,VCompanyA
             holder.LPA.setText(String.valueOf(model.getCtc()) + " LPA");
             holder.Category.setText(model.getTier().toString().toUpperCase());
             holder.LastDate.setText(String.valueOf(model.getDate()));
-//        }
-//        else{
-//            holder.itemView.setVisibility(View.GONE);
-//            holder.itemView.setLayoutParams(new RecyclerView.LayoutParams(0, 0));
-//        }
+        }
+        else{
+            holder.itemView.setVisibility(View.GONE);
+            holder.itemView.setLayoutParams(new RecyclerView.LayoutParams(0, 0));
+        }
 
         }
     @NonNull

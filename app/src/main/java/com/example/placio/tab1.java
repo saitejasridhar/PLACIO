@@ -33,23 +33,22 @@ public class tab1 extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-//        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
-//        String cgpa =preferences.getString("CGPA", "");
-//        String m10th =preferences.getString("10thMarks", "");
-//        String m12th =preferences.getString("PreUniMarks", "");
-//        String clarr =preferences.getString("ClearArr", "");
-//        String curarr =preferences.getString("CurArr", "");
-//        String bran =preferences.getString("Branch", "");
-//        String bat =preferences.getString("Batch", "");
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+        String cgpa =preferences.getString("CGPA", "");
+        String m10th =preferences.getString("10thMarks", "");
+        String m12th =preferences.getString("PreUniMarks", "");
+        String clarr =preferences.getString("ClearArr", "");
+        String curarr =preferences.getString("CurArr", "");
+        String bran =preferences.getString("Branch", "");
+        String bat =preferences.getString("Batch", "");
 
-//        Log.d("testsd",cgpa);
 
         View view= inflater.inflate(R.layout.tab1,container,false);
         Query query = companyRef.orderBy("Name", Query.Direction.ASCENDING);
         FirestoreRecyclerOptions<VCompany> options = new FirestoreRecyclerOptions.Builder<VCompany>()
                 .setQuery(query, VCompany.class)
                 .build();
-        adapter = new VCompanyAdapter(options);
+        adapter = new VCompanyAdapter(options,cgpa,m10th,m12th,clarr,curarr,bran,bat);
         RecyclerView recyclerView = view.findViewById(R.id.visiting);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
