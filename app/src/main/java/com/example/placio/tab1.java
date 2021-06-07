@@ -74,8 +74,9 @@ public class tab1 extends Fragment {
             public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
                 VCompany note = documentSnapshot.toObject(VCompany.class);
                 String id = documentSnapshot.getString("Name");
+                String id1 = documentSnapshot.getId();
                 String path = documentSnapshot.getReference().getPath();
-                dataPasser.onDataPass(path);
+                dataPasser.onDataPass(id1);
 
             }
         });
