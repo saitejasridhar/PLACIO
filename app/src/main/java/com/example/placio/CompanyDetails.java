@@ -15,6 +15,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -36,6 +38,7 @@ public class CompanyDetails extends AppCompatActivity {
     LinearLayout branLL,skillsLL,rolesLL;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Intent intent = getIntent();
@@ -43,6 +46,10 @@ public class CompanyDetails extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
         setContentView(R.layout.activity_company_details);
+        final ProgressBar progbar = (ProgressBar) findViewById(R.id.progbar);
+        final ScrollView scrollView = (ScrollView) findViewById(R.id.scrollView);
+        progbar.setVisibility(View.VISIBLE);
+        scrollView.setVisibility(View.INVISIBLE);
         name = findViewById(R.id.name);
         location = findViewById(R.id.location);
         Ctc = findViewById(R.id.ctc);
@@ -140,6 +147,8 @@ public class CompanyDetails extends AppCompatActivity {
                             rolesitem.setBackgroundDrawable(getResources().getDrawable(R.drawable.details_items));
                             rolesLL.addView(rolesitem);
                             rolesitemView[i] = rolesitem;
+                            progbar.setVisibility(View.INVISIBLE);
+                            scrollView.setVisibility(View.VISIBLE);
                         }
                     } else {
                         Log.d("please", "help");
