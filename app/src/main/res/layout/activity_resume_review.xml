@@ -102,13 +102,13 @@
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
 
     <Button
-        android:id="@+id/confrim"
+        android:id="@+id/apply"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="32dp"
         android:layout_marginRight="32dp"
         android:layout_marginBottom="25dp"
-        android:text="Confrim"
+        android:text="Apply"
         android:textColor="#fff"
         android:background="@color/secondary"
 
@@ -122,9 +122,9 @@
         android:layout_marginStart="35dp"
         android:layout_marginLeft="35dp"
         android:layout_marginBottom="25dp"
-        android:textColor="#fff"
+        android:background="@drawable/cancel"
         android:text="Cancel"
-        android:background="@color/secondary"
+        android:textColor="@color/primary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 

@@ -5,6 +5,7 @@ import android.location.LocationListener;
 import java.util.List;
 
 public class VCompany {
+    private List<String> AppliedStudents;
     private String Name;
     private Long Ctc;
     private List<String> Roles;
@@ -26,7 +27,7 @@ public class VCompany {
     public VCompany(){}
 
     public VCompany(String Name,Long Ctc,List<String> Roles,List<String> Branch,int Backlog,int CLBacklog,List<String> Batches,String Breakdown,int Cgpa,String Date
-            ,String Description,String Location,String Offer,List<String> Skills,int Twelfth,int Tenth,String Tier){
+            ,String Description,String Location,String Offer,List<String> Skills,int Twelfth,int Tenth,String TierList,List<String> AppliedStudents){
         this.Name=Name;
         this.Ctc=Ctc;
         this.Backlog=Backlog;
@@ -45,6 +46,7 @@ public class VCompany {
         this.Tier=Tier;
         this.Cgpa=Cgpa;
         this.Date=Date;
+        this.AppliedStudents=AppliedStudents;
     }
 
     public String getName() {
@@ -71,6 +73,9 @@ public class VCompany {
         return CLBacklog;
     }
 
+    public List<String> getAppliedStudents() {
+        return AppliedStudents;
+    }
 
     public List<String> getBatches() {
         return Batches;

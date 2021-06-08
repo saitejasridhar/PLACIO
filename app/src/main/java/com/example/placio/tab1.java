@@ -26,6 +26,12 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 public class tab1 extends Fragment {
     String usid1 = FirebaseAuth.getInstance().getCurrentUser().getUid();
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -72,11 +78,33 @@ public class tab1 extends Fragment {
         adapter.setOnItemClickListener(new VCompanyAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
-                VCompany note = documentSnapshot.toObject(VCompany.class);
-                String id = documentSnapshot.getString("Name");
-                String id1 = documentSnapshot.getId();
-                String path = documentSnapshot.getReference().getPath();
-                dataPasser.onDataPass(id1);
+
+                Date todayDate = Calendar.getInstance().getTime();
+                SimpleDateFormat formatter = new SimpleDateFormat("dd MMM yyyy");
+                String todayString = formatter.format(todayDate);
+
+                DateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
+                DateFormat outputFormat = new SimpleDateFormat("dd MMM yyyy");
+                String inputDateStr=documentSnapshot.getString("Date");
+                Date date = null;
+                try {
+                    date = inputFormat.parse(inputDateStr);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                String outputDateStr = outputFormat.format(date);
+
+                if(!todayString.equals(outputDateStr)){
+                    VCompany note = documentSnapshot.toObject(VCompany.class);
+                    String id = documentSnapshot.getString("Name");
+                    String id1 = documentSnapshot.getId();
+                    String path = documentSnapshot.getReference().getPath();
+                    dataPasser.onDataPass(id1);
+                }
+                else {
+                    Toast.makeText(getContext(),"Company last day to apply has expired",Toast.LENGTH_LONG).show();
+                }
+
 
             }
         });

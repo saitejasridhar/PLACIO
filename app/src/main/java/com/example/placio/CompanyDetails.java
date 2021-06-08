@@ -41,6 +41,7 @@ public class CompanyDetails extends AppCompatActivity {
         Intent intent = getIntent();
         String value = intent.getExtras().getString("Name");
         super.onCreate(savedInstanceState);
+        getSupportActionBar().hide();
         setContentView(R.layout.activity_company_details);
         name = findViewById(R.id.name);
         location = findViewById(R.id.location);
@@ -84,9 +85,9 @@ public class CompanyDetails extends AppCompatActivity {
                         name.setText(document.get("Name").toString());
                         desc.setText(document.get("Description").toString());
                         location.setText(document.get("Location").toString());
-                        Ctc.setText(document.get("Ctc").toString()+"LPA");
+                        Ctc.setText(document.get("Ctc").toString()+" LPA");
                         breakdown.setText(document.get("Breakdown").toString());
-                        date.setText("Last Day to apply"+document.get("Date").toString());
+                        date.setText("Last Day to apply "+document.get("Date").toString());
                         offer.setText(document.get("Offer").toString());
                         tenth.setText(document.get("Tenth").toString()+"%");
                         twefth.setText(document.get("Twelfth").toString()+"%");
@@ -155,7 +156,10 @@ public class CompanyDetails extends AppCompatActivity {
         confrim.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openNewActivity(Personal_Details.class);
+
+                Intent intent = new Intent(getApplicationContext(), Personal_Details.class);
+                intent.putExtra("company",value);
+                startActivity(intent);
             }
         });
 

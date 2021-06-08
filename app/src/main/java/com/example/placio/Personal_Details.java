@@ -33,7 +33,8 @@ public class Personal_Details extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_personal_details);
         name=findViewById(R.id.name);
-
+        Intent intent = getIntent();
+        String value = intent.getExtras().getString("company");
         cancel=findViewById(R.id.cancel);
         confrim=findViewById(R.id.confrim);
 
@@ -85,6 +86,7 @@ public class Personal_Details extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), ResumeReview.class);
                 intent.putExtra("url",Name);
+                intent.putExtra("company",value);
                 startActivity(intent);
             }
         });

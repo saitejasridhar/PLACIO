@@ -243,7 +243,7 @@
                         tools:layout_editor_absoluteX="88dp" />
 
                     <TextView
-                        android:layout_width="30dp"
+                        android:layout_width="40dp"
                         android:id="@+id/marks10"
                         android:layout_height="wrap_content"
                         android:background="@color/primary"
@@ -271,7 +271,7 @@
                         tools:layout_editor_absoluteX="88dp" />
 
                     <TextView
-                        android:layout_width="30dp"
+                        android:layout_width="40dp"
                         android:id="@+id/marks12"
                         android:layout_height="wrap_content"
                         android:background="@color/primary"
@@ -299,7 +299,7 @@
                         tools:layout_editor_absoluteX="88dp" />
 
                     <TextView
-                        android:layout_width="30dp"
+                        android:layout_width="40dp"
                         android:layout_height="wrap_content"
                         android:background="@color/primary"
                         android:gravity="center"
@@ -338,7 +338,7 @@
                         tools:layout_editor_absoluteX="88dp" />
 
                     <TextView
-                        android:layout_width="20dp"
+                        android:layout_width="30dp"
                         android:layout_height="wrap_content"
                         android:background="@color/primary"
                         android:gravity="center"
@@ -366,7 +366,7 @@
                         tools:layout_editor_absoluteX="88dp" />
 
                     <TextView
-                        android:layout_width="20dp"
+                        android:layout_width="30dp"
                         android:layout_height="wrap_content"
                         android:background="@color/primary"
                         android:gravity="center"
@@ -420,7 +420,7 @@
 
             <LinearLayout
                 android:id="@+id/PositionsLL"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginLeft="10dp"
@@ -450,7 +450,7 @@
 
             <LinearLayout
                 android:id="@+id/SkillsLL"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginLeft="10dp"
@@ -600,9 +600,9 @@
         android:layout_marginStart="50dp"
         android:layout_marginLeft="50dp"
         android:layout_marginBottom="15dp"
-        android:background="@color/secondary"
+        android:background="@drawable/cancel"
         android:text="Cancel"
-        android:textColor="#fff"
+        android:textColor="@color/secondary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 

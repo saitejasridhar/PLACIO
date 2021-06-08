@@ -21,10 +21,16 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
 
 public class VCompanyAdapter extends FirestoreRecyclerAdapter<VCompany,VCompanyAdapter.VCompanyHolder> {
     private OnItemClickListener listener;
+    String uid=FirebaseAuth.getInstance().getCurrentUser().getUid();
 
     Float cgpa;
     String branch;
@@ -37,24 +43,35 @@ public class VCompanyAdapter extends FirestoreRecyclerAdapter<VCompany,VCompanyA
     public VCompanyAdapter(@NonNull FirestoreRecyclerOptions<VCompany> options,String test1,String test2,String test3,String test4
             ,String test5,String test6,String test7) {
         super(options);
-        Log.d("test",test5);
-         cgpa= Float.parseFloat(test1);
-         branch=test6;
+        cgpa= Float.parseFloat(test1);
+        branch=test6;
         curarr=Integer.parseInt(test5);
         clarr=Integer.parseInt(test4);
         bat=test7;
         m10th=Float.parseFloat(test2);
         m12th=Float.parseFloat(test3);
-
     }
 
     @Override
     protected void onBindViewHolder(@NonNull VCompanyHolder holder, int position, @NonNull VCompany model) {
-        Log.d("test",model.getBatches()+"test");
-        Log.d("test",model.getBatches()+"test");
+        Date todayDate = Calendar.getInstance().getTime();
+        SimpleDateFormat formatter = new SimpleDateFormat("dd MMM yyyy");
+        String todayString = formatter.format(todayDate);
+
+        DateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
+        DateFormat outputFormat = new SimpleDateFormat("dd MMM yyyy");
+        String inputDateStr=model.getDate();
+        Date date = null;
+        try {
+            date = inputFormat.parse(inputDateStr);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        String outputDateStr = outputFormat.format(date);
+
         if(model.getCgpa() <= cgpa && model.getBranch().contains(branch) && model.getTenth() <= m10th &&
         model.getTwelfth() <= m12th && model.getCLBacklog() >= clarr && model.getBacklog() >= curarr &&
-                model.getBatches().contains(bat)
+                model.getBatches().contains(bat) && !model.getAppliedStudents().contains(uid) && !todayString.equals(outputDateStr)
                 ){
             String str = Arrays.toString(model.getRoles().toArray());
             str = str.substring(1, str.length() - 1);
@@ -63,7 +80,7 @@ public class VCompanyAdapter extends FirestoreRecyclerAdapter<VCompany,VCompanyA
             holder.Offer.setText(model.getOffer());
             holder.LPA.setText(String.valueOf(model.getCtc()) + " LPA");
             holder.Category.setText(model.getTier().toString().toUpperCase());
-            holder.LastDate.setText(String.valueOf(model.getDate()));
+            holder.LastDate.setText(outputDateStr);
         }
         else{
             holder.itemView.setVisibility(View.GONE);
