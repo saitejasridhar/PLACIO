@@ -34,6 +34,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class MainHome extends AppCompatActivity implements tab1.OnDataPass {
 
@@ -82,6 +83,9 @@ public class MainHome extends AppCompatActivity implements tab1.OnDataPass {
                         String  curarr = document.get("CurArr").toString();
                         String  bran = document.get("Branch").toString();
                         String  bat = document.get("Batch").toString();
+                        List<String> appliedcompanies = (List<String>) document.get("Applied");
+                        String app= appliedcompanies.toString();
+
 
 
                         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
@@ -93,6 +97,7 @@ public class MainHome extends AppCompatActivity implements tab1.OnDataPass {
                         editor.putString("CurArr",curarr);
                         editor.putString("Branch",bran);
                         editor.putString("Batch",bat);
+                        editor.putString("Applied",app);
                         editor.apply();
 
                         SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(getBaseContext(), getSupportFragmentManager());

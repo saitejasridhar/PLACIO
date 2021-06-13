@@ -72,7 +72,6 @@ public class ResumeReview extends AppCompatActivity {
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
-
                                 reference1.document(companyid)
                                         .update("AppliedStudents", FieldValue.arrayUnion(currentuser))
                                         .addOnSuccessListener(new OnSuccessListener<Void>() {
