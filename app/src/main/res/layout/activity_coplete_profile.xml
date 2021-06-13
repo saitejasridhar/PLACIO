@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#fff"
-    tools:context=".Personal_Details">
+    tools:context=".CopleteProfile">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -79,12 +77,14 @@
                 app:layout_constraintStart_toEndOf="@+id/view2" />
 
             <Button
-                android:id="@+id/profile"
-                android:layout_width="38dp"
-                android:layout_height="38dp"
+                android:id="@+id/edit"
+                android:layout_width="65dp"
+                android:layout_height="35dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginRight="16dp"
-                android:background="@drawable/profile"
+                android:background="@color/secondary"
+                android:text="EDIT"
+                android:textColor="#fff"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -94,6 +94,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ScrollView
+        android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginBottom="10dp"
@@ -598,41 +599,48 @@
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
-
             </LinearLayout>
-
 
         </LinearLayout>
 
+
     </ScrollView>
 
-
-    <Button
-        android:id="@+id/confrim"
-        android:layout_width="120dp"
+    <ProgressBar
+        android:id="@+id/progbar"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="50dp"
-        android:layout_marginRight="50dp"
-        android:layout_marginBottom="25dp"
-        android:background="@color/secondary"
-        android:text="Confirm"
-        android:textColor="#fff"
+        android:indeterminateTint="@color/primary"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/cancel"
-        android:layout_width="120dp"
+        android:layout_width="110dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginLeft="50dp"
-        android:layout_marginBottom="25dp"
+        android:layout_marginStart="70dp"
+        android:layout_marginLeft="70dp"
+        android:layout_marginBottom="10dp"
         android:background="@drawable/cancel"
-        android:text="Cancel"
-        android:textColor="@color/primary"
+        android:text="Back"
+        android:textColor="@color/secondary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <Button
+        android:id="@+id/openres"
+        android:layout_width="110dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="70dp"
+        android:layout_marginRight="70dp"
+        android:layout_marginBottom="10dp"
+        android:background="@color/secondary"
+        android:text="View Resume"
+        android:textColor="#fff"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 
 

@@ -1,114 +1,60 @@
 package com.example.placio;
+
 import androidx.annotation.NonNull;
-import android.content.Intent;
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Parcelable;
-import android.preference.PreferenceManager;
-import android.view.MenuItem;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.Manifest;
-import android.app.ProgressDialog;
-import android.content.ClipData;
-import android.content.pm.PackageManager;
-import android.net.Uri;
-import android.os.Build;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.FieldValue;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
 
-import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import android.util.Log;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.Toast;
-
-import java.io.Serializable;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 
+public class EditProfile extends AppCompatActivity {
 
-
-import android.widget.Spinner;
-
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-
-import java.util.Arrays;
-import java.util.Calendar;
-
-
-public class Form extends AppCompatActivity {
-    Spinner section,isdiploma;
-    Button register;
-    FirebaseStorage storage;
-    FirebaseFirestore firestore;
-    CollectionReference reference;
-    FirebaseAuth firebaseAuth;
-    boolean isAllFieldsChecked;
-    boolean is12th=true;
     EditText fname, sname, usn, pphone,pemail,gphone,board10,institutename10,marks10,qyear10,qyear12,marks12,institutename12,
             board12,qyeardiploma,marksdiploma,institutenamediploma,boarddiploma,permanentaddress,currentaddress,batch,
             clarrears,carrears,cgpa,currentsem;
-    FirebaseAuth auth = FirebaseAuth.getInstance();
-
+    FirebaseFirestore firestore;
+    Spinner section,isdiploma;
+    boolean is12th,isAllFieldsChecked;
+    String value;
+    LinearLayout Linear12,LinearL,Lineardiploma;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        final String value = getIntent().getExtras().getString("branch");
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        SharedPreferences.Editor editor = preferences.edit();
-        editor.putString("isFirst","True");
-        editor.putString("isHome","False");
-        editor.putString("isReg","True");
-        editor.apply();
+        setContentView(R.layout.activity_edit_profile);
         getSupportActionBar().hide();
-        setContentView(R.layout.activity_form);
-        section = findViewById(R.id.section);
-        isdiploma = findViewById(R.id.isdiploma);
-        final LinearLayout LinearL = findViewById(R.id.LinearL);
-        final LinearLayout Linear12 = findViewById(R.id.Linear12);
-        final LinearLayout Lineardiploma = findViewById(R.id.Lineardiploma);
-        ((ViewGroup) Linear12.getParent()).removeView(Linear12);
-        ((ViewGroup) Lineardiploma.getParent()).removeView(Lineardiploma);
-        firebaseAuth = FirebaseAuth.getInstance();
-        register = findViewById(R.id.register);
-        firestore = FirebaseFirestore.getInstance();
-        storage = FirebaseStorage.getInstance();
-        reference = firestore.collection("students");
+         LinearL = findViewById(R.id.LinearL);
+         Linear12 = findViewById(R.id.Linear12);
+         Lineardiploma = findViewById(R.id.Lineardiploma);
+//        ((ViewGroup) Linear12.getParent()).removeView(Linear12);
+//        ((ViewGroup) Lineardiploma.getParent()).removeView(Lineardiploma);
+
+        Lineardiploma.setVisibility(View.INVISIBLE);
+        Linear12.setVisibility(View.INVISIBLE);
         fname = findViewById(R.id.fname);
         sname = findViewById(R.id.sname);
         usn = findViewById(R.id.usn);
@@ -126,32 +72,66 @@ public class Form extends AppCompatActivity {
         cgpa = findViewById(R.id.cgpa);
         currentsem = findViewById(R.id.currentsem);
         batch =findViewById(R.id.batch);
+        section = findViewById(R.id.section);
+        isdiploma = findViewById(R.id.isdiploma);
+        firestore = FirebaseFirestore.getInstance();
+        CollectionReference reference = firestore.collection("students");
+        Button  done = findViewById(R.id.register);
+        Button  cancel = findViewById(R.id.cancel);
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openNewActivity(CopleteProfile.class);
+            }
+        });
 
 
         final String[] items = new String[]{"A", "B", "C","D"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
         section.setAdapter(adapter);
 
-
+        isdiploma = findViewById(R.id.isdiploma);
         final String[] preuni = new String[]{"12th", "Diploma"};
         ArrayAdapter<String> adapter1 = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, preuni);
         isdiploma.setAdapter(adapter1);
         isdiploma.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                if(preuni[position]=="Diploma"){
-                    LinearL.removeView(Linear12);
-                    LinearL.addView(Lineardiploma);
+                if(preuni[position].equals("Diploma")){
+                    LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) Linear12.getLayoutParams();
+                    params.height = 0;
+                    params.width = 0;
+                    Linear12.setLayoutParams(params);
+
+                    LinearLayout.LayoutParams params1 = (LinearLayout.LayoutParams) Lineardiploma.getLayoutParams();
+                    params1.height = ViewGroup.LayoutParams.WRAP_CONTENT;
+                    params1.width = ViewGroup.LayoutParams.MATCH_PARENT;
+                    Lineardiploma.setLayoutParams(params1);
+//                    LinearL.removeView(Linear12);
+//                    LinearL.addView(Lineardiploma);
+                    Lineardiploma.setVisibility(View.VISIBLE);
+                    Linear12.setVisibility(View.INVISIBLE);
                     qyeardiploma = findViewById(R.id.qyeardiploma);
                     marksdiploma = findViewById(R.id.marksdiploma);
                     institutenamediploma = findViewById(R.id.institutenamediploma);
                     boarddiploma = findViewById(R.id.boarddiploma);
                     is12th=false;
                 }
-                if(preuni[position]=="12th") {
+                if(preuni[position].equals("12th")) {
+                    LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) Lineardiploma.getLayoutParams();
+                    params.height = 0;
+                    params.width = 0;
+                    Lineardiploma.setLayoutParams(params);
+
+                    LinearLayout.LayoutParams params1 = (LinearLayout.LayoutParams) Linear12.getLayoutParams();
+                    params1.height = ViewGroup.LayoutParams.WRAP_CONTENT;
+                    params1.width = ViewGroup.LayoutParams.MATCH_PARENT;
+                    Linear12.setLayoutParams(params1);
                     is12th=true;
-                    LinearL.removeView(Lineardiploma);
-                    LinearL.addView(Linear12);
+//                    LinearL.removeView(Lineardiploma);
+//                    LinearL.addView(Linear12);
+                    Linear12.setVisibility(View.VISIBLE);
+                    Lineardiploma.setVisibility(View.INVISIBLE);
                     board12 = findViewById(R.id.board12);
                     qyear12 = findViewById(R.id.qyear12);
                     marks12=findViewById(R.id.marks12);
@@ -161,11 +141,99 @@ public class Form extends AppCompatActivity {
 
             @Override
             public void onNothingSelected(AdapterView<?> parentView) {
-                // your code here
             }
         });
 
-        register.setOnClickListener(new View.OnClickListener() {
+        String currentuser = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        DocumentReference docIdRef1 = firestore.collection("students").document(currentuser).collection("Details").document(currentuser);
+        docIdRef1.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        value=document.get("Branch").toString();
+                        fname.setText(document.get("FName").toString());
+                        sname.setText(document.get("Sname").toString());
+                        pphone.setText(document.get("PPhone").toString());
+                        gphone.setText(document.get("GPhone").toString());
+                        pemail.setText(document.get("PEmail").toString());
+                        batch.setText(document.get("Batch").toString());
+                        SetSpinnerSelection(section,items,document.get("Section").toString());
+                        SetSpinnerSelection12th(isdiploma,preuni,document.get("PreUni").toString(),document);
+                        if(document.get("PreUni").equals("12th")){
+//                            LinearL.removeView(Lineardiploma);
+//                            LinearL.addView(Linear12);
+                            LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) Lineardiploma.getLayoutParams();
+                            params.height = 0;
+                            params.width = 0;
+                            Lineardiploma.setLayoutParams(params);
+
+                            LinearLayout.LayoutParams params1 = (LinearLayout.LayoutParams) Linear12.getLayoutParams();
+                            params1.height = ViewGroup.LayoutParams.WRAP_CONTENT;
+                            params1.width = ViewGroup.LayoutParams.MATCH_PARENT;
+                            Linear12.setLayoutParams(params1);
+
+                            Linear12.setVisibility(View.VISIBLE);
+                            Lineardiploma.setVisibility(View.INVISIBLE);
+                            board12 = findViewById(R.id.board12);
+                            qyear12 = findViewById(R.id.qyear12);
+                            marks12=findViewById(R.id.marks12);
+                            institutename12 = findViewById(R.id.institutename12);
+                            board12.setText(document.get("PreUniBoard").toString());
+                            qyear12.setText(document.get("PreUniQyear").toString());
+                            marks12.setText(document.get("PreUniMarks").toString());
+                            institutename12.setText(document.get("PreUniInstitute").toString());
+
+                        }
+                        else {
+//                            LinearL.removeView(Linear12);
+//                            LinearL.addView(Lineardiploma);
+                            LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) Linear12.getLayoutParams();
+                            params.height = 0;
+                            params.width = 0;
+                            Linear12.setLayoutParams(params);
+
+                            LinearLayout.LayoutParams params1 = (LinearLayout.LayoutParams) Lineardiploma.getLayoutParams();
+                            params1.height = ViewGroup.LayoutParams.WRAP_CONTENT;
+                            params1.width = ViewGroup.LayoutParams.MATCH_PARENT;
+                            Lineardiploma.setLayoutParams(params1);
+
+                            Lineardiploma.setVisibility(View.VISIBLE);
+                            Linear12.setVisibility(View.INVISIBLE);
+                            qyeardiploma = findViewById(R.id.qyeardiploma);
+                            marksdiploma = findViewById(R.id.marksdiploma);
+                            institutenamediploma = findViewById(R.id.institutenamediploma);
+                            boarddiploma = findViewById(R.id.boarddiploma);
+                            boarddiploma.setText(document.get("PreUniBoard").toString());
+                            qyeardiploma.setText(document.get("PreUniQyear").toString());
+                            marksdiploma.setText(document.get("PreUniMarks").toString());
+                            institutenamediploma.setText(document.get("PreUniInstitute").toString());
+                        }
+                        usn.setText(document.get("USN").toString());
+                        currentaddress.setText(document.get("CurAddress").toString());
+                        currentsem.setText(document.get("CurSem").toString());
+
+                        institutename10.setText(document.get("10thInstitute").toString());
+                        marks10.setText(document.get("10thMarks").toString());
+                        board10.setText(document.get("10thBoard").toString());
+                        qyear10.setText(document.get("10thQyear").toString());
+
+                        cgpa.setText(document.get("CGPA").toString());
+                        carrears.setText(document.get("CurArr").toString());
+                        clarrears.setText(document.get("ClearArr").toString());
+                        permanentaddress.setText(document.get("PerAddress").toString());
+
+                    } else {
+                        Log.d("please", "help");
+                    }
+                } else {
+                    Log.d("TAG", "Failed with: ", task.getException());
+                }
+            }
+        });
+
+        done.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 isAllFieldsChecked = CheckAllFields();
@@ -206,13 +274,14 @@ public class Form extends AppCompatActivity {
                         dataMap.put("PreUniInstitute",institutenamediploma.getText().toString());
                     }
 
+                    FirebaseAuth auth = FirebaseAuth.getInstance();
                     reference.document(auth.getUid().toString()).collection("Details").document(auth.getUid().toString())
-                            .set(dataMap)
+                            .update(dataMap)
                             .addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void aVoid) {
                                     Toast.makeText(getApplicationContext(),"Success",Toast.LENGTH_LONG).show();
-                                    openNewActivity(Register.class);                                }
+                                    openNewActivity(CopleteProfile.class);                                }
                             })
                             .addOnFailureListener(new OnFailureListener() {
                                 @Override
@@ -226,8 +295,24 @@ public class Form extends AppCompatActivity {
             }
         });
 
-
     }
+
+    public void SetSpinnerSelection(Spinner spinner,String[] array,String text) {
+        for(int i=0;i<array.length;i++) {
+            if(array[i].equals(text)) {
+                spinner.setSelection(i);
+            }
+        }
+    }
+
+    public void SetSpinnerSelection12th(Spinner spinner,String[] array,String text,DocumentSnapshot document) {
+        for(int i=0;i<array.length;i++) {
+            if(array[i].equals(text)) {
+                spinner.setSelection(i);
+            }
+        }
+    }
+
 
     private boolean CheckAllFields() {
         int ret=0;
@@ -408,7 +493,6 @@ public class Form extends AppCompatActivity {
         // after all validation return true.
         return ret == 0;
     }
-
 
     private void openNewActivity( final Class<? extends Activity> ActivityToOpen)
     {

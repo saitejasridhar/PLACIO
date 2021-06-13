@@ -5,13 +5,19 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
+import android.widget.ScrollView;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.github.mikephil.charting.data.PieData;
+import com.github.mikephil.charting.data.PieDataSet;
+import com.github.mikephil.charting.data.PieEntry;
+import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -21,26 +27,26 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 
-public class Personal_Details extends AppCompatActivity {
-    Button confrim,cancel;
-    TextView name;
-    String Name;
+public class CopleteProfile extends AppCompatActivity {
     TextView fname,sname,email,phone,usn,sem,section,batch,pemail,branch,address;
     FirebaseFirestore firestore;
     TextView cgpa,curback,clback;
     TextView iname10th,marks10,bname10th,qyear10;
     TextView iname12th,marks12,bname12th,qyear12;
+    String resume;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
-        setContentView(R.layout.activity_personal_details);
-        Intent intent = getIntent();
-        String value = intent.getExtras().getString("company");
-        cancel=findViewById(R.id.cancel);
-        confrim=findViewById(R.id.confrim);
+        setContentView(R.layout.activity_coplete_profile);
+        Button openresume=findViewById(R.id.openres);
+        final ProgressBar progbar = (ProgressBar) findViewById(R.id.progbar);
+        final ScrollView scrollView = (ScrollView) findViewById(R.id.scrollView);
+        progbar.setVisibility(View.VISIBLE);
+        scrollView.setVisibility(View.INVISIBLE);
         fname=findViewById(R.id.fname);
         sname=findViewById(R.id.sname);
         email=findViewById(R.id.gmail);
@@ -67,11 +73,26 @@ public class Personal_Details extends AppCompatActivity {
         bname12th=findViewById(R.id.board12);
         qyear12=findViewById(R.id.qyear12);
 
+        Button edit =  findViewById(R.id.edit);
+        edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openNewActivity(EditProfile.class);
+            }
+        });
+
+        Button  cancel = findViewById(R.id.cancel);
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openNewActivity(Profile.class);
+            }
+        });
+
+
         firestore = FirebaseFirestore.getInstance();
 
         String currentuser = FirebaseAuth.getInstance().getCurrentUser().getUid();
-
-
         DocumentReference docIdRef1 = firestore.collection("students").document(currentuser).collection("Details").document(currentuser);
         docIdRef1.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
@@ -105,6 +126,9 @@ public class Personal_Details extends AppCompatActivity {
                         bname12th.setText(document.get("PreUniBoard").toString());
                         qyear12.setText("Qualification Year: "+document.get("PreUniQyear").toString());
 
+                        progbar.setVisibility(View.INVISIBLE);
+                        scrollView.setVisibility(View.VISIBLE);
+
                     } else {
                         Log.d("please", "help");
                     }
@@ -121,9 +145,9 @@ public class Personal_Details extends AppCompatActivity {
                 if (task.isSuccessful()) {
                     DocumentSnapshot document = task.getResult();
                     if (document.exists()) {
-                         Name = document.get("resume").toString();
+                        resume = document.get("resume").toString();
                         try {
-                            Name= URLEncoder.encode(Name,"UTF-8");
+                            resume= URLEncoder.encode(resume,"UTF-8");
                         } catch (UnsupportedEncodingException e) {
                             e.printStackTrace();
                         }
@@ -135,24 +159,17 @@ public class Personal_Details extends AppCompatActivity {
                 }
             }
         });
-
-        confrim.setOnClickListener(new View.OnClickListener() {
+        openresume.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), ResumeReview.class);
-                intent.putExtra("url",Name);
-                intent.putExtra("company",value);
+                Intent intent = new Intent(getApplicationContext(), Resume.class);
+                intent.putExtra("url",resume);
                 startActivity(intent);
             }
         });
-
-        cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
     }
+
+
 
     private void openNewActivity( final Class<? extends Activity> ActivityToOpen)
     {

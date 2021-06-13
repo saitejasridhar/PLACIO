@@ -12,6 +12,8 @@ import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
+import android.widget.ProgressBar;
+import android.widget.ScrollView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -31,12 +33,14 @@ public class ResumeReview extends AppCompatActivity {
     WebView webView;
     Button apply,cancel;
     FirebaseFirestore firestore;
+    ProgressBar progbar;
 
     private String removePdfTopIcon = "javascript:(function() {" + "document.querySelector('[role=\"toolbar\"]').remove();})()";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         firestore = FirebaseFirestore.getInstance();
+
         Intent intent = getIntent();
         String companyid = intent.getExtras().getString("company");
         String currentuser = FirebaseAuth.getInstance().getCurrentUser().getUid();
@@ -46,9 +50,14 @@ public class ResumeReview extends AppCompatActivity {
 
 
         super.onCreate(savedInstanceState);
+        getSupportActionBar().hide();
         setContentView(R.layout.activity_resume_review);
+
         webView=findViewById(R.id.web);
         cancel=findViewById(R.id.cancel);
+        progbar = (ProgressBar) findViewById(R.id.progbar);
+        progbar.setVisibility(View.VISIBLE);
+        webView.setVisibility(View.INVISIBLE);
         apply=findViewById(R.id.apply);
         String pdfUrl=getIntent().getExtras().getString("url");
         showPdfFile(pdfUrl);
@@ -99,7 +108,7 @@ public class ResumeReview extends AppCompatActivity {
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openNewActivity(MainHome.class);
+                finish();
             }
         });
     }
@@ -125,6 +134,8 @@ public class ResumeReview extends AppCompatActivity {
             public void onPageFinished(WebView view, String url) {
                 if (checkOnPageStartedCalled) {
                     webView.loadUrl(removePdfTopIcon);
+                    progbar.setVisibility(View.INVISIBLE);
+                    webView.setVisibility(View.VISIBLE);
                 } else {
                     showPdfFile(pdfUrl);
                 }

@@ -165,7 +165,6 @@ public class CompanyDetails extends AppCompatActivity {
         confrim.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 Intent intent = new Intent(getApplicationContext(), Personal_Details.class);
                 intent.putExtra("company",value);
                 startActivity(intent);
