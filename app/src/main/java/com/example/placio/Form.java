@@ -127,7 +127,6 @@ public class Form extends AppCompatActivity {
         currentsem = findViewById(R.id.currentsem);
         batch =findViewById(R.id.batch);
 
-
         final String[] items = new String[]{"A", "B", "C","D"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
         section.setAdapter(adapter);

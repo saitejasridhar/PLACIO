@@ -57,7 +57,7 @@ public class Events extends AppCompatActivity {
         });
 
 
-        Query query = db.collectionGroup("events").orderBy("date", Query.Direction.ASCENDING);
+        Query query = db.collectionGroup("events");
         FirestoreRecyclerOptions<Event> options = new FirestoreRecyclerOptions.Builder<Event>()
                 .setQuery(query, Event.class)
                 .build();

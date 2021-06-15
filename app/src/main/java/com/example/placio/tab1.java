@@ -60,8 +60,6 @@ public class tab1 extends Fragment {
         String bran =preferences.getString("Branch", "");
         String bat =preferences.getString("Batch", "");
 
-
-
         View view= inflater.inflate(R.layout.tab1,container,false);
         Query query = companyRef.orderBy("Name", Query.Direction.ASCENDING);
         FirestoreRecyclerOptions<VCompany> options = new FirestoreRecyclerOptions.Builder<VCompany>()

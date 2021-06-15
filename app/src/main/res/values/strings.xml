@@ -3,6 +3,6 @@
     <string name="title_activity_form">ScrollingActivity</string>
     <string name="tab_text_1">Visiting</string>
     <string name="tab_text_2">Applied</string>
-    <string name="tab_text_3">Too Late</string>
+    <string name="tab_text_3">Rejected</string>
     <string name="action_settings">Settings</string>
 </resources>
