@@ -90,15 +90,21 @@ public class Personal_Details extends AppCompatActivity {
                         usn.setText(document.get("USN").toString());
                         address.setText("Address: "+document.get("CurAddress").toString());
                         sem.setText(document.get("CurSem").toString()+" Semester");
+                        Name = document.get("resume").toString();
+                        try {
+                            Name= URLEncoder.encode(Name,"UTF-8");
+                        } catch (UnsupportedEncodingException e) {
+                            e.printStackTrace();
+                        }
 
                         cgpa.setText("CGPA: "+document.get("CGPA").toString());
                         curback.setText("Current BackLogs: "+document.get("CurArr").toString());
                         clback.setText("Cleared BackLogs: "+document.get("ClearArr").toString());
 
-                        iname10th.setText(document.get("10thInstitute").toString());
-                        marks10.setText("Percentage: "+document.get("10thMarks").toString());
-                        bname10th.setText(document.get("10thBoard").toString());
-                        qyear10.setText("Qualification Year: "+document.get("10thQyear").toString());
+                        iname10th.setText(document.get("TenthInstitute").toString());
+                        marks10.setText("Percentage: "+document.get("TenthMarks").toString());
+                        bname10th.setText(document.get("TenthBoard").toString());
+                        qyear10.setText("Qualification Year: "+document.get("TenthQyear").toString());
 
                         iname12th.setText(document.get("PreUniInstitute").toString());
                         marks12.setText("Percentage: "+document.get("PreUniMarks").toString());
@@ -114,27 +120,6 @@ public class Personal_Details extends AppCompatActivity {
             }
         });
 
-        DocumentReference docIdRef2 = firestore.collection("students").document(currentuser).collection("Resume").document(currentuser);
-        docIdRef2.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot document = task.getResult();
-                    if (document.exists()) {
-                         Name = document.get("resume").toString();
-                        try {
-                            Name= URLEncoder.encode(Name,"UTF-8");
-                        } catch (UnsupportedEncodingException e) {
-                            e.printStackTrace();
-                        }
-                    } else {
-                        Log.d("please", "help");
-                    }
-                } else {
-                    Log.d("TAG", "Failed with: ", task.getException());
-                }
-            }
-        });
 
         confrim.setOnClickListener(new View.OnClickListener() {
             @Override

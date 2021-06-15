@@ -97,16 +97,23 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                                     DocumentSnapshot document = task.getResult();
                                     if (document.exists()) {
                                         String currentuser = FirebaseAuth.getInstance().getCurrentUser().getUid();
-                                        DocumentReference docIdRef1= firestore.collection("students").document(currentuser).collection("Resume").document(currentuser);
+                                        DocumentReference docIdRef1= firestore.collection("students").document(currentuser).collection("Details").document(currentuser);
                                         docIdRef1.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                                             @Override
                                             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                                                 if (task.isSuccessful()) {
                                                     DocumentSnapshot document = task.getResult();
                                                     if (document.exists()) {
-                                                        Intent intent = new Intent(Login.this, MainHome.class);
-                                                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                                        startActivity(intent);
+                                                        if (document.get("resume") != null) {
+                                                            Intent intent = new Intent(Login.this, MainHome.class);
+                                                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                                            startActivity(intent);
+                                                        } else {
+                                                            Intent intent = new Intent(Login.this, Register.class);
+                                                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                                            startActivity(intent);
+                                                        }
+
                                                     } else {
                                                         Intent intent = new Intent(Login.this, Register.class);
                                                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

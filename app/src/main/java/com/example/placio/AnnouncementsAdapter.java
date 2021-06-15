@@ -20,11 +20,9 @@ public class AnnouncementsAdapter extends FirestoreRecyclerAdapter<Announcement,
     private AnnouncementsAdapter.OnItemClickListener listener;
     String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-
     public AnnouncementsAdapter(@NonNull FirestoreRecyclerOptions<Announcement> options) {
         super(options);
     }
-
 
     @Override
     protected void onBindViewHolder(@NonNull AnnouncementsAdapter.AnnouncementsHolder holder, int position, @NonNull Announcement model) {

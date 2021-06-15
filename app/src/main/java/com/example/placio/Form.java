@@ -177,10 +177,10 @@ public class Form extends AppCompatActivity {
                     dataMap.put("PPhone",pphone.getText().toString());
                     dataMap.put("PEmail",pemail.getText().toString());
                     dataMap.put("GPhone",gphone.getText().toString());
-                    dataMap.put("10thBoard",board10.getText().toString());
-                    dataMap.put("10thInstitute",institutename10.getText().toString());
-                    dataMap.put("10thMarks",marks10.getText().toString());
-                    dataMap.put("10thQyear",qyear10.getText().toString());
+                    dataMap.put("TenthBoard",board10.getText().toString());
+                    dataMap.put("TenthInstitute",institutename10.getText().toString());
+                    dataMap.put("TenthMarks",marks10.getText().toString());
+                    dataMap.put("TenthQyear",qyear10.getText().toString());
                     dataMap.put("PerAddress",permanentaddress.getText().toString());
                     dataMap.put("CurAddress",currentaddress.getText().toString());
                     dataMap.put("ClearArr",clarrears.getText().toString());

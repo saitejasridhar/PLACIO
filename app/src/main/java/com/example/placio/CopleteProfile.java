@@ -116,10 +116,10 @@ public class CopleteProfile extends AppCompatActivity {
                         curback.setText("Current BackLogs: "+document.get("CurArr").toString());
                         clback.setText("Cleared BackLogs: "+document.get("ClearArr").toString());
 
-                        iname10th.setText(document.get("10thInstitute").toString());
-                        marks10.setText("Percentage: "+document.get("10thMarks").toString());
-                        bname10th.setText(document.get("10thBoard").toString());
-                        qyear10.setText("Qualification Year: "+document.get("10thQyear").toString());
+                        iname10th.setText(document.get("TenthInstitute").toString());
+                        marks10.setText("Percentage: "+document.get("TenthMarks").toString());
+                        bname10th.setText(document.get("TenthBoard").toString());
+                        qyear10.setText("Qualification Year: "+document.get("TenthQyear").toString());
 
                         iname12th.setText(document.get("PreUniInstitute").toString());
                         marks12.setText("Percentage: "+document.get("PreUniMarks").toString());

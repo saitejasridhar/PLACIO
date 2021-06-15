@@ -136,7 +136,7 @@ public class Register extends AppCompatActivity {
                         Map<String, Object> data = new HashMap<>();
                         data.put("resume", url);
                         String Uid = FirebaseAuth.getInstance().getUid();
-                        firestore.collection("Resume").document(Uid).set(data)
+                        firestore.collection("Details").document(Uid).update(data)
                                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
                                     public void onSuccess(Void aVoid) {

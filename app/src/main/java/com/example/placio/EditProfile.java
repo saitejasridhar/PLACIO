@@ -122,14 +122,11 @@ public class EditProfile extends AppCompatActivity {
                     params.height = 0;
                     params.width = 0;
                     Lineardiploma.setLayoutParams(params);
-
                     LinearLayout.LayoutParams params1 = (LinearLayout.LayoutParams) Linear12.getLayoutParams();
                     params1.height = ViewGroup.LayoutParams.WRAP_CONTENT;
                     params1.width = ViewGroup.LayoutParams.MATCH_PARENT;
                     Linear12.setLayoutParams(params1);
                     is12th=true;
-//                    LinearL.removeView(Lineardiploma);
-//                    LinearL.addView(Linear12);
                     Linear12.setVisibility(View.VISIBLE);
                     Lineardiploma.setVisibility(View.INVISIBLE);
                     board12 = findViewById(R.id.board12);
@@ -215,9 +212,9 @@ public class EditProfile extends AppCompatActivity {
                         currentsem.setText(document.get("CurSem").toString());
 
                         institutename10.setText(document.get("10thInstitute").toString());
-                        marks10.setText(document.get("10thMarks").toString());
-                        board10.setText(document.get("10thBoard").toString());
-                        qyear10.setText(document.get("10thQyear").toString());
+                        marks10.setText(document.get("TenthMarks").toString());
+                        board10.setText(document.get("TenthBoard").toString());
+                        qyear10.setText(document.get("TenthQyear").toString());
 
                         cgpa.setText(document.get("CGPA").toString());
                         carrears.setText(document.get("CurArr").toString());
@@ -246,10 +243,10 @@ public class EditProfile extends AppCompatActivity {
                     dataMap.put("PPhone",pphone.getText().toString());
                     dataMap.put("PEmail",pemail.getText().toString());
                     dataMap.put("GPhone",gphone.getText().toString());
-                    dataMap.put("10thBoard",board10.getText().toString());
-                    dataMap.put("10thInstitute",institutename10.getText().toString());
-                    dataMap.put("10thMarks",marks10.getText().toString());
-                    dataMap.put("10thQyear",qyear10.getText().toString());
+                    dataMap.put("TenthBoard",board10.getText().toString());
+                    dataMap.put("TenthInstitute",institutename10.getText().toString());
+                    dataMap.put("TenthMarks",marks10.getText().toString());
+                    dataMap.put("TenthQyear",qyear10.getText().toString());
                     dataMap.put("PerAddress",permanentaddress.getText().toString());
                     dataMap.put("CurAddress",currentaddress.getText().toString());
                     dataMap.put("ClearArr",clarrears.getText().toString());

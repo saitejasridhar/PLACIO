@@ -77,7 +77,7 @@ public class MainHome extends AppCompatActivity implements tab1.OnDataPass {
                     if (document.exists()) {
 
                         String  cgpa = document.get("CGPA").toString();
-                        String  m10th = document.get("10thMarks").toString();
+                        String  m10th = document.get("TenthMarks").toString();
                         String  m12th = document.get("PreUniMarks").toString();
                         String  clarr = document.get("ClearArr").toString();
                         String  curarr = document.get("CurArr").toString();
@@ -91,7 +91,7 @@ public class MainHome extends AppCompatActivity implements tab1.OnDataPass {
                         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                         SharedPreferences.Editor editor = preferences.edit();
                         editor.putString("CGPA",cgpa);
-                        editor.putString("10thMarks",m10th);
+                        editor.putString("TenthMarks",m10th);
                         editor.putString("PreUniMarks",m12th);
                         editor.putString("ClearArr",clarr);
                         editor.putString("CurArr",curarr);
