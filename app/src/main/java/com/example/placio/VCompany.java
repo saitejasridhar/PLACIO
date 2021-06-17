@@ -24,13 +24,16 @@ public class VCompany {
     private int Tenth;
     private int Twelfth;
     private String Tier;
+    private List<String> Placed;
+    private String isHistory;
+    private String AllowEdit;
 
 
     public VCompany(){}
 
     public VCompany(String Name,Long Ctc,List<String> Roles,List<String> Branch,int Backlog,int CLBacklog,List<String> Batches,String Breakdown,int Cgpa,String Date
-            ,String Description,String Location,String Offer,List<String> Skills,int Twelfth,int Tenth,String TierList,List<String> AppliedStudents
-                   ){
+            ,String Description,String Location,String Offer,List<String> Skills,int Twelfth,int Tenth,String TierList,List<String> AppliedStudents,List<String> Placed
+              ,String isHistory ){
         this.Name=Name;
         this.Ctc=Ctc;
         this.Backlog=Backlog;
@@ -50,6 +53,9 @@ public class VCompany {
         this.Cgpa=Cgpa;
         this.Date=Date;
         this.AppliedStudents=AppliedStudents;
+        this.Placed=Placed;
+        this.isHistory=isHistory;
+        this.AllowEdit=AllowEdit;
     }
 
     public String getName() {
@@ -124,6 +130,15 @@ public class VCompany {
         return Tier;
     }
 
+    public List<String> getPlaced() {
+        return Placed;
+    }
 
+    public String getIsHistory() {
+        return isHistory;
+    }
 
+    public String getAllowEdit() {
+        return AllowEdit;
+    }
 }

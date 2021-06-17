@@ -211,7 +211,7 @@ public class EditProfile extends AppCompatActivity {
                         currentaddress.setText(document.get("CurAddress").toString());
                         currentsem.setText(document.get("CurSem").toString());
 
-                        institutename10.setText(document.get("10thInstitute").toString());
+                        institutename10.setText(document.get("TenthInstitute").toString());
                         marks10.setText(document.get("TenthMarks").toString());
                         board10.setText(document.get("TenthBoard").toString());
                         qyear10.setText(document.get("TenthQyear").toString());

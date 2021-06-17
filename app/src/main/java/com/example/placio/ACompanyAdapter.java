@@ -27,7 +27,7 @@ public class ACompanyAdapter extends FirestoreRecyclerAdapter<VCompany,ACompanyA
 
     @Override
     protected void onBindViewHolder(@NonNull ACompanyHolder holder, int position, @NonNull VCompany model) {
-        if (model.getAppliedStudents().contains(uid)
+        if (model.getAppliedStudents().contains(uid) &&  !model.getPlaced().contains(uid)
         ) {
             String str = Arrays.toString(model.getRoles().toArray());
             str = str.substring(1, str.length() - 1);

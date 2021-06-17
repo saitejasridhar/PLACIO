@@ -39,6 +39,7 @@ public class EventsAdapter extends FirestoreRecyclerAdapter<Event,EventsAdapter.
             holder.Date.setText(model.getDate());
             holder.Desc.setText(model.getDescription());
             holder.Company.setText(model.getCompanyname());
+            holder.Time.setText(model.getTime());
         }
         else{
             holder.itemView.setVisibility(View.GONE);
@@ -59,6 +60,7 @@ public class EventsAdapter extends FirestoreRecyclerAdapter<Event,EventsAdapter.
         TextView Desc;
         TextView Date;
         TextView Company;
+        TextView Time;
 
         public EventsHolder(@NonNull View itemView) {
             super(itemView);
@@ -66,6 +68,7 @@ public class EventsAdapter extends FirestoreRecyclerAdapter<Event,EventsAdapter.
             Desc = itemView.findViewById(R.id.desc);
             Date =itemView.findViewById(R.id.date);
             Company=itemView.findViewById(R.id.company);
+            Time=itemView.findViewById(R.id.time);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

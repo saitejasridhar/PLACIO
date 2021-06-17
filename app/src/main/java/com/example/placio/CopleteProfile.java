@@ -36,6 +36,7 @@ public class CopleteProfile extends AppCompatActivity {
     TextView iname10th,marks10,bname10th,qyear10;
     TextView iname12th,marks12,bname12th,qyear12;
     String resume;
+    boolean isEdit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -125,7 +126,11 @@ public class CopleteProfile extends AppCompatActivity {
                         marks12.setText("Percentage: "+document.get("PreUniMarks").toString());
                         bname12th.setText(document.get("PreUniBoard").toString());
                         qyear12.setText("Qualification Year: "+document.get("PreUniQyear").toString());
-
+                       isEdit= Boolean.parseBoolean(document.get("AllowEdit").toString());
+                        edit.setEnabled(isEdit);
+                        if(!isEdit){
+                            edit.setAlpha(.5f);
+                        }
                         progbar.setVisibility(View.INVISIBLE);
                         scrollView.setVisibility(View.VISIBLE);
 

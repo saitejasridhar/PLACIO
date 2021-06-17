@@ -7,15 +7,17 @@ public class Event {
     String date;
     String companyname;
     String companyid;
+    String time;
 
     Event(){}
 
-    Event( String type, String date, String description,String companyid,String companyname){
+    Event( String type, String date, String description,String companyid,String companyname,String time){
         this.date=date;
         this.type=type;
         this.description=description;
         this.companyid=companyid;
         this.companyname=companyname;
+        this.time=time;
     }
 
     public String getDescription() {
@@ -36,5 +38,9 @@ public class Event {
 
     public String getDate() {
         return date;
+    }
+
+    public String getTime() {
+        return time;
     }
 }
