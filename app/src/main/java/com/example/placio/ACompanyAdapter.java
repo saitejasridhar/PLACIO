@@ -37,7 +37,6 @@ public class ACompanyAdapter extends FirestoreRecyclerAdapter<VCompany,ACompanyA
             holder.itemView.setVisibility(View.GONE);
             holder.itemView.setLayoutParams(new RecyclerView.LayoutParams(0, 0));
         }
-
     }
 
     @NonNull
