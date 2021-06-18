@@ -525,7 +525,7 @@
                             app:layout_constraintTop_toTopOf="parent">
 
                             <TextView
-                                android:id="@+id/progress"
+                                android:id="@+id/accepted"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
@@ -760,7 +760,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Unplaced Students"
+                        android:text="Total applications"
                         android:textSize="9dp"
                         android:textColor="@color/primary"
                         />

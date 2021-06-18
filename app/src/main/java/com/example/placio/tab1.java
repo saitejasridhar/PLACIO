@@ -97,7 +97,7 @@ public class tab1 extends Fragment {
                     String id = documentSnapshot.getString("Name");
                     String id1 = documentSnapshot.getId();
                     String path = documentSnapshot.getReference().getPath();
-                    dataPasser.onDataPass(id1);
+                    dataPasser.onDataPass(id1,"companydetails");
                 }
                 else {
                     Toast.makeText(getContext(),"Company last day to apply has expired",Toast.LENGTH_LONG).show();
@@ -124,7 +124,7 @@ public class tab1 extends Fragment {
     }
 
     public interface OnDataPass {
-        public void onDataPass(String data);
+        public void onDataPass(String data,String activity);
     }
 }
 

@@ -7,9 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,36 +15,26 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
-import java.util.List;
-import java.util.Map;
-
-public class Events extends AppCompatActivity {
-    BottomNavigationView bottomNavigationView;
+public class CompanyEvents extends AppCompatActivity {
 
     String usid1 = FirebaseAuth.getInstance().getCurrentUser().getUid();
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private CollectionReference companyRef = db.collection("Companys");
-    private EventsAdapter adapter;
+    private CompanyEventsAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_events);
+        setContentView(R.layout.activity_company_events);
         getSupportActionBar().hide();
-
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        String Applied =preferences.getString("Applied", "");
-
+        final String value = getIntent().getExtras().getString("Companyid");
+         CollectionReference companyRef = db.collection("Companys").document(value).collection("events");
         Button profile = (Button) findViewById(R.id.profile);
 
         profile.setOnClickListener(new View.OnClickListener() {
@@ -56,48 +44,31 @@ public class Events extends AppCompatActivity {
             }
         });
 
+        Button back = (Button) findViewById(R.id.back);
 
-        Query query = db.collectionGroup("events");
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openNewActivity(MainHome.class);
+            }
+        });
+
+
+
+        Query query = companyRef.orderBy("type", Query.Direction.ASCENDING);
         FirestoreRecyclerOptions<Event> options = new FirestoreRecyclerOptions.Builder<Event>()
                 .setQuery(query, Event.class)
                 .build();
-        adapter = new EventsAdapter(options,Applied);
-        RecyclerView recyclerView =findViewById(R.id.events);
+        adapter = new CompanyEventsAdapter(options);
+        RecyclerView recyclerView =findViewById(R.id.companyevents);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getApplicationContext()));
         recyclerView.setAdapter(adapter);
 
-        bottomNavigationView=(BottomNavigationView) findViewById(R.id.navbar);
-        bottomNavigationView.setSelectedItemId(R.id.events);
-        bottomNavigationView.getMenu().getItem(1).setEnabled(false);
-
-
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()){
-
-                    case R.id.home:
-                        openNewActivity(MainHome.class);
-                        break;
-                    case R.id.Announcemtns:
-                        openNewActivity(Announcements.class);
-                        break;
-                    case R.id.events:
-                        openNewActivity(Events.class);
-                        break;
-
-                }
-                return  true;
-            }
-        });
-
-        adapter.setOnItemClickListener(new EventsAdapter.OnItemClickListener() {
+        adapter.setOnItemClickListener(new CompanyEventsAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
                 Toast.makeText(getApplicationContext(),"Click working",Toast.LENGTH_LONG).show();
-
-
             }
         });
     }

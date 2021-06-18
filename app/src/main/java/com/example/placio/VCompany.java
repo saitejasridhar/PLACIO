@@ -27,13 +27,15 @@ public class VCompany {
     private List<String> Placed;
     private String isHistory;
     private String AllowEdit;
+    private List<String> Rejected;
+    private List<String> InProgress;
 
 
     public VCompany(){}
 
     public VCompany(String Name,Long Ctc,List<String> Roles,List<String> Branch,int Backlog,int CLBacklog,List<String> Batches,String Breakdown,int Cgpa,String Date
             ,String Description,String Location,String Offer,List<String> Skills,int Twelfth,int Tenth,String TierList,List<String> AppliedStudents,List<String> Placed
-              ,String isHistory ){
+              ,String isHistory,List<String> Rejected ,List<String> InProgress){
         this.Name=Name;
         this.Ctc=Ctc;
         this.Backlog=Backlog;
@@ -56,6 +58,8 @@ public class VCompany {
         this.Placed=Placed;
         this.isHistory=isHistory;
         this.AllowEdit=AllowEdit;
+        this.Rejected=Rejected;
+        this.InProgress=InProgress;
     }
 
     public String getName() {
@@ -140,5 +144,13 @@ public class VCompany {
 
     public String getAllowEdit() {
         return AllowEdit;
+    }
+
+    public List<String> getRejected() {
+        return Rejected;
+    }
+
+    public List<String> getInProgress() {
+        return InProgress;
     }
 }

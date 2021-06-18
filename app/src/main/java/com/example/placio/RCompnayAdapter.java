@@ -16,18 +16,18 @@ import com.google.firebase.firestore.DocumentSnapshot;
 
 import java.util.Arrays;
 
-public class ACompanyAdapter extends FirestoreRecyclerAdapter<VCompany,ACompanyAdapter.ACompanyHolder> {
-    private OnItemClickListener listener;
+public class RCompnayAdapter extends FirestoreRecyclerAdapter<VCompany,RCompnayAdapter.RCompanyHolder> {
+    private RCompnayAdapter.OnItemClickListener listener;
     String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
 
-    public ACompanyAdapter(@NonNull FirestoreRecyclerOptions<VCompany> options) {
+    public RCompnayAdapter(@NonNull FirestoreRecyclerOptions<VCompany> options) {
         super(options);
     }
 
     @Override
-    protected void onBindViewHolder(@NonNull ACompanyHolder holder, int position, @NonNull VCompany model) {
-        if ( model.getInProgress().contains(uid)) {
+    protected void onBindViewHolder(@NonNull RCompnayAdapter.RCompanyHolder holder, int position, @NonNull VCompany model) {
+        if (model.getRejected().contains(uid)) {
             String str = Arrays.toString(model.getRoles().toArray());
             str = str.substring(1, str.length() - 1);
             holder.Name.setText(model.getName());
@@ -42,21 +42,21 @@ public class ACompanyAdapter extends FirestoreRecyclerAdapter<VCompany,ACompanyA
 
     @NonNull
     @Override
-    public ACompanyAdapter.ACompanyHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v= LayoutInflater.from(parent.getContext()).inflate(R.layout.applied_company_item,parent,false);
-        return new ACompanyAdapter.ACompanyHolder(v);
+    public RCompnayAdapter.RCompanyHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View v= LayoutInflater.from(parent.getContext()).inflate(R.layout.rejected_company_item,parent,false);
+        return new RCompnayAdapter.RCompanyHolder(v);
     }
 
 
 
-    class ACompanyHolder extends RecyclerView.ViewHolder {
+    class RCompanyHolder extends RecyclerView.ViewHolder {
 
         TextView Name;
         TextView Offer;
         TextView Category;
         ConstraintLayout outmost;
 
-        public ACompanyHolder(@NonNull View itemView) {
+        public RCompanyHolder(@NonNull View itemView) {
             super(itemView);
             outmost = itemView.findViewById(R.id.outmost);
             Name = itemView.findViewById(R.id.companyName);
@@ -79,7 +79,7 @@ public class ACompanyAdapter extends FirestoreRecyclerAdapter<VCompany,ACompanyA
         void onItemClick(DocumentSnapshot documentSnapshot, int position);
     }
 
-    public void setOnItemClickListener(ACompanyAdapter.OnItemClickListener listener) {
+    public void setOnItemClickListener(RCompnayAdapter.OnItemClickListener listener) {
         this.listener = listener;
     }
-}
+    }

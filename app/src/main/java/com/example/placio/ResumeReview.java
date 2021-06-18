@@ -68,12 +68,14 @@ public class ResumeReview extends AppCompatActivity {
                 docData.put("CompanyID",companyid);
 
                 reference.document(currentuser).collection("Details").document(currentuser)
-                        .update("Applied", FieldValue.arrayUnion(companyid))
+                        .update("Applied", FieldValue.arrayUnion(companyid),
+                                "InProgress",FieldValue.arrayUnion(companyid))
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
                                 reference1.document(companyid)
-                                        .update("AppliedStudents", FieldValue.arrayUnion(currentuser))
+                                        .update("AppliedStudents", FieldValue.arrayUnion(currentuser),
+                                                "InProgress", FieldValue.arrayUnion(currentuser))
                                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                                             @Override
                                             public void onSuccess(Void aVoid) {

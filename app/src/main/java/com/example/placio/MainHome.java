@@ -36,13 +36,19 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.io.Serializable;
 import java.util.List;
 
-public class MainHome extends AppCompatActivity implements tab1.OnDataPass {
+public class MainHome extends AppCompatActivity implements tab1.OnDataPass,tab2.OnDataPass {
 
     @Override
-    public void onDataPass(String data) {
-        Intent intent = new Intent(this, CompanyDetails.class);
-        intent.putExtra("Name", data);
-        startActivity(intent);
+    public void onDataPass(String data,String activity) {
+        if (activity.equals("companydetails")) {
+            Intent intent = new Intent(this, CompanyDetails.class);
+            intent.putExtra("Name", data);
+            startActivity(intent);
+        } else {
+            Intent intent = new Intent(this, CompanyEvents.class);
+            intent.putExtra("Companyid", data);
+            startActivity(intent);
+        }
     }
     BottomNavigationView bottomNavigationView;
     Button editpro;
@@ -63,7 +69,6 @@ public class MainHome extends AppCompatActivity implements tab1.OnDataPass {
         editor.apply();
 
         setContentView(R.layout.activity_main_home);
-
 
         firestore = FirebaseFirestore.getInstance();
 

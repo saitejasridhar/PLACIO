@@ -40,6 +40,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.protobuf.StringValue;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class Profile extends AppCompatActivity implements View.OnClickListener {
     BottomNavigationView bottomNavigationView;
@@ -48,7 +50,9 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
     PieDataSet pieDataSet;
     ArrayList pieEntries;
     FirebaseFirestore firestore;
-    TextView fname,sname,email,phone,usn,cgpa,backlogs,sem,section,batch,pemail,branch,applied;
+    TextView fname,sname,email,phone,usn,cgpa,backlogs,sem,section,batch,pemail,branch,applied,
+            inprogtext,rejected,accepted;
+    int rejectedcompanies,placedcompanies,inprogcompanies,appliedcompanies;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +77,9 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
         pemail=findViewById(R.id.pemail);
         branch=findViewById(R.id.branch);
         applied=findViewById(R.id.applied);
+        inprogtext=findViewById(R.id.inprog);
+        accepted=findViewById(R.id.accepted);
+        rejected=findViewById(R.id.rejected);
         getSupportActionBar().hide();
         Button logout_button = (Button) findViewById(R.id.logout);
         final ProgressBar progbar = (ProgressBar) findViewById(R.id.progbar);
@@ -99,9 +106,47 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
                 if (task.isSuccessful()) {
                     DocumentSnapshot document = task.getResult();
                     if (document.exists()) {
+
                        String app= document.get("Applied").toString();
                         String[] myArray = app.split(",");
-                       int appliedcompanies=myArray.length;
+
+                        String appstring= document.get("Applied").toString();
+                        List<String>  apc = Arrays.asList(appstring.split("\\s*,\\s*"));
+                        if(appstring.equals("[]")){
+                            appliedcompanies=0;
+                        }
+                        else {
+                            appliedcompanies=apc.size();
+                        }
+
+                        String rejstring= document.get("Rejected").toString();
+                        List<String>  rej = Arrays.asList(rejstring.split("\\s*,\\s*"));
+                        if(rejstring.equals("[]")){
+                             rejectedcompanies=0;
+                        }
+                        else {
+                            rejectedcompanies=rej.size();
+                        }
+
+                        String plastring= document.get("PlacedAt").toString();
+                        List<String>  pla = Arrays.asList(rejstring.split("\\s*,\\s*"));
+                        if(plastring.equals("[]")){
+                            placedcompanies=0;
+                        }
+                        else {
+                            placedcompanies=pla.size();
+                        }
+
+
+                        String instring= document.get("InProgress").toString();
+                        List<String>  inprog = Arrays.asList(rejstring.split("\\s*,\\s*"));
+                        if(instring.equals("[]")){
+                            inprogcompanies=0;
+                        }
+                        else {
+                            inprogcompanies=inprog.size();
+                        }
+
                         fname.setText(document.get("FName").toString());
                         sname.setText(document.get("Sname").toString());
                         email.setText(document.get("PEmail").toString());
@@ -115,11 +160,15 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
                         cgpa.setText("CGPA: "+document.get("CGPA").toString());
                         usn.setText(document.get("USN").toString());
                         applied.setText(String.valueOf(appliedcompanies));
+                        accepted.setText(String.valueOf(placedcompanies));
+                        rejected.setText(String.valueOf(rejectedcompanies));
+                        inprogtext.setText(String.valueOf(inprogcompanies));
+
 
                         pieEntries = new ArrayList<>();
-                        pieEntries.add(new PieEntry(appliedcompanies, 0));
-                        pieEntries.add(new PieEntry(2, 1));
-                        pieEntries.add(new PieEntry(3, 2));
+                        pieEntries.add(new PieEntry(rejectedcompanies, 0));
+                        pieEntries.add(new PieEntry(placedcompanies, 1));
+                        pieEntries.add(new PieEntry(inprogcompanies, 2));
 
 
                         outLL.addView(chartLL,0);

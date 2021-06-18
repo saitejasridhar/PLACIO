@@ -1,6 +1,8 @@
 package com.example.placio;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
@@ -37,14 +39,14 @@ public class tab2 extends Fragment {
     private CollectionReference companyRef = db.collection("Companys");
     private ACompanyAdapter adapter;
     SwipeRefreshLayout swipeRefreshLayout;
-//
-//    tab2.OnDataPass dataPasser;
-//
-//    @Override
-//    public void onAttach(Context context) {
-//        super.onAttach(context);
-//        dataPasser = (tab2.OnDataPass) context;
-//    }
+
+    tab2.OnDataPass dataPasser;
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        dataPasser = (tab2.OnDataPass) context;
+    }
 
     @Nullable
     @Override
@@ -62,7 +64,6 @@ public class tab2 extends Fragment {
         recyclerView.setAdapter(adapter);
 
 
-
         adapter.setOnItemClickListener(new ACompanyAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
@@ -70,8 +71,7 @@ public class tab2 extends Fragment {
                 String id = documentSnapshot.getString("Name");
                 String id1 = documentSnapshot.getId();
                 String path = documentSnapshot.getReference().getPath();
-                Toast.makeText(getContext(),id1,Toast.LENGTH_LONG).show();
-//                dataPasser.onDataPass(id1);
+                dataPasser.onDataPass(id1,"companyevent");
             }
         });
         return view;
@@ -88,7 +88,12 @@ public class tab2 extends Fragment {
         adapter.stopListening();
     }
 
-//    public interface OnDataPass {
-//        public void onDataPass(String data);
-//    }
+    private void openNewActivity( final Class<? extends Activity> ActivityToOpen)
+    {
+        startActivity(new Intent(getContext(), ActivityToOpen));
+    }
+
+    public interface OnDataPass {
+        public void onDataPass(String data, String activity);
+    }
 }
