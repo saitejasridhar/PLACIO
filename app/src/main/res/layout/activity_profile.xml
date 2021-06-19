@@ -90,6 +90,20 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+            <Button
+                android:id="@+id/ticket"
+                android:layout_width="250px"
+                android:layout_height="30dp"
+                android:layout_marginEnd="15dp"
+                android:textSize="12dp"
+                android:textColor="#fff"
+                android:background="@color/secondary"
+                android:layout_marginRight="15dp"
+                android:text="Raise Ticket"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/logout"
+                app:layout_constraintTop_toTopOf="parent" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -486,11 +500,10 @@
                             app:layout_constraintTop_toTopOf="parent">
 
                             <TextView
-                                android:id="@+id/inprog"
+                                android:id="@+id/inprogtext"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
-                                android:text="3"
                                 android:textColor="#FFC154"
                                 android:textSize="25dp"
                                 android:textStyle="bold" />

@@ -11,6 +11,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,6 +50,7 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
     PieData pieData;
     PieDataSet pieDataSet;
     ArrayList pieEntries;
+    Button tickets;
     FirebaseFirestore firestore;
     TextView fname,sname,email,phone,usn,cgpa,backlogs,sem,section,batch,pemail,branch,applied,
             inprogtext,rejected,accepted;
@@ -59,7 +61,6 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
 
         final FirebaseAuth auth = FirebaseAuth.getInstance();
         super.onCreate(savedInstanceState);
-        getSupportActionBar().hide();
         setContentView(R.layout.activity_profile);
         final LinearLayout outLL = findViewById(R.id.outLL);
         final LinearLayout chartLL = findViewById(R.id.chartLL);
@@ -77,9 +78,10 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
         pemail=findViewById(R.id.pemail);
         branch=findViewById(R.id.branch);
         applied=findViewById(R.id.applied);
-        inprogtext=findViewById(R.id.inprog);
+        inprogtext=findViewById(R.id.inprogtext);
         accepted=findViewById(R.id.accepted);
         rejected=findViewById(R.id.rejected);
+        tickets=findViewById(R.id.ticket);
         getSupportActionBar().hide();
         Button logout_button = (Button) findViewById(R.id.logout);
         final ProgressBar progbar = (ProgressBar) findViewById(R.id.progbar);
@@ -94,6 +96,19 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
                 openNewActivity(MainActivity.class);
             }
         });
+
+        tickets.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openNewActivity(RaiseTicket.class);
+            }
+        });
+
+
+
+
+
+
         findViewById(R.id.compro).setOnClickListener(this);
 
         firestore = FirebaseFirestore.getInstance();
@@ -129,7 +144,7 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
                         }
 
                         String plastring= document.get("PlacedAt").toString();
-                        List<String>  pla = Arrays.asList(rejstring.split("\\s*,\\s*"));
+                        List<String>  pla = Arrays.asList(plastring.split("\\s*,\\s*"));
                         if(plastring.equals("[]")){
                             placedcompanies=0;
                         }
@@ -139,7 +154,7 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
 
 
                         String instring= document.get("InProgress").toString();
-                        List<String>  inprog = Arrays.asList(rejstring.split("\\s*,\\s*"));
+                        List<String>  inprog = Arrays.asList(instring.split("\\s*,\\s*"));
                         if(instring.equals("[]")){
                             inprogcompanies=0;
                         }
@@ -197,7 +212,6 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
                         pieDataSet.setValueTextSize(10f);
                         pieChart.setDrawSliceText(false);
                         pieDataSet.setSliceSpace(5f);
-
                         progbar.setVisibility(View.INVISIBLE);
                         scrollView.setVisibility(View.VISIBLE);
 
@@ -237,8 +251,6 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
         startActivity(new Intent(getBaseContext(), ActivityToOpen));
     }
 
-
-
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.compro:
@@ -246,6 +258,5 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
                 break;
         }
     }
-
 }
 
