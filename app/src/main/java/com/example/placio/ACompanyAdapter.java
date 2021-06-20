@@ -16,10 +16,11 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 
 import java.util.Arrays;
+import java.util.Objects;
 
 public class ACompanyAdapter extends FirestoreRecyclerAdapter<VCompany,ACompanyAdapter.ACompanyHolder> {
     private OnItemClickListener listener;
-    String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+    String uid = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
 
 
     public ACompanyAdapter(@NonNull FirestoreRecyclerOptions<VCompany> options) {
@@ -46,7 +47,6 @@ public class ACompanyAdapter extends FirestoreRecyclerAdapter<VCompany,ACompanyA
         View v= LayoutInflater.from(parent.getContext()).inflate(R.layout.applied_company_item,parent,false);
         return new ACompanyAdapter.ACompanyHolder(v);
     }
-
 
 
     class ACompanyHolder extends RecyclerView.ViewHolder {

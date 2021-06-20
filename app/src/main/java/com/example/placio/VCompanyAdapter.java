@@ -70,9 +70,9 @@ public class VCompanyAdapter extends FirestoreRecyclerAdapter<VCompany,VCompanyA
         String outputDateStr = outputFormat.format(date);
 
         if(model.getCgpa() <= cgpa && model.getBranch().contains(branch) && model.getTenth() <= m10th &&
-        model.getTwelfth() <= m12th && model.getCLBacklog() >= clarr && model.getBacklog() >= curarr &&
+                model.getTwelfth() <= m12th && model.getCLBacklog() >= clarr && model.getBacklog() >= curarr &&
                 model.getBatches().contains(bat) && !model.getAppliedStudents().contains(uid) && !todayString.equals(outputDateStr)
-                ){
+        ){
             String str = Arrays.toString(model.getRoles().toArray());
             str = str.substring(1, str.length() - 1);
             holder.Name.setText(model.getName());
@@ -86,7 +86,7 @@ public class VCompanyAdapter extends FirestoreRecyclerAdapter<VCompany,VCompanyA
             holder.itemView.setVisibility(View.GONE);
             holder.itemView.setLayoutParams(new RecyclerView.LayoutParams(0, 0));
         }
-     }
+    }
     @NonNull
     @Override
     public VCompanyHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

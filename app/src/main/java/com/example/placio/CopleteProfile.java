@@ -143,7 +143,7 @@ public class CopleteProfile extends AppCompatActivity {
             }
         });
 
-        DocumentReference docIdRef2 = firestore.collection("students").document(currentuser).collection("Resume").document(currentuser);
+        DocumentReference docIdRef2 = firestore.collection("students").document(currentuser);
         docIdRef2.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {

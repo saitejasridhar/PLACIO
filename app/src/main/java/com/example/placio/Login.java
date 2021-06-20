@@ -88,7 +88,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                 if (task.isSuccessful()) {
                     if(mAuth.getCurrentUser().isEmailVerified()) {
                         String currentuser = FirebaseAuth.getInstance().getCurrentUser().getUid();
-
                         DocumentReference docIdRef = firestore.collection("students").document(currentuser).collection("Details").document(currentuser);
                         docIdRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                             @Override
@@ -115,7 +114,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                                                         }
 
                                                     } else {
-                                                        Intent intent = new Intent(Login.this, Register.class);
+                                                        Intent intent = new Intent(Login.this, Home.class);
                                                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                                         startActivity(intent);
                                                     }

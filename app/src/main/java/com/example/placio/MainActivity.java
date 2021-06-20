@@ -21,13 +21,12 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
-        getSupportActionBar().hide();
         setContentView(R.layout.activity_main);
         Button login_button =  findViewById(R.id.login);
         Button signup_button= findViewById(R.id.signup);
         FirebaseAuth auth = FirebaseAuth.getInstance();
+
 
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         String str =preferences.getString("isFirst", "");

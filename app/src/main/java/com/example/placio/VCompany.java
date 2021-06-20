@@ -30,7 +30,6 @@ public class VCompany {
     private List<String> Rejected;
     private List<String> InProgress;
 
-
     public VCompany(){}
 
     public VCompany(String Name,Long Ctc,List<String> Roles,List<String> Branch,int Backlog,int CLBacklog,List<String> Batches,String Breakdown,int Cgpa,String Date

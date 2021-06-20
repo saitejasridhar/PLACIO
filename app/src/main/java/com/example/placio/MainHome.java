@@ -51,11 +51,12 @@ public class MainHome extends AppCompatActivity implements tab1.OnDataPass,tab2.
         }
     }
     BottomNavigationView bottomNavigationView;
-    Button editpro;
     TabLayout tabs;
     FirebaseFirestore firestore;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.d("test","inMain");
+
         final FirebaseAuth auth = FirebaseAuth.getInstance();
         getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
@@ -71,6 +72,7 @@ public class MainHome extends AppCompatActivity implements tab1.OnDataPass,tab2.
         setContentView(R.layout.activity_main_home);
 
         firestore = FirebaseFirestore.getInstance();
+
 
         String currentuser = FirebaseAuth.getInstance().getCurrentUser().getUid();
         DocumentReference docIdRef1= firestore.collection("students").document(currentuser).collection("Details").document(currentuser);
@@ -90,8 +92,6 @@ public class MainHome extends AppCompatActivity implements tab1.OnDataPass,tab2.
                         String  bat = document.get("Batch").toString();
                         List<String> appliedcompanies = (List<String>) document.get("Applied");
                         String app= appliedcompanies.toString();
-
-
 
                         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                         SharedPreferences.Editor editor = preferences.edit();
@@ -151,8 +151,6 @@ public class MainHome extends AppCompatActivity implements tab1.OnDataPass,tab2.
                 return  true;
             }
         });
-
-
     }
 
     @Override

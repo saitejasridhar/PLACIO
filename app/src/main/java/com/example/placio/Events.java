@@ -27,6 +27,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
+import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
 
@@ -96,6 +97,16 @@ public class Events extends AppCompatActivity {
             @Override
             public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
                 Toast.makeText(getApplicationContext(),"Click working",Toast.LENGTH_LONG).show();
+
+//                Calendar cal = Calendar.getInstance();
+//                Intent intent = new Intent(Intent.ACTION_EDIT);
+//                intent.setType("vnd.android.cursor.item/event");
+//                intent.putExtra("beginTime", cal.getTimeInMillis());
+//                intent.putExtra("allDay", true);
+//                intent.putExtra("rrule", "FREQ=YEARLY");
+//                intent.putExtra("endTime", cal.getTimeInMillis()+60*60*1000);
+//                intent.putExtra("title", "A Test Event from android app");
+//                startActivity(intent);
 
 
             }

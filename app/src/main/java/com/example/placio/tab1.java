@@ -53,7 +53,7 @@ public class tab1 extends Fragment {
 
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
         String cgpa =preferences.getString("CGPA", "");
-        String m10th =preferences.getString("10thMarks", "");
+        String m10th =preferences.getString("TenthMarks", "");
         String m12th =preferences.getString("PreUniMarks", "");
         String clarr =preferences.getString("ClearArr", "");
         String curarr =preferences.getString("CurArr", "");
@@ -127,5 +127,3 @@ public class tab1 extends Fragment {
         public void onDataPass(String data,String activity);
     }
 }
-
-
