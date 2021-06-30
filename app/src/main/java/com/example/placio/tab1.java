@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import com.google.firebase.firestore.DocumentSnapshot;
 
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -38,6 +39,7 @@ public class tab1 extends Fragment {
     private CollectionReference companyRef = db.collection("Companys");
     private VCompanyAdapter adapter;
     SwipeRefreshLayout swipeRefreshLayout;
+    TextView empty;
 
     OnDataPass dataPasser;
 
@@ -60,7 +62,11 @@ public class tab1 extends Fragment {
         String bran =preferences.getString("Branch", "");
         String bat =preferences.getString("Batch", "");
 
+
+
         View view= inflater.inflate(R.layout.tab1,container,false);
+        empty=view.findViewById(R.id.isempty);
+        empty.setVisibility(View.VISIBLE);
         Query query = companyRef.orderBy("Name", Query.Direction.ASCENDING);
         FirestoreRecyclerOptions<VCompany> options = new FirestoreRecyclerOptions.Builder<VCompany>()
                 .setQuery(query, VCompany.class)
@@ -70,8 +76,6 @@ public class tab1 extends Fragment {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
         recyclerView.setAdapter(adapter);
-
-
 
         adapter.setOnItemClickListener(new VCompanyAdapter.OnItemClickListener() {
             @Override
@@ -107,9 +111,6 @@ public class tab1 extends Fragment {
             }
         });
         return view;
-
-
-
     }
 
     @Override

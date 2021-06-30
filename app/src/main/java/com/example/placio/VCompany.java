@@ -15,7 +15,7 @@ public class VCompany {
     private int Backlog;
     private List<String> Batches;
     private String Breakdown;
-    private int Cgpa;
+    private float Cgpa;
     private String Date;
     private String Description;
     private String Location;
@@ -32,7 +32,7 @@ public class VCompany {
 
     public VCompany(){}
 
-    public VCompany(String Name,Long Ctc,List<String> Roles,List<String> Branch,int Backlog,int CLBacklog,List<String> Batches,String Breakdown,int Cgpa,String Date
+    public VCompany(String Name,Long Ctc,List<String> Roles,List<String> Branch,int Backlog,int CLBacklog,List<String> Batches,String Breakdown,float Cgpa,String Date
             ,String Description,String Location,String Offer,List<String> Skills,int Twelfth,int Tenth,String TierList,List<String> AppliedStudents,List<String> Placed
               ,String isHistory,List<String> Rejected ,List<String> InProgress){
         this.Name=Name;
@@ -97,7 +97,7 @@ public class VCompany {
         return Breakdown;
     }
 
-    public int getCgpa() {
+    public float getCgpa() {
         return Cgpa;
     }
 

@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
         Button login_button =  findViewById(R.id.login);
         Button signup_button= findViewById(R.id.signup);
         FirebaseAuth auth = FirebaseAuth.getInstance();
+        getSupportActionBar().hide();
 
 
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());

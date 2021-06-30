@@ -90,7 +90,7 @@ public class MainHome extends AppCompatActivity implements tab1.OnDataPass,tab2.
                         String  curarr = document.get("CurArr").toString();
                         String  bran = document.get("Branch").toString();
                         String  bat = document.get("Batch").toString();
-                        List<String> appliedcompanies = (List<String>) document.get("Applied");
+                        List<String> appliedcompanies = (List<String>) document.get("InProgress");
                         String app= appliedcompanies.toString();
 
                         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());

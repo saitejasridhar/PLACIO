@@ -73,6 +73,8 @@ public class VCompanyAdapter extends FirestoreRecyclerAdapter<VCompany,VCompanyA
                 model.getTwelfth() <= m12th && model.getCLBacklog() >= clarr && model.getBacklog() >= curarr &&
                 model.getBatches().contains(bat) && !model.getAppliedStudents().contains(uid) && !todayString.equals(outputDateStr)
         ){
+            Log.d("company",String.valueOf(model.getCgpa()));
+            Log.d("My CGPA",String.valueOf(cgpa));
             String str = Arrays.toString(model.getRoles().toArray());
             str = str.substring(1, str.length() - 1);
             holder.Name.setText(model.getName());
