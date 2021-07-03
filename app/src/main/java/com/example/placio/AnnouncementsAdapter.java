@@ -19,17 +19,28 @@ import java.util.Arrays;
 public class AnnouncementsAdapter extends FirestoreRecyclerAdapter<Announcement,AnnouncementsAdapter.AnnouncementsHolder> {
     private AnnouncementsAdapter.OnItemClickListener listener;
     String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+    String bran;
 
-    public AnnouncementsAdapter(@NonNull FirestoreRecyclerOptions<Announcement> options) {
+    public AnnouncementsAdapter(@NonNull FirestoreRecyclerOptions<Announcement> options,String Branch) {
         super(options);
+        bran=Branch;
     }
 
     @Override
     protected void onBindViewHolder(@NonNull AnnouncementsAdapter.AnnouncementsHolder holder, int position, @NonNull Announcement model) {
 
+        if(model.getBranch().contains(bran)){
             holder.Name.setText(model.getName());
             holder.Desc.setText(model.getDescription());
-
+            String str = model.getDateTime();
+            String[] arrOfStr = str.split(" ",2);
+            holder.Date.setText(arrOfStr[0]);
+            holder.Time.setText(arrOfStr[1]);
+        }
+        else{
+            holder.itemView.setVisibility(View.GONE);
+            holder.itemView.setLayoutParams(new RecyclerView.LayoutParams(0, 0));
+        }
     }
 
     @NonNull
@@ -45,11 +56,15 @@ public class AnnouncementsAdapter extends FirestoreRecyclerAdapter<Announcement,
 
         TextView Name;
         TextView Desc;
+        TextView Date;
+        TextView Time;
 
         public AnnouncementsHolder(@NonNull View itemView) {
             super(itemView);
             Name = itemView.findViewById(R.id.name);
             Desc = itemView.findViewById(R.id.desc);
+            Date =itemView.findViewById(R.id.date);
+            Time= itemView.findViewById(R.id.time);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

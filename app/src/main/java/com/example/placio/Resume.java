@@ -8,6 +8,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -53,6 +54,7 @@ public class Resume extends AppCompatActivity {
         webView.setVisibility(View.INVISIBLE);
         String pdfUrl = getIntent().getExtras().getString("url");
         showPdfFile(pdfUrl);
+
 
 
         edit.setOnClickListener(new View.OnClickListener() {

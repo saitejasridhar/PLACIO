@@ -8,7 +8,7 @@
 
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/applied"
+        android:id="@+id/accepted"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="62dp"
@@ -25,8 +25,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:elevation="1dp"
-        android:text="No companies currently in progress"
+        android:text="You have no been accepted to any company"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.635"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

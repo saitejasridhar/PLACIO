@@ -94,7 +94,7 @@ public class CompanyDetails extends AppCompatActivity {
                         location.setText(document.get("Location").toString());
                         Ctc.setText(document.get("Ctc").toString()+" LPA");
                         breakdown.setText(document.get("Breakdown").toString());
-                        date.setText("Last Day to apply "+document.get("Date").toString());
+                        date.setText("Please apply before "+document.get("Date").toString()+" "+document.get("Time").toString());
                         offer.setText(document.get("Offer").toString());
                         tenth.setText(document.get("Tenth").toString()+"%");
                         twefth.setText(document.get("Twelfth").toString()+"%");

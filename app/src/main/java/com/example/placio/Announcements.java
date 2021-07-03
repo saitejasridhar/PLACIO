@@ -7,7 +7,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -42,6 +44,9 @@ public class Announcements extends AppCompatActivity {
 
         Button profile = (Button) findViewById(R.id.profile);
 
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        String Branch =preferences.getString("Branch", "");
+
         profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -49,11 +54,11 @@ public class Announcements extends AppCompatActivity {
             }
         });
 
-        Query query = companyRef.orderBy("Name", Query.Direction.ASCENDING);
+        Query query = companyRef.orderBy("DateTime", Query.Direction.DESCENDING);
         FirestoreRecyclerOptions<Announcement> options = new FirestoreRecyclerOptions.Builder<Announcement>()
                 .setQuery(query, Announcement.class)
                 .build();
-        adapter = new AnnouncementsAdapter(options);
+        adapter = new AnnouncementsAdapter(options,Branch);
         RecyclerView recyclerView =findViewById(R.id.announ);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getApplicationContext()));

@@ -36,10 +36,10 @@ public class EventsAdapter extends FirestoreRecyclerAdapter<Event,EventsAdapter.
 
         if(myList.contains(model.getCompanyid())){
             holder.Name.setText(model.getType());
-            holder.Date.setText(model.getDate());
+            holder.Date.setText("On "+model.getDate());
             holder.Desc.setText(model.getDescription());
             holder.Company.setText(model.getCompanyname());
-            holder.Time.setText(model.getTime());
+            holder.Time.setText("At "+model.getTime());
         }
         else{
             holder.itemView.setVisibility(View.GONE);

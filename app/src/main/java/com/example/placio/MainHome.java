@@ -103,6 +103,7 @@ public class MainHome extends AppCompatActivity implements tab1.OnDataPass,tab2.
                         editor.putString("Branch",bran);
                         editor.putString("Batch",bat);
                         editor.putString("Applied",app);
+                        editor.putString("Tiers",document.get("Tiers").toString());
                         editor.apply();
 
                         SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(getBaseContext(), getSupportFragmentManager());

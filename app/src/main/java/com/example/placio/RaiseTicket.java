@@ -46,7 +46,7 @@ public class RaiseTicket extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_raise_ticket);
-
+        getSupportActionBar().hide();
         sub=findViewById(R.id.subject);
         desc=findViewById(R.id.desc);
         back=findViewById(R.id.back);

@@ -38,10 +38,10 @@ public class VCompanyAdapter extends FirestoreRecyclerAdapter<VCompany,VCompanyA
     Float m10th;
     int curarr;
     int clarr;
-    String bat;
+    String bat,Tiers;
 
     public VCompanyAdapter(@NonNull FirestoreRecyclerOptions<VCompany> options,String test1,String test2,String test3,String test4
-            ,String test5,String test6,String test7) {
+            ,String test5,String test6,String test7,String tiers) {
         super(options);
         cgpa= Float.parseFloat(test1);
         branch=test6;
@@ -50,11 +50,13 @@ public class VCompanyAdapter extends FirestoreRecyclerAdapter<VCompany,VCompanyA
         bat=test7;
         m10th=Float.parseFloat(test2);
         m12th=Float.parseFloat(test3);
+        Tiers=tiers;
     }
 
     @Override
     protected void onBindViewHolder(@NonNull VCompanyHolder holder, int position, @NonNull VCompany model) {
         Date todayDate = Calendar.getInstance().getTime();
+        Date date1 = null;
         SimpleDateFormat formatter = new SimpleDateFormat("dd MMM yyyy");
         String todayString = formatter.format(todayDate);
 
@@ -69,12 +71,66 @@ public class VCompanyAdapter extends FirestoreRecyclerAdapter<VCompany,VCompanyA
         }
         String outputDateStr = outputFormat.format(date);
 
+        String test=model.getDate()+" "+model.getTime();
+        Log.d("Last Date Time String",test);
+        SimpleDateFormat formatter6=new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        try {
+            date1=formatter6.parse(test);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+
+
+
         if(model.getCgpa() <= cgpa && model.getBranch().contains(branch) && model.getTenth() <= m10th &&
                 model.getTwelfth() <= m12th && model.getCLBacklog() >= clarr && model.getBacklog() >= curarr &&
-                model.getBatches().contains(bat) && !model.getAppliedStudents().contains(uid) && !todayString.equals(outputDateStr)
+                model.getBatches().contains(bat) && !model.getAppliedStudents().contains(uid)
+                && date1.compareTo(todayDate) > 0
+
         ){
-            Log.d("company",String.valueOf(model.getCgpa()));
-            Log.d("My CGPA",String.valueOf(cgpa));
+
+            if(Tiers.length()<=7){
+                if(Tiers.contains("Dream")){
+                    holder.itemView.setVisibility(View.GONE);
+                    holder.itemView.setLayoutParams(new RecyclerView.LayoutParams(0, 0));
+                }
+                else if(Tiers.contains("Core")){
+                    if(model.getTier().equals("Dream")){
+                        String str = Arrays.toString(model.getRoles().toArray());
+                        str = str.substring(1, str.length() - 1);
+                        holder.Name.setText(model.getName());
+                        holder.Roles.setText(str);
+                        holder.Offer.setText(model.getOffer());
+                        holder.LPA.setText(String.valueOf(model.getCtc()) + " LPA");
+                        holder.Category.setText(model.getTier().toString().toUpperCase());
+                        holder.LastDate.setText(outputDateStr);
+                        holder.addedon.setText(model.getDateTime());
+                        holder.time.setText(model.getTime());
+                    }
+                }
+                else {
+                    if(model.getTier().equals("Dream") || model.getTier().equals("Core")){
+                        String str = Arrays.toString(model.getRoles().toArray());
+                        str = str.substring(1, str.length() - 1);
+                        holder.Name.setText(model.getName());
+                        holder.Roles.setText(str);
+                        holder.Offer.setText(model.getOffer());
+                        holder.LPA.setText(String.valueOf(model.getCtc()) + " LPA");
+                        holder.Category.setText(model.getTier().toString().toUpperCase());
+                        holder.LastDate.setText(outputDateStr);
+                        holder.addedon.setText(model.getDateTime());
+                        holder.time.setText(model.getTime());
+                    }
+                }
+
+            }
+            else {
+                holder.itemView.setVisibility(View.GONE);
+                holder.itemView.setLayoutParams(new RecyclerView.LayoutParams(0, 0));
+            }
+
+
             String str = Arrays.toString(model.getRoles().toArray());
             str = str.substring(1, str.length() - 1);
             holder.Name.setText(model.getName());
@@ -83,6 +139,8 @@ public class VCompanyAdapter extends FirestoreRecyclerAdapter<VCompany,VCompanyA
             holder.LPA.setText(String.valueOf(model.getCtc()) + " LPA");
             holder.Category.setText(model.getTier().toString().toUpperCase());
             holder.LastDate.setText(outputDateStr);
+            holder.addedon.setText(model.getDateTime());
+            holder.time.setText(model.getTime());
         }
         else{
             holder.itemView.setVisibility(View.GONE);
@@ -105,6 +163,8 @@ public class VCompanyAdapter extends FirestoreRecyclerAdapter<VCompany,VCompanyA
         TextView Offer;
         TextView LastDate;
         TextView Category;
+        TextView addedon;
+        TextView time;
         ConstraintLayout outmost;
 
         public VCompanyHolder(@NonNull View itemView) {
@@ -116,6 +176,8 @@ public class VCompanyAdapter extends FirestoreRecyclerAdapter<VCompany,VCompanyA
             Offer= itemView.findViewById(R.id.offering);
             LastDate= itemView.findViewById(R.id.lastDate);
             Category= itemView.findViewById(R.id.category);
+            addedon=itemView.findViewById(R.id.addedon);
+            time=itemView.findViewById(R.id.time);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -136,3 +198,4 @@ public class VCompanyAdapter extends FirestoreRecyclerAdapter<VCompany,VCompanyA
     }
 
 }
+

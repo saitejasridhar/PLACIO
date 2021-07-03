@@ -169,6 +169,7 @@ public class Form extends AppCompatActivity {
             public void onClick(View v) {
                 isAllFieldsChecked = CheckAllFields();
                 if(isAllFieldsChecked){
+                    List<String> empt=new ArrayList<String>();
                     final Map<String, Object> dataMap = new HashMap<>();
                     dataMap.put("Branch",value);
                     dataMap.put("FName",fname.getText().toString());
@@ -190,7 +191,12 @@ public class Form extends AppCompatActivity {
                     dataMap.put("PreUni",isdiploma.getSelectedItem().toString());
                     dataMap.put("Section",section.getSelectedItem().toString());
                     dataMap.put("Batch",batch.getText().toString());
-
+                    dataMap.put("AllowEdit","False");
+                    dataMap.put("Applied",empt);
+                    dataMap.put("InProgress",empt);
+                    dataMap.put("Rejected",empt);
+                    dataMap.put("PlacedAt",empt);
+                    dataMap.put("Tiers",empt);
 
                     if(is12th){
                         dataMap.put("PreUniBoard",board12.getText().toString());

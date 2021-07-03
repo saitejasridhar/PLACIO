@@ -29,10 +29,12 @@ public class VCompany {
     private String AllowEdit;
     private List<String> Rejected;
     private List<String> InProgress;
+    private String DateTime;
+    private String Time;
 
     public VCompany(){}
 
-    public VCompany(String Name,Long Ctc,List<String> Roles,List<String> Branch,int Backlog,int CLBacklog,List<String> Batches,String Breakdown,float Cgpa,String Date
+    public VCompany(String Time,String DateTime,String Name,Long Ctc,List<String> Roles,List<String> Branch,int Backlog,int CLBacklog,List<String> Batches,String Breakdown,float Cgpa,String Date
             ,String Description,String Location,String Offer,List<String> Skills,int Twelfth,int Tenth,String TierList,List<String> AppliedStudents,List<String> Placed
               ,String isHistory,List<String> Rejected ,List<String> InProgress){
         this.Name=Name;
@@ -59,6 +61,8 @@ public class VCompany {
         this.AllowEdit=AllowEdit;
         this.Rejected=Rejected;
         this.InProgress=InProgress;
+        this.DateTime=DateTime;
+        this.Time=Time;
     }
 
     public String getName() {
@@ -151,5 +155,13 @@ public class VCompany {
 
     public List<String> getInProgress() {
         return InProgress;
+    }
+
+    public String getDateTime() {
+        return DateTime;
+    }
+
+    public String getTime() {
+        return Time;
     }
 }

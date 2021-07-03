@@ -38,10 +38,13 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.protobuf.StringValue;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 
 public class Profile extends AppCompatActivity implements View.OnClickListener {
@@ -55,6 +58,10 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
     TextView fname,sname,email,phone,usn,cgpa,backlogs,sem,section,batch,pemail,branch,applied,
             inprogtext,rejected,accepted;
     int rejectedcompanies,placedcompanies,inprogcompanies,appliedcompanies;
+    TextView totapps,placed,unplaced,comps,highpack,avgpack,corecomp,dreamcomp;
+    int placedstuds=0;
+    int unplacedstuds=0;
+    int companies=0,dreamcompanies=0,corecompanies;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,6 +88,17 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
         accepted=findViewById(R.id.accepted);
         rejected=findViewById(R.id.rejected);
         tickets=findViewById(R.id.ticket);
+
+        totapps=findViewById(R.id.totalapplications);
+        placed=findViewById(R.id.placedstudents);
+        unplaced=findViewById(R.id.unplaced);
+        comps=findViewById(R.id.visited);
+        highpack=findViewById(R.id.highpack);
+        avgpack=findViewById(R.id.avgpack);
+        dreamcomp=findViewById(R.id.dreamcom);
+        corecomp=findViewById(R.id.corecomp);
+
+
         getSupportActionBar().hide();
         Button logout_button = (Button) findViewById(R.id.logout);
         final ProgressBar progbar = (ProgressBar) findViewById(R.id.progbar);
@@ -103,12 +121,8 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
             }
         });
 
-
-
-
-
-
         findViewById(R.id.compro).setOnClickListener(this);
+        findViewById(R.id.completestats).setOnClickListener(this);
 
         firestore = FirebaseFirestore.getInstance();
 
@@ -211,8 +225,66 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
                         pieDataSet.setValueTextSize(10f);
                         pieChart.setDrawSliceText(false);
                         pieDataSet.setSliceSpace(5f);
-                        progbar.setVisibility(View.INVISIBLE);
-                        scrollView.setVisibility(View.VISIBLE);
+
+
+
+                        firestore.collection("Companys").orderBy("Ctc", Query.Direction.DESCENDING)
+                                .get()
+                                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                        if (task.isSuccessful()) {
+
+                                            List<DocumentSnapshot> myListOfDocuments1 = task.getResult().getDocuments();
+                                            String name=myListOfDocuments1.get(0).get("Name").toString();
+                                            String pack=myListOfDocuments1.get(0).get("Ctc").toString();
+                                            highpack.setText(pack);
+                                            List<String> packs = new ArrayList<String>();
+                                            for(int i=0;i<myListOfDocuments1.size();i++) {
+                                                companies++;
+                                                packs.add(String.valueOf(myListOfDocuments1.get(i).get("Ctc")));
+                                                if(myListOfDocuments1.get(i).get("Tier").equals("Dream"))
+                                                    dreamcompanies++;
+                                                if(myListOfDocuments1.get(i).get("Tier").equals("Core"))
+                                                    corecompanies++;
+                                            }
+                                            dreamcomp.setText(String.valueOf(dreamcompanies));
+                                            corecomp.setText(String.valueOf(corecompanies));
+                                            avgpack.setText(String.valueOf(avg(packs)));
+                                            comps.setText(String.valueOf(companies));
+                                            firestore.collectionGroup("Details")
+                                                    .get()
+                                                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                                        @Override
+                                                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                                            if (task.isSuccessful()) {
+                                                                List<String> allskills = new ArrayList<String>();
+                                                                List<DocumentSnapshot> myListOfDocuments1 = task.getResult().getDocuments();
+                                                                for(int i=0;i<myListOfDocuments1.size();i++) {
+                                                                    allskills.addAll((Collection<? extends String>) myListOfDocuments1.get(i).get("PlacedAt"));
+
+                                                                    if (!myListOfDocuments1.get(i).get("PlacedAt").toString().equals("[]"))
+                                                                    {
+                                                                        placedstuds++;
+
+                                                                    }
+                                                                    else{
+                                                                        unplacedstuds++;
+                                                                    }
+                                                                }
+                                                                placed.setText(String.valueOf(placedstuds));
+                                                                unplaced.setText(String.valueOf(unplacedstuds));
+                                                                totapps.setText(String.valueOf(allskills.size()));
+                                                                progbar.setVisibility(View.INVISIBLE);
+                                                                scrollView.setVisibility(View.VISIBLE);
+                                                            }
+                                                        }
+                                                    });
+                                        }
+                                    }
+                                });
+
+
 
                     } else {
                         Log.d("please", "help");
@@ -255,7 +327,21 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
             case R.id.compro:
                 startActivity(new Intent(this, CopleteProfile.class));
                 break;
+            case R.id.completestats:
+                startActivity(new Intent(this, Studentstats.class));
+                break;
         }
+    }
+
+
+    static  String avg(List<String> sum){
+        double total=0;
+        double avg=0;
+        for(int i = 0; i<sum.size(); i++)
+            total = total+Double.parseDouble(sum.get(i));
+        avg = total / sum.size();
+        avg= Math.floor(avg * 100) / 100;
+        return String.valueOf(avg);
     }
 }
 

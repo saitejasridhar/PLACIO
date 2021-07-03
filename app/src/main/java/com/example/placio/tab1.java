@@ -61,6 +61,8 @@ public class tab1 extends Fragment {
         String curarr =preferences.getString("CurArr", "");
         String bran =preferences.getString("Branch", "");
         String bat =preferences.getString("Batch", "");
+        String tiers =preferences.getString("Tiers", "");
+
 
 
 
@@ -71,7 +73,7 @@ public class tab1 extends Fragment {
         FirestoreRecyclerOptions<VCompany> options = new FirestoreRecyclerOptions.Builder<VCompany>()
                 .setQuery(query, VCompany.class)
                 .build();
-        adapter = new VCompanyAdapter(options,cgpa,m10th,m12th,clarr,curarr,bran,bat);
+        adapter = new VCompanyAdapter(options,cgpa,m10th,m12th,clarr,curarr,bran,bat,tiers);
         RecyclerView recyclerView = view.findViewById(R.id.visiting);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
@@ -82,21 +84,16 @@ public class tab1 extends Fragment {
             public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
 
                 Date todayDate = Calendar.getInstance().getTime();
-                SimpleDateFormat formatter = new SimpleDateFormat("dd MMM yyyy");
-                String todayString = formatter.format(todayDate);
-
-                DateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
-                DateFormat outputFormat = new SimpleDateFormat("dd MMM yyyy");
-                String inputDateStr=documentSnapshot.getString("Date");
-                Date date = null;
+                Date date1 = null;
+                String test=documentSnapshot.getString("Date")+" "+ documentSnapshot.getString("Time");
+                SimpleDateFormat formatter6=new SimpleDateFormat("yyyy-MM-dd HH:mm");
                 try {
-                    date = inputFormat.parse(inputDateStr);
+                    date1=formatter6.parse(test);
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
-                String outputDateStr = outputFormat.format(date);
 
-                if(!todayString.equals(outputDateStr)){
+                if(date1.compareTo(todayDate) > 0){
                     VCompany note = documentSnapshot.toObject(VCompany.class);
                     String id = documentSnapshot.getString("Name");
                     String id1 = documentSnapshot.getId();

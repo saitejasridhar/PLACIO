@@ -10,7 +10,7 @@
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="150dp"
-        android:background="#fff"
+        android:background="@drawable/bottom_border"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -85,11 +85,13 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/primary">
+            >
 
             <LinearLayout
+                android:id="@+id/linearLayout13"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="80dp"
                 android:orientation="vertical"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -110,7 +112,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="5dp"
                         android:text="Subject"
-                        android:textColor="#fff"
+                        android:textColor="@color/primary"
                         android:textSize="12dp"
                         android:textStyle="bold" />
 
@@ -118,7 +120,7 @@
                         android:id="@+id/subject"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
-                        android:background="@drawable/edittext"
+                        android:background="@drawable/details_items"
                         android:paddingLeft="20dp"
                         android:textColorHint="#A3242466" />
                 </LinearLayout>
@@ -135,72 +137,59 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="5dp"
-                        android:text="Second Name"
-                        android:textColor="#fff"
+                        android:text="Description"
+                        android:textColor="@color/primary"
                         android:textSize="12dp"
                         android:textStyle="bold" />
 
                     <EditText
-                        android:gravity="left"
-                        android:paddingTop="10dp"
-                        android:paddingLeft="10dp"
-                        android:background="@drawable/edittext"
+                        android:id="@+id/desc"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:background="@drawable/details_items"
+                        android:gravity="left"
                         android:inputType="textMultiLine"
                         android:lines="8"
                         android:maxLines="10"
                         android:minLines="6"
+                        android:paddingLeft="10dp"
+                        android:paddingTop="10dp"
                         android:scrollbars="vertical"
-                        android:id="@+id/desc"
-                        android:textColorHint="#A3242466"
-                        />
+                        android:textColorHint="#A3242466" />
                 </LinearLayout>
+            </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout13">
 
+                <Button
 
-                <LinearLayout
+                    android:id="@+id/back"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@drawable/cancel"
+                    android:text="Back"
+                    android:textColor="@color/secondary"
+                    android:textSize="17dp" />
+
+                <Button
+
+                    android:id="@+id/submit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
                     android:layout_marginLeft="40dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginRight="40dp">
-
-                    <Button
-
-                        android:id="@+id/back"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_marginLeft="40dp"
-
-                        android:layout_marginRight="40dp"
-                        android:layout_marginBottom="20dp"
-                        android:background="@drawable/cancel"
-                        android:text="Back"
-                        android:textColor="@color/secondary"
-                        android:textSize="17dp" />
-
-                    <Button
-
-                        android:id="@+id/submit"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_marginLeft="40dp"
-
-                        android:layout_marginRight="40dp"
-                        android:layout_marginBottom="20dp"
-                        android:background="@color/secondary"
-                        android:text="SUBMIT"
-                        android:textColor="#fff"
-                        android:textSize="17dp" />
-
-                </LinearLayout>
-
-
-
+                    android:background="@color/secondary"
+                    android:text="SUBMIT"
+                    android:textColor="#fff"
+                    android:textSize="17dp" />
 
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>

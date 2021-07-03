@@ -143,7 +143,7 @@ public class CopleteProfile extends AppCompatActivity {
             }
         });
 
-        DocumentReference docIdRef2 = firestore.collection("students").document(currentuser);
+        DocumentReference docIdRef2 = firestore.collection("students").document(currentuser).collection("Details").document(currentuser);
         docIdRef2.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
@@ -162,6 +162,7 @@ public class CopleteProfile extends AppCompatActivity {
                 } else {
                     Log.d("TAG", "Failed with: ", task.getException());
                 }
+
             }
         });
         openresume.setOnClickListener(new View.OnClickListener() {
