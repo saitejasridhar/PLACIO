@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Studentstats"></activity>
+        <activity android:name=".ViewTickets"></activity>
+        <activity android:name=".Studentstats" />
         <activity android:name=".RaiseTicket" />
         <activity android:name=".CompanyEvents" />
         <activity android:name=".EditResume" />

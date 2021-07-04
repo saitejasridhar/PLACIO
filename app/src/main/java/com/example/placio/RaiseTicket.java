@@ -41,7 +41,7 @@ public class RaiseTicket extends AppCompatActivity {
     boolean isAllFieldsChecked;
     FirebaseFirestore firestore;
     CollectionReference reference;
-    String Name, Branch,USN, Section;
+    String Name, Branch,USN, Section,email;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,6 +67,7 @@ public class RaiseTicket extends AppCompatActivity {
                         Name=document.get("FName").toString()+" "+document.get("Sname").toString();
                         USN=document.get("USN").toString();
                         Section=document.get("Section").toString();
+                        email=document.get("PEmail").toString();
                         Branch=document.get("Branch").toString();
                     } else {
                         Log.d("please", "help");
@@ -90,6 +91,10 @@ public class RaiseTicket extends AppCompatActivity {
                     dataMap.put("Section",Section);
                     dataMap.put("Branch",Branch);
                     dataMap.put("USN",USN);
+                    dataMap.put("UID",currentuser);
+                    dataMap.put("status","Pending");
+                    dataMap.put("email",email);
+                    dataMap.put("closedon","");
                     dataMap.put("Date", java.text.DateFormat.getDateTimeInstance().format(new Date()).toString());
 
                     reference.add(dataMap)

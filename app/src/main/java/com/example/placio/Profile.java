@@ -117,7 +117,7 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
         tickets.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openNewActivity(RaiseTicket.class);
+                openNewActivity(ViewTickets.class);
             }
         });
 

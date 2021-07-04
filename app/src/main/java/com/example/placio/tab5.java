@@ -22,44 +22,37 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
-public class tab4 extends Fragment {
-    String usid1 = FirebaseAuth.getInstance().getCurrentUser().getUid();
+public class tab5 extends Fragment {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private CollectionReference companyRef = db.collection("Companys");
-    private PCompanyAdapter adapter;
-
-    tab2.OnDataPass dataPasser;
+    private CollectionReference companyRef = db.collection("Tickets");
+    private PTicketsAdapter adapter;
+    SwipeRefreshLayout swipeRefreshLayout;
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        dataPasser = (tab2.OnDataPass) context;
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View view= inflater.inflate(R.layout.tab4,container,false);
-        Query query = companyRef.orderBy("Name", Query.Direction.ASCENDING);
-        FirestoreRecyclerOptions<VCompany> options = new FirestoreRecyclerOptions.Builder<VCompany>()
-                .setQuery(query, VCompany.class)
+        View view= inflater.inflate(R.layout.tab5,container,false);
+        Query query = companyRef.orderBy("Date", Query.Direction.DESCENDING);
+        FirestoreRecyclerOptions<Ticket> options = new FirestoreRecyclerOptions.Builder<Ticket>()
+                .setQuery(query, Ticket.class)
                 .build();
-        adapter = new PCompanyAdapter(options);
-        RecyclerView recyclerView = view.findViewById(R.id.accepted);
+        adapter = new PTicketsAdapter(options);
+        RecyclerView recyclerView = view.findViewById(R.id.pending);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
         recyclerView.setAdapter(adapter);
 
 
-        adapter.setOnItemClickListener(new PCompanyAdapter.OnItemClickListener() {
+        adapter.setOnItemClickListener(new PTicketsAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
-                VCompany note = documentSnapshot.toObject(VCompany.class);
-                String id = documentSnapshot.getString("Name");
-                String id1 = documentSnapshot.getId();
-                String path = documentSnapshot.getReference().getPath();
-                dataPasser.onDataPass(id1,"companyevent");
+
             }
         });
         return view;
@@ -76,12 +69,5 @@ public class tab4 extends Fragment {
         adapter.stopListening();
     }
 
-    private void openNewActivity( final Class<? extends Activity> ActivityToOpen)
-    {
-        startActivity(new Intent(getContext(), ActivityToOpen));
-    }
 
-    public interface OnDataPass {
-        public void onDataPass(String data, String activity);
-    }
 }

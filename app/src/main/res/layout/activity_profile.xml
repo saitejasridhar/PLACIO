@@ -100,7 +100,7 @@
                 android:textColor="#fff"
                 android:background="@color/secondary"
                 android:layout_marginRight="15dp"
-                android:text="Raise Ticket"
+                android:text="Tickets"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/logout"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -663,7 +663,6 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <LinearLayout
-                    android:id="@+id/linearLayout41"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
@@ -692,7 +691,6 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/linearLayout71"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
@@ -724,7 +722,6 @@
 
 
                 <LinearLayout
-                    android:id="@+id/linearLayout8"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"

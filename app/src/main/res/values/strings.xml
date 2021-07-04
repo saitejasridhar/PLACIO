@@ -5,5 +5,7 @@
     <string name="tab_text_2">Progress</string>
     <string name="tab_text_3">Rejected</string>
     <string name="tab_text_4">Accepted</string>
+    <string name="tab_text_5">Pending</string>
+    <string name="tab_text_6">Completed</string>
     <string name="action_settings">Settings</string>
 </resources>
