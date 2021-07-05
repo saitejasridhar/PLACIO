@@ -81,8 +81,6 @@ public class VCompanyAdapter extends FirestoreRecyclerAdapter<VCompany,VCompanyA
         }
 
 
-
-
         if(model.getCgpa() <= cgpa && model.getBranch().contains(branch) && model.getTenth() <= m10th &&
                 model.getTwelfth() <= m12th && model.getCLBacklog() >= clarr && model.getBacklog() >= curarr &&
                 model.getBatches().contains(bat) && !model.getAppliedStudents().contains(uid)

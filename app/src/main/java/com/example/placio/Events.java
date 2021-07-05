@@ -1,52 +1,63 @@
 package com.example.placio;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+
+import com.example.placio.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.tabs.TabLayout;
+
+import androidx.annotation.NonNull;
+import androidx.viewpager.widget.ViewPager;
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Parcelable;
 import android.preference.PreferenceManager;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import com.firebase.ui.firestore.FirestoreRecyclerOptions;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.Query;
 
-import java.util.Calendar;
+import java.io.Serializable;
 import java.util.List;
-import java.util.Map;
 
-public class Events extends AppCompatActivity {
+public class Events extends AppCompatActivity  {
+
+
     BottomNavigationView bottomNavigationView;
-
-    String usid1 = FirebaseAuth.getInstance().getCurrentUser().getUid();
-    private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private CollectionReference companyRef = db.collection("Companys");
-    private EventsAdapter adapter;
-
+    TabLayout tabs;
+    FirebaseFirestore firestore;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_events);
-        getSupportActionBar().hide();
 
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        String Applied =preferences.getString("Applied", "");
+        final FirebaseAuth auth = FirebaseAuth.getInstance();
+        getSupportActionBar().hide();
+        super.onCreate(savedInstanceState);
+
+        setContentView(R.layout.activity_events);
+
+        firestore = FirebaseFirestore.getInstance();
+
+        SectionsPagerAdapter3 sectionsPagerAdapter = new SectionsPagerAdapter3(getBaseContext(), getSupportFragmentManager());
+        ViewPager viewPager = findViewById(R.id.view_pager);
+        viewPager.setAdapter(sectionsPagerAdapter);
+        tabs = findViewById(R.id.tabs);
+        tabs.setupWithViewPager(viewPager);
 
         Button profile = (Button) findViewById(R.id.profile);
 
@@ -57,22 +68,9 @@ public class Events extends AppCompatActivity {
             }
         });
 
-
-        Query query = db.collectionGroup("events");
-        FirestoreRecyclerOptions<Event> options = new FirestoreRecyclerOptions.Builder<Event>()
-                .setQuery(query, Event.class)
-                .build();
-        adapter = new EventsAdapter(options,Applied);
-        RecyclerView recyclerView =findViewById(R.id.events);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this.getApplicationContext()));
-        recyclerView.setAdapter(adapter);
-
         bottomNavigationView=(BottomNavigationView) findViewById(R.id.navbar);
-        bottomNavigationView.setSelectedItemId(R.id.events);
         bottomNavigationView.getMenu().getItem(1).setEnabled(false);
-
-
+        bottomNavigationView.setSelectedItemId(R.id.events);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -87,45 +85,22 @@ public class Events extends AppCompatActivity {
                     case R.id.events:
                         openNewActivity(Events.class);
                         break;
-
+                    case R.id.Tickets:
+                        openNewActivity(ViewTickets.class);
+                        break;
                 }
                 return  true;
             }
         });
+    }
 
-        adapter.setOnItemClickListener(new EventsAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
-                Toast.makeText(getApplicationContext(),"Click working",Toast.LENGTH_LONG).show();
+    @Override
+    public void onBackPressed() {
 
-//                Calendar cal = Calendar.getInstance();
-//                Intent intent = new Intent(Intent.ACTION_EDIT);
-//                intent.setType("vnd.android.cursor.item/event");
-//                intent.putExtra("beginTime", cal.getTimeInMillis());
-//                intent.putExtra("allDay", true);
-//                intent.putExtra("rrule", "FREQ=YEARLY");
-//                intent.putExtra("endTime", cal.getTimeInMillis()+60*60*1000);
-//                intent.putExtra("title", "A Test Event from android app");
-//                startActivity(intent);
-
-
-            }
-        });
     }
 
     private void openNewActivity( final Class<? extends Activity> ActivityToOpen)
     {
         startActivity(new Intent(getBaseContext(), ActivityToOpen));
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        adapter.startListening();
-    }
-    @Override
-    public void onStop() {
-        super.onStop();
-        adapter.stopListening();
     }
 }

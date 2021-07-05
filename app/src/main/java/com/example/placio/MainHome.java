@@ -15,6 +15,7 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.tabs.TabLayout;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -25,6 +26,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -70,7 +72,10 @@ public class MainHome extends AppCompatActivity implements tab1.OnDataPass,tab2.
         editor.apply();
 
         setContentView(R.layout.activity_main_home);
-
+        final ProgressBar progbar = (ProgressBar) findViewById(R.id.progbar);
+        final ConstraintLayout scrollView = (ConstraintLayout) findViewById(R.id.scrollView);
+        progbar.setVisibility(View.VISIBLE);
+        scrollView.setVisibility(View.INVISIBLE);
         firestore = FirebaseFirestore.getInstance();
 
 
@@ -91,6 +96,9 @@ public class MainHome extends AppCompatActivity implements tab1.OnDataPass,tab2.
                         String  bran = document.get("Branch").toString();
                         String  bat = document.get("Batch").toString();
                         List<String> appliedcompanies = (List<String>) document.get("InProgress");
+                        List<String> appliedcompanies2 = (List<String>) document.get("Applied");
+                        List<String> rejected = (List<String>) document.get("InProgress");
+                        List<String> placed = (List<String>) document.get("InProgress");
                         String app= appliedcompanies.toString();
 
                         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
@@ -103,6 +111,10 @@ public class MainHome extends AppCompatActivity implements tab1.OnDataPass,tab2.
                         editor.putString("Branch",bran);
                         editor.putString("Batch",bat);
                         editor.putString("Applied",app);
+                        editor.putString("Applied2",appliedcompanies2.toString());
+                        editor.putString("Rejected",rejected.toString());
+                        editor.putString("Placed",placed.toString());
+
                         editor.putString("Tiers",document.get("Tiers").toString());
                         editor.apply();
 
@@ -111,6 +123,9 @@ public class MainHome extends AppCompatActivity implements tab1.OnDataPass,tab2.
                         viewPager.setAdapter(sectionsPagerAdapter);
                         tabs = findViewById(R.id.tabs);
                         tabs.setupWithViewPager(viewPager);
+
+                        progbar.setVisibility(View.INVISIBLE);
+                        scrollView.setVisibility(View.VISIBLE);
 
                     } else {
                         Log.d("please","help");
@@ -146,6 +161,9 @@ public class MainHome extends AppCompatActivity implements tab1.OnDataPass,tab2.
                         break;
                     case R.id.events:
                         openNewActivity(Events.class);
+                        break;
+                    case R.id.Tickets:
+                        openNewActivity(ViewTickets.class);
                         break;
 
                 }

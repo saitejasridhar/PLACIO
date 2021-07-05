@@ -3,10 +3,13 @@ package com.example.placio;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -22,44 +25,44 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
-public class tab4 extends Fragment {
-    String usid1 = FirebaseAuth.getInstance().getCurrentUser().getUid();
-    private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private CollectionReference companyRef = db.collection("Companys");
-    private PCompanyAdapter adapter;
+import java.util.Calendar;
 
-    tab2.OnDataPass dataPasser;
+public class tab8 extends Fragment {
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private CEventsAdapter adapter;
+    SwipeRefreshLayout swipeRefreshLayout;
+
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        dataPasser = (tab2.OnDataPass) context;
+
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View view= inflater.inflate(R.layout.tab4,container,false);
-        Query query = companyRef.orderBy("Name", Query.Direction.ASCENDING);
-        FirestoreRecyclerOptions<VCompany> options = new FirestoreRecyclerOptions.Builder<VCompany>()
-                .setQuery(query, VCompany.class)
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+        String Applied =preferences.getString("Applied2", "");
+
+        View view= inflater.inflate(R.layout.tab8,container,false);
+        Query query = db.collectionGroup("events");
+        FirestoreRecyclerOptions<Event> options = new FirestoreRecyclerOptions.Builder<Event>()
+                .setQuery(query, Event.class)
                 .build();
-        adapter = new PCompanyAdapter(options);
-        RecyclerView recyclerView = view.findViewById(R.id.accepted);
+        adapter = new CEventsAdapter(options,Applied);
+        RecyclerView recyclerView = view.findViewById(R.id.completed);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
         recyclerView.setAdapter(adapter);
 
 
-        adapter.setOnItemClickListener(new PCompanyAdapter.OnItemClickListener() {
+        adapter.setOnItemClickListener(new CEventsAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
-                VCompany note = documentSnapshot.toObject(VCompany.class);
-                String id = documentSnapshot.getString("Name");
-                String id1 = documentSnapshot.getId();
-                String path = documentSnapshot.getReference().getPath();
-                dataPasser.onDataPass(id1,"companyevent");
+                Toast.makeText(getContext(),"Click working",Toast.LENGTH_LONG).show();
+
             }
         });
         return view;
@@ -74,11 +77,6 @@ public class tab4 extends Fragment {
     public void onStop() {
         super.onStop();
         adapter.stopListening();
-    }
-
-    private void openNewActivity( final Class<? extends Activity> ActivityToOpen)
-    {
-        startActivity(new Intent(getContext(), ActivityToOpen));
     }
 
 

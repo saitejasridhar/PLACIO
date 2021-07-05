@@ -23,36 +23,37 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
-public class EventsAdapter extends FirestoreRecyclerAdapter<Event,EventsAdapter.EventsHolder> {
-    private EventsAdapter.OnItemClickListener listener;
+public class CEventsAdapter extends FirestoreRecyclerAdapter<Event,CEventsAdapter.CEventsHolder> {
+    private CEventsAdapter.OnItemClickListener listener;
     String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
     List<String> myList;
     Date date6;
     Date todayDate = Calendar.getInstance().getTime();
 
-    public EventsAdapter(@NonNull FirestoreRecyclerOptions<Event> options,String Applied) {
+    public CEventsAdapter(@NonNull FirestoreRecyclerOptions<Event> options,String Applied) {
         super(options);
         String replace = Applied.replace("[","");
         String replace1 = replace.replace("]","");
-      myList = new ArrayList<String>(Arrays.asList(replace1.split(", ")));
+        myList = new ArrayList<String>(Arrays.asList(replace1.split(", ")));
     }
 
     @Override
-    protected void onBindViewHolder(@NonNull EventsAdapter.EventsHolder holder, int position, @NonNull Event model) {
+    protected void onBindViewHolder(@NonNull CEventsAdapter.CEventsHolder holder, int position, @NonNull Event model) {
         SimpleDateFormat formatter6=new SimpleDateFormat("yyyy-MM-dd HH:mm");
         String sDate6 = model.getDate()+" "+ model.getTime();
         try {
-            date6=formatter6.parse(sDate6);
+             date6=formatter6.parse(sDate6);
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        if(myList.contains(model.getCompanyid()) && date6.compareTo(todayDate) > 0){
-            Log.d("Test","test");
+
+
+        if(myList.contains(model.getCompanyid()) && date6.compareTo(todayDate) < 0){
             holder.Name.setText(model.getType());
-            holder.Date.setText("On "+model.getDate());
+            holder.Date.setText("Completed On "+model.getDate());
             holder.Desc.setText(model.getDescription());
             holder.Company.setText(model.getCompanyname());
-            holder.Time.setText("At "+model.getTime());
+            holder.Time.setText("Completed At "+model.getTime());
         }
         else{
             holder.itemView.setVisibility(View.GONE);
@@ -62,12 +63,12 @@ public class EventsAdapter extends FirestoreRecyclerAdapter<Event,EventsAdapter.
 
     @NonNull
     @Override
-    public EventsAdapter.EventsHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v= LayoutInflater.from(parent.getContext()).inflate(R.layout.events_item,parent,false);
-        return new EventsAdapter.EventsHolder(v);
+    public CEventsAdapter.CEventsHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View v= LayoutInflater.from(parent.getContext()).inflate(R.layout.cevents_item,parent,false);
+        return new CEventsAdapter.CEventsHolder(v);
     }
 
-    class EventsHolder extends RecyclerView.ViewHolder {
+    class CEventsHolder extends RecyclerView.ViewHolder {
 
         TextView Name;
         TextView Desc;
@@ -75,7 +76,7 @@ public class EventsAdapter extends FirestoreRecyclerAdapter<Event,EventsAdapter.
         TextView Company;
         TextView Time;
 
-        public EventsHolder(@NonNull View itemView) {
+        public CEventsHolder(@NonNull View itemView) {
             super(itemView);
             Name = itemView.findViewById(R.id.name);
             Desc = itemView.findViewById(R.id.desc);
@@ -99,7 +100,7 @@ public class EventsAdapter extends FirestoreRecyclerAdapter<Event,EventsAdapter.
         void onItemClick(DocumentSnapshot documentSnapshot, int position);
     }
 
-    public void setOnItemClickListener(EventsAdapter.OnItemClickListener listener) {
+    public void setOnItemClickListener(CEventsAdapter.OnItemClickListener listener) {
         this.listener = listener;
     }
 }

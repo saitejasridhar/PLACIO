@@ -69,7 +69,8 @@ public class ViewTickets extends AppCompatActivity  {
         });
 
         bottomNavigationView=(BottomNavigationView) findViewById(R.id.navbar);
-        bottomNavigationView.getMenu().getItem(0).setEnabled(false);
+        bottomNavigationView.getMenu().getItem(3).setEnabled(false);
+        bottomNavigationView.setSelectedItemId(R.id.Tickets);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -84,7 +85,9 @@ public class ViewTickets extends AppCompatActivity  {
                     case R.id.events:
                         openNewActivity(Events.class);
                         break;
-
+                    case R.id.Tickets:
+                        openNewActivity(ViewTickets.class);
+                        break;
                 }
                 return  true;
             }

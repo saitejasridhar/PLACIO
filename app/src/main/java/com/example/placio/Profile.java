@@ -53,7 +53,6 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
     PieData pieData;
     PieDataSet pieDataSet;
     ArrayList pieEntries;
-    Button tickets;
     FirebaseFirestore firestore;
     TextView fname,sname,email,phone,usn,cgpa,backlogs,sem,section,batch,pemail,branch,applied,
             inprogtext,rejected,accepted;
@@ -87,7 +86,6 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
         inprogtext=findViewById(R.id.inprogtext);
         accepted=findViewById(R.id.accepted);
         rejected=findViewById(R.id.rejected);
-        tickets=findViewById(R.id.ticket);
 
         totapps=findViewById(R.id.totalapplications);
         placed=findViewById(R.id.placedstudents);
@@ -114,12 +112,7 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
             }
         });
 
-        tickets.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openNewActivity(ViewTickets.class);
-            }
-        });
+
 
         findViewById(R.id.compro).setOnClickListener(this);
         findViewById(R.id.completestats).setOnClickListener(this);
@@ -310,6 +303,9 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
                         break;
                     case R.id.events:
                         openNewActivity(Events.class);
+                        break;
+                    case R.id.Tickets:
+                        openNewActivity(ViewTickets.class);
                         break;
                 }
                 return  true;

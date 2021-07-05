@@ -28,7 +28,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="413dp"
+            android:layout_width="match_parent"
             android:layout_height="69dp"
             android:background="@drawable/bottom_border"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -135,7 +135,7 @@
                 android:background="@drawable/details_items"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout12">
 
                 <TextView
                     android:id="@+id/textView20"
@@ -162,9 +162,9 @@
 
                     <LinearLayout
                         android:id="@+id/outLL1"
-                        android:layout_marginTop="4dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
 
@@ -232,9 +232,9 @@
                                     android:layout_width="80dp"
                                     android:layout_height="wrap_content"
                                     android:gravity="center"
-                                    android:textSize="9dp"
+                                    android:text="Your Branch"
                                     android:textColor="@color/primary"
-                                    android:text="Your Branch" />
+                                    android:textSize="9dp" />
 
                             </LinearLayout>
 
@@ -251,91 +251,89 @@
                                 app:layout_constraintTop_toTopOf="parent">
 
 
-
                                 <TextView
                                     android:id="@+id/allbranchcomps"
                                     android:layout_width="80dp"
                                     android:layout_height="wrap_content"
                                     android:gravity="center"
-                                    android:textSize="35dp"
+                                    android:text="0"
                                     android:textColor="@color/primary"
-                                    android:textStyle="bold"
-                                    android:text="0" />
+                                    android:textSize="35dp"
+                                    android:textStyle="bold" />
 
                                 <TextView
                                     android:layout_width="80dp"
                                     android:layout_height="wrap_content"
                                     android:gravity="center"
-                                    android:textSize="9dp"
+                                    android:text="Total companies"
                                     android:textColor="@color/primary"
-                                    android:text="Total companies" />
+                                    android:textSize="9dp" />
 
                             </LinearLayout>
                         </LinearLayout>
 
-<LinearLayout
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal">
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:orientation="vertical">
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/placedper"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="70%"
-            android:textColor="@color/primary"
-            android:textSize="35dp"
-            android:textStyle="bold" />
+                                <TextView
+                                    android:id="@+id/placedper"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:text="70%"
+                                    android:textColor="@color/primary"
+                                    android:textSize="35dp"
+                                    android:textStyle="bold" />
 
-        <TextView
-            android:layout_width="80dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:textAlignment="center"
-            android:text="Percentage of students placed"
-            android:textColor="@color/primary"
-            android:textSize="9dp" />
+                                <TextView
+                                    android:layout_width="80dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:text="Percentage of students placed"
+                                    android:textAlignment="center"
+                                    android:textColor="@color/primary"
+                                    android:textSize="9dp" />
 
-    </LinearLayout>
+                            </LinearLayout>
 
-    <LinearLayout
-        android:layout_gravity="center"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginLeft="10dp"
-        >
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="10dp"
+                                android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/avgpack"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="5.5"
-            android:textColor="@color/primary"
-            android:textSize="35dp"
-            android:textStyle="bold" />
+                                <TextView
+                                    android:id="@+id/avgpack"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:text="5.5"
+                                    android:textColor="@color/primary"
+                                    android:textSize="35dp"
+                                    android:textStyle="bold" />
 
-        <TextView
-            android:layout_width="80dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:textAlignment="center"
-            android:text="Average package of companies"
-            android:textColor="@color/primary"
-            android:textSize="9dp" />
+                                <TextView
+                                    android:layout_width="80dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:text="Average package of companies"
+                                    android:textAlignment="center"
+                                    android:textColor="@color/primary"
+                                    android:textSize="9dp" />
 
-    </LinearLayout>
+                            </LinearLayout>
 
 
-</LinearLayout>
+                        </LinearLayout>
 
                     </LinearLayout>
 
@@ -514,13 +512,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginRight="10dp"
                 android:background="@drawable/details_items"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/constraintLayout11">
+                app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
                     android:id="@+id/textView15"
@@ -752,13 +750,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginRight="8dp"
                 android:background="@drawable/details_items"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/constraintLayout9">
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout11">
 
                 <LinearLayout
                     android:id="@+id/linearLayout6"
@@ -998,10 +996,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:background="@drawable/details_items"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/constraintLayout6"
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout9"
                 app:layout_constraintWidth_default="percent"
                 app:layout_constraintWidth_percent=".46">
 
@@ -1245,13 +1243,13 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:layout_marginBottom="10dp"
                         android:text="List of the top 5 most frequently asked skills for your branch."
-                        android:textColor="@color/primary"
-                        android:layout_gravity="center"
                         android:textAlignment="center"
+                        android:textColor="@color/primary"
                         android:textSize="11dp" />
 
                 </LinearLayout>
@@ -1261,12 +1259,12 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginRight="10dp"
                 android:background="@drawable/details_items"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/constraintLayout6"
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout9"
                 app:layout_constraintWidth_default="percent"
                 app:layout_constraintWidth_percent=".46">
 
@@ -1524,6 +1522,7 @@
 
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout12"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -1531,9 +1530,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginRight="10dp"
-                android:layout_marginBottom="10dp"
                 android:background="@drawable/details_items"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/constraintLayout8">

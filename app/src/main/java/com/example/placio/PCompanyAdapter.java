@@ -34,7 +34,11 @@ public class PCompanyAdapter extends FirestoreRecyclerAdapter<VCompany,PCompanyA
             str = str.substring(1, str.length() - 1);
             holder.Name.setText(model.getName());
             holder.Offer.setText(model.getOffer());
-            holder.Category.setText(model.getTier().toString().toUpperCase());
+            holder.Category.setText(model.getTier().toUpperCase());
+            holder.positions.setText(model.getRoles().toString().substring(1, model.getRoles().toString().length() - 1));
+            holder.location.setText(model.getLocation());
+            holder.breakdown.setText(model.getBreakdown());
+            holder.Ctc.setText(model.getCtc().toString());
         } else {
             holder.itemView.setVisibility(View.GONE);
             holder.itemView.setLayoutParams(new RecyclerView.LayoutParams(0, 0));
@@ -44,17 +48,18 @@ public class PCompanyAdapter extends FirestoreRecyclerAdapter<VCompany,PCompanyA
     @NonNull
     @Override
     public PCompanyAdapter.PCompanyHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v= LayoutInflater.from(parent.getContext()).inflate(R.layout.applied_company_item,parent,false);
+        View v= LayoutInflater.from(parent.getContext()).inflate(R.layout.placed_company_item,parent,false);
         return new PCompanyAdapter.PCompanyHolder(v);
     }
 
 
     class PCompanyHolder extends RecyclerView.ViewHolder {
 
-        TextView Name;
+        TextView Name,Ctc,breakdown,location,positions;
         TextView Offer;
         TextView Category;
         ConstraintLayout outmost;
+
 
         public PCompanyHolder(@NonNull View itemView) {
             super(itemView);
@@ -62,16 +67,12 @@ public class PCompanyAdapter extends FirestoreRecyclerAdapter<VCompany,PCompanyA
             Name = itemView.findViewById(R.id.companyName);
             Offer = itemView.findViewById(R.id.offering);
             Category = itemView.findViewById(R.id.category);
+            Ctc=itemView.findViewById(R.id.ctc);
+            breakdown=itemView.findViewById(R.id.breakdown);
+            location=itemView.findViewById(R.id.location);
+            positions=itemView.findViewById(R.id.positions);
 
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    int position = getAdapterPosition();
-                    if (position != RecyclerView.NO_POSITION && listener != null) {
-                        listener.onItemClick(getSnapshots().getSnapshot(position), position);
-                    }
-                }
-            });
+
         }
     }
 

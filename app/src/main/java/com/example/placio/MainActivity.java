@@ -1,6 +1,8 @@
 package com.example.placio;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.app.Activity;
@@ -9,6 +11,7 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -28,6 +31,10 @@ public class MainActivity extends AppCompatActivity {
         FirebaseAuth auth = FirebaseAuth.getInstance();
         getSupportActionBar().hide();
 
+        final ProgressBar progbar = (ProgressBar) findViewById(R.id.progbar);
+        final ConstraintLayout scrollView = (ConstraintLayout) findViewById(R.id.scrollView);
+        progbar.setVisibility(View.VISIBLE);
+        scrollView.setVisibility(View.INVISIBLE);
 
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         String str =preferences.getString("isFirst", "");
@@ -44,6 +51,8 @@ public class MainActivity extends AppCompatActivity {
             if(str3.equals("False"))
                 openNewActivity(Register.class);
         }
+        progbar.setVisibility(View.INVISIBLE);
+        scrollView.setVisibility(View.VISIBLE);
         signup_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

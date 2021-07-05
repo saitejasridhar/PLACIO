@@ -14,11 +14,17 @@ import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
 
 public class CompanyEventsAdapter extends FirestoreRecyclerAdapter<Event,CompanyEventsAdapter.CompanyEventsHolder> {
     private CompanyEventsAdapter.OnItemClickListener listener;
     String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+    Date date6;
+    Date todayDate = Calendar.getInstance().getTime();
 
     public CompanyEventsAdapter(@NonNull FirestoreRecyclerOptions<Event> options) {
         super(options);
@@ -26,13 +32,24 @@ public class CompanyEventsAdapter extends FirestoreRecyclerAdapter<Event,Company
 
     @Override
     protected void onBindViewHolder(@NonNull CompanyEventsAdapter.CompanyEventsHolder holder, int position, @NonNull Event model) {
-
-        holder.Name.setText(model.getType());
-        holder.Date.setText(model.getDate());
-        holder.Desc.setText(model.getDescription());
-        holder.Company.setText(model.getCompanyname());
-        holder.Time.setText(model.getTime());
-
+        SimpleDateFormat formatter6=new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        String sDate6 = model.getDate()+" "+ model.getTime();
+        try {
+            date6=formatter6.parse(sDate6);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        if(date6.compareTo(todayDate) > 0) {
+            holder.Name.setText(model.getType());
+            holder.Date.setText(model.getDate());
+            holder.Desc.setText(model.getDescription());
+            holder.Company.setText(model.getCompanyname());
+            holder.Time.setText(model.getTime());
+        }
+        else {
+            holder.itemView.setVisibility(View.GONE);
+            holder.itemView.setLayoutParams(new RecyclerView.LayoutParams(0, 0));
+        }
     }
 
     @NonNull

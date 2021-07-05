@@ -6,4 +6,7 @@
     <color name="secondary">#b31414</color>
     <color name="colorAccent">#000</color>
     <color name="yellow">#ff0</color>
+    <color name="green">#1F8014</color>
+    <color name="light">#BE242466</color>
+
 </resources>

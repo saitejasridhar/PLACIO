@@ -83,6 +83,9 @@ public class Announcements extends AppCompatActivity {
                     case R.id.events:
                         openNewActivity(Events.class);
                         break;
+                    case R.id.Tickets:
+                        openNewActivity(ViewTickets.class);
+                        break;
 
                 }
                 return  true;

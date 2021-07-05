@@ -7,5 +7,7 @@
     <string name="tab_text_4">Accepted</string>
     <string name="tab_text_5">Pending</string>
     <string name="tab_text_6">Completed</string>
+    <string name="tab_text_7">Upcoming</string>
+    <string name="tab_text_8">Completed</string>
     <string name="action_settings">Settings</string>
 </resources>
