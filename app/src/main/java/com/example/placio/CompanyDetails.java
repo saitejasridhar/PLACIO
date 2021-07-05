@@ -43,6 +43,7 @@ public class CompanyDetails extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         Intent intent = getIntent();
         String value = intent.getExtras().getString("Name");
+        final String[] compname = new String[1];
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
         setContentView(R.layout.activity_company_details);
@@ -87,7 +88,7 @@ public class CompanyDetails extends AppCompatActivity {
                         List<String> skills = (List<String>) document.get("Skills");
                         List<String> role = (List<String>) document.get("Roles");
 
-
+                        compname[0] =document.get("Name").toString();
 //                        batches.setText(batch.toString());
                         name.setText(document.get("Name").toString());
                         desc.setText(document.get("Description").toString());
@@ -167,6 +168,7 @@ public class CompanyDetails extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), Personal_Details.class);
                 intent.putExtra("company",value);
+                intent.putExtra("compname",compname[0]);
                 startActivity(intent);
             }
         });

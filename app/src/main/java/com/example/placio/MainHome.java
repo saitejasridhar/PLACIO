@@ -88,44 +88,46 @@ public class MainHome extends AppCompatActivity implements tab1.OnDataPass,tab2.
                     DocumentSnapshot document = task.getResult();
                     if (document.exists()) {
 
-                        String  cgpa = document.get("CGPA").toString();
-                        String  m10th = document.get("TenthMarks").toString();
-                        String  m12th = document.get("PreUniMarks").toString();
-                        String  clarr = document.get("ClearArr").toString();
-                        String  curarr = document.get("CurArr").toString();
-                        String  bran = document.get("Branch").toString();
-                        String  bat = document.get("Batch").toString();
-                        List<String> appliedcompanies = (List<String>) document.get("InProgress");
-                        List<String> appliedcompanies2 = (List<String>) document.get("Applied");
-                        List<String> rejected = (List<String>) document.get("InProgress");
-                        List<String> placed = (List<String>) document.get("InProgress");
-                        String app= appliedcompanies.toString();
 
-                        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-                        SharedPreferences.Editor editor = preferences.edit();
-                        editor.putString("CGPA",cgpa);
-                        editor.putString("TenthMarks",m10th);
-                        editor.putString("PreUniMarks",m12th);
-                        editor.putString("ClearArr",clarr);
-                        editor.putString("CurArr",curarr);
-                        editor.putString("Branch",bran);
-                        editor.putString("Batch",bat);
-                        editor.putString("Applied",app);
-                        editor.putString("Applied2",appliedcompanies2.toString());
-                        editor.putString("Rejected",rejected.toString());
-                        editor.putString("Placed",placed.toString());
 
-                        editor.putString("Tiers",document.get("Tiers").toString());
-                        editor.apply();
+                            String cgpa = document.get("CGPA").toString();
+                            String m10th = document.get("TenthMarks").toString();
+                            String m12th = document.get("PreUniMarks").toString();
+                            String clarr = document.get("ClearArr").toString();
+                            String curarr = document.get("CurArr").toString();
+                            String bran = document.get("Branch").toString();
+                            String bat = document.get("Batch").toString();
+                            List<String> appliedcompanies = (List<String>) document.get("InProgress");
+                            List<String> appliedcompanies2 = (List<String>) document.get("Applied");
+                            List<String> rejected = (List<String>) document.get("InProgress");
+                            List<String> placed = (List<String>) document.get("InProgress");
+                            String app = appliedcompanies.toString();
 
-                        SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(getBaseContext(), getSupportFragmentManager());
-                        ViewPager viewPager = findViewById(R.id.view_pager);
-                        viewPager.setAdapter(sectionsPagerAdapter);
-                        tabs = findViewById(R.id.tabs);
-                        tabs.setupWithViewPager(viewPager);
+                            SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                            SharedPreferences.Editor editor = preferences.edit();
+                            editor.putString("CGPA", cgpa);
+                            editor.putString("TenthMarks", m10th);
+                            editor.putString("PreUniMarks", m12th);
+                            editor.putString("ClearArr", clarr);
+                            editor.putString("CurArr", curarr);
+                            editor.putString("Branch", bran);
+                            editor.putString("Batch", bat);
+                            editor.putString("Applied", app);
+                            editor.putString("Applied2", appliedcompanies2.toString());
+                            editor.putString("Rejected", rejected.toString());
+                            editor.putString("Placed", placed.toString());
 
-                        progbar.setVisibility(View.INVISIBLE);
-                        scrollView.setVisibility(View.VISIBLE);
+                            editor.putString("Tiers", document.get("Tiers").toString());
+                            editor.apply();
+
+                            SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(getBaseContext(), getSupportFragmentManager());
+                            ViewPager viewPager = findViewById(R.id.view_pager);
+                            viewPager.setAdapter(sectionsPagerAdapter);
+                            tabs = findViewById(R.id.tabs);
+                            tabs.setupWithViewPager(viewPager);
+
+                            progbar.setVisibility(View.INVISIBLE);
+                            scrollView.setVisibility(View.VISIBLE);
 
                     } else {
                         Log.d("please","help");

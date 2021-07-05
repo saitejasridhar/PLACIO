@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
@@ -12,10 +13,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -23,8 +28,11 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
@@ -39,7 +47,8 @@ public class tab2 extends Fragment {
     private CollectionReference companyRef = db.collection("Companys");
     private ACompanyAdapter adapter;
     SwipeRefreshLayout swipeRefreshLayout;
-
+    ConstraintLayout notice;
+    TextView empty;
     tab2.OnDataPass dataPasser;
 
     @Override
@@ -53,6 +62,49 @@ public class tab2 extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View view= inflater.inflate(R.layout.tab2,container,false);
+        LinearLayout layout = view.findViewById(R.id.outerLL);
+        empty=view.findViewById(R.id.isempty);
+        layout.setVisibility(View.INVISIBLE);
+        empty.setVisibility(View.INVISIBLE);
+        notice = view.findViewById(R.id.notice);
+
+        String currentuser = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        DocumentReference docIdRef1= FirebaseFirestore.getInstance().collection("students").document(currentuser).collection("Details").document(currentuser);
+        docIdRef1.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+
+                        if(document.get("Tiers").toString().contains("Dream")){
+                            layout.setVisibility(View.INVISIBLE);
+                            empty.setVisibility(View.INVISIBLE);
+                            notice.setVisibility(View.VISIBLE);
+                        }
+                        else if(document.get("Tiers").toString().length()>7){
+                            layout.setVisibility(View.INVISIBLE);
+                            empty.setVisibility(View.INVISIBLE);
+                            notice.setVisibility(View.VISIBLE);
+                        }
+                        else {
+                            empty.setVisibility(View.VISIBLE);
+                            layout.setVisibility(View.VISIBLE);
+                            empty.setElevation(0);
+                            layout.setElevation(10);
+
+                        }
+                    } else {
+                        Log.d("please","help");
+                    }
+                } else {
+                    Log.d("TAG", "Failed with: ", task.getException());
+                }
+            }
+        });
+
+
         Query query = companyRef.orderBy("Name", Query.Direction.ASCENDING);
         FirestoreRecyclerOptions<VCompany> options = new FirestoreRecyclerOptions.Builder<VCompany>()
                 .setQuery(query, VCompany.class)

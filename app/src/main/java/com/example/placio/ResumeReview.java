@@ -43,10 +43,10 @@ public class ResumeReview extends AppCompatActivity {
 
         Intent intent = getIntent();
         String companyid = intent.getExtras().getString("company");
+        String companyname = intent.getExtras().getString("compname");
         String currentuser = FirebaseAuth.getInstance().getCurrentUser().getUid();
         CollectionReference reference = firestore.collection("students");
         CollectionReference reference1 = firestore.collection("Companys");
-
 
 
         super.onCreate(savedInstanceState);
@@ -79,8 +79,9 @@ public class ResumeReview extends AppCompatActivity {
                                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                                             @Override
                                             public void onSuccess(Void aVoid) {
-                                                Toast.makeText(getApplicationContext(),"Success",Toast.LENGTH_LONG).show();
-                                                openNewActivity(MainHome.class);
+                                                Intent intent = new Intent(getApplicationContext(), Appsuccess.class);
+                                                intent.putExtra("compname",companyname);
+                                                startActivity(intent);
                                             }
                                         })
                                         .addOnFailureListener(new OnFailureListener() {

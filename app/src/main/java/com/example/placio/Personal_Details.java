@@ -39,6 +39,7 @@ public class Personal_Details extends AppCompatActivity {
         setContentView(R.layout.activity_personal_details);
         Intent intent = getIntent();
         String value = intent.getExtras().getString("company");
+        String compname = intent.getExtras().getString("compname");
         cancel=findViewById(R.id.cancel);
         confrim=findViewById(R.id.confrim);
         fname=findViewById(R.id.fname);
@@ -127,6 +128,8 @@ public class Personal_Details extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), ResumeReview.class);
                 intent.putExtra("url",Name);
                 intent.putExtra("company",value);
+                intent.putExtra("compname",compname);
+
                 startActivity(intent);
             }
         });
