@@ -69,7 +69,6 @@
                 android:text="ahsdhjkashjdashjdhas"
                 android:textColor="@color/light"
                 android:textSize="10dp"
-                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 />

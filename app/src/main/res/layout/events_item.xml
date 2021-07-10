@@ -66,10 +66,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="7dp"
                 android:layout_marginBottom="10dp"
-                android:text="ahsdhjkashjdashjdhas"
                 android:textColor="@color/primary"
                 android:textSize="10dp"
-                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                />

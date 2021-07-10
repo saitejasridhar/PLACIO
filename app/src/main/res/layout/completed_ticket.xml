@@ -58,7 +58,6 @@
                 android:text="ahsdhjkashjdashjdhas"
                 android:textColor="@color/primary"
                 android:textSize="10dp"
-                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 

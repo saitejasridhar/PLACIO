@@ -72,7 +72,6 @@ public class VCompanyAdapter extends FirestoreRecyclerAdapter<VCompany,VCompanyA
         String outputDateStr = outputFormat.format(date);
 
         String test=model.getDate()+" "+model.getTime();
-        Log.d("Last Date Time String",test);
         SimpleDateFormat formatter6=new SimpleDateFormat("yyyy-MM-dd HH:mm");
         try {
             date1=formatter6.parse(test);
@@ -87,7 +86,7 @@ public class VCompanyAdapter extends FirestoreRecyclerAdapter<VCompany,VCompanyA
                 && date1.compareTo(todayDate) > 0
 
         ){
-
+            String[] myArray = Tiers.split(",");
             if(Tiers.length()<=7){
                 if(Tiers.contains("Dream")){
                     holder.itemView.setVisibility(View.GONE);
@@ -106,6 +105,10 @@ public class VCompanyAdapter extends FirestoreRecyclerAdapter<VCompany,VCompanyA
                         holder.addedon.setText(model.getDateTime());
                         holder.time.setText(model.getTime());
                     }
+                    else {
+                        holder.itemView.setVisibility(View.GONE);
+                        holder.itemView.setLayoutParams(new RecyclerView.LayoutParams(0, 0));
+                    }
                 }
                 else {
                     if(model.getTier().equals("Dream") || model.getTier().equals("Core")){
@@ -120,6 +123,7 @@ public class VCompanyAdapter extends FirestoreRecyclerAdapter<VCompany,VCompanyA
                         holder.addedon.setText(model.getDateTime());
                         holder.time.setText(model.getTime());
                     }
+
                 }
 
             }

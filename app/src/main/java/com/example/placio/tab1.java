@@ -84,7 +84,6 @@ public class tab1 extends Fragment {
         String currentuser = FirebaseAuth.getInstance().getCurrentUser().getUid();
         DocumentReference docIdRef1= FirebaseFirestore.getInstance().collection("students").document(currentuser).collection("Details").document(currentuser);
         docIdRef1.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if (task.isSuccessful()) {
@@ -106,8 +105,6 @@ public class tab1 extends Fragment {
                         else {
                             layout.setVisibility(View.VISIBLE);
                             empty.setVisibility(View.VISIBLE);
-                            empty.setElevation(0);
-                            layout.setElevation(10);
                         }
                     } else {
                         Log.d("please","help");
@@ -120,7 +117,7 @@ public class tab1 extends Fragment {
 
 
 
-        Query query = companyRef.orderBy("Name", Query.Direction.ASCENDING);
+        Query query = companyRef.orderBy("Date", Query.Direction.ASCENDING).orderBy("Time", Query.Direction.ASCENDING);
         FirestoreRecyclerOptions<VCompany> options = new FirestoreRecyclerOptions.Builder<VCompany>()
                 .setQuery(query, VCompany.class)
                 .build();

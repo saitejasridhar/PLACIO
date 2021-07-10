@@ -31,9 +31,10 @@ import java.util.Map;
 
 public class ResumeReview extends AppCompatActivity {
     WebView webView;
-    Button apply,cancel;
+    Button apply,cancel,edit;
     FirebaseFirestore firestore;
     ProgressBar progbar;
+
 
     private String removePdfTopIcon = "javascript:(function() {" + "document.querySelector('[role=\"toolbar\"]').remove();})()";
 
@@ -59,8 +60,17 @@ public class ResumeReview extends AppCompatActivity {
         progbar.setVisibility(View.VISIBLE);
         webView.setVisibility(View.INVISIBLE);
         apply=findViewById(R.id.apply);
+        edit=findViewById(R.id.edit);
+
         String pdfUrl=getIntent().getExtras().getString("url");
         showPdfFile(pdfUrl);
+
+        edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openNewActivity(EditResume.class);
+            }
+        });
         apply.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

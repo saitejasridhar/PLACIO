@@ -71,7 +71,6 @@ public class tab2 extends Fragment {
         String currentuser = FirebaseAuth.getInstance().getCurrentUser().getUid();
         DocumentReference docIdRef1= FirebaseFirestore.getInstance().collection("students").document(currentuser).collection("Details").document(currentuser);
         docIdRef1.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if (task.isSuccessful()) {
@@ -89,10 +88,8 @@ public class tab2 extends Fragment {
                             notice.setVisibility(View.VISIBLE);
                         }
                         else {
-                            empty.setVisibility(View.VISIBLE);
                             layout.setVisibility(View.VISIBLE);
-                            empty.setElevation(0);
-                            layout.setElevation(10);
+                            empty.setVisibility(View.VISIBLE);
 
                         }
                     } else {

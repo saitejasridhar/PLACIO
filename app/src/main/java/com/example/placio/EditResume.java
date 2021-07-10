@@ -64,9 +64,7 @@ public class EditResume extends AppCompatActivity {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), Resume.class);
-                intent.putExtra("url",url1);
-                startActivity(intent);
+              finish();
             }
         });
 

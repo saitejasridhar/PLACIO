@@ -95,8 +95,7 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/scrollView"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/navbar"
@@ -104,815 +103,823 @@
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
         app:layout_constraintVertical_bias="0.0">
 
-        <LinearLayout
-            android:id="@+id/linearLayout5"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginRight="10dp"
-            android:background="@color/primary"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingLeft="8dp"
-                android:paddingTop="2dp"
-                android:paddingBottom="2dp"
-                android:text="Profile"
-                android:textColor="#fff"
-                android:textSize="15dp"
-                android:textStyle="bold" />
-
-        </LinearLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout5"
+            android:id="@+id/scrollView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginRight="10dp"
-            android:background="@drawable/details_items"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout5">
+            android:layout_height="0dp">
 
-            <TextView
-                android:id="@+id/fname"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:id="@+id/linearLayout5"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginLeft="10dp"
-                android:layout_marginTop="5dp"
-                android:text="SAI"
-                android:textColor="@color/primary"
-                android:textSize="16dp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/sname"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="5dp"
-                android:text="TEJA N"
-                android:textColor="@color/primary"
-                android:textSize="16dp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toEndOf="@+id/fname"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/gmail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="3dp"
-                android:text="4ni17cs076_b@nie.ac.in"
-                android:textColor="@color/primary"
-                android:textSize="12dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/fname" />
-
-            <TextView
-                android:id="@+id/usn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="3dp"
-                android:text="4NI17CS076"
-                android:textColor="@color/primary"
-                android:textSize="12dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/gmail" />
-
-            <TextView
-                android:id="@+id/section"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="3dp"
-                android:text="B"
-                android:textColor="@color/primary"
-                android:textSize="12dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/usn" />
-
-
-            <TextView
-                android:id="@+id/textview"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="3dp"
-                android:layout_marginLeft="3dp"
-                android:layout_marginTop="3dp"
-                android:text="Section"
-                android:textColor="@color/primary"
-                android:textSize="12dp"
-                app:layout_constraintStart_toEndOf="@+id/section"
-                app:layout_constraintTop_toBottomOf="@+id/usn" />
-
-            <TextView
-                android:id="@+id/branch"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginRight="10dp"
                 android:background="@color/primary"
-                android:padding="2dp"
-                android:text="Computer Science"
-                android:textColor="#fff"
-                android:textSize="10dp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/sem"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="3dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginRight="10dp"
-                android:text="Current \Semester 8"
-                android:textColor="@color/primary"
-                android:textSize="12dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/usn" />
-
-            <TextView
-                android:id="@+id/cgpa"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="3dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginRight="10dp"
-                android:text="CGPA 9.1"
-                android:textColor="@color/primary"
-                android:textSize="12dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/sem" />
-
-            <TextView
-                android:id="@+id/phone"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="3dp"
-                android:text="Phone No. 9008600439"
-                android:textColor="@color/primary"
-                android:textSize="12dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/section" />
-
-            <TextView
-                android:id="@+id/pemail"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="3dp"
-                android:text="saitejusridhar@gmail.com"
-                android:textColor="@color/primary"
-                android:textSize="12dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/phone" />
-
-            <TextView
-                android:id="@+id/backlog"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="3dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginRight="10dp"
-                android:text="Number of backlogs 0"
-                android:textColor="@color/primary"
-                android:textSize="12dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cgpa" />
-
-            <TextView
-                android:id="@+id/batch"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="3dp"
-                android:layout_marginBottom="10dp"
-                android:text="2021 Batch"
-                android:textColor="@color/primary"
-                android:textSize="12dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/pemail" />
-
-            <TextView
-                android:id="@+id/compro"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="3dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginBottom="10dp"
-                android:clickable="true"
-                android:text="Click to view detailed Information"
-                android:textColor="@color/secondary"
-                android:textSize="12dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/backlog" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <LinearLayout
-            android:id="@+id/linearLayout6"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginRight="10dp"
-            android:background="@color/primary"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout5">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingLeft="8dp"
-                android:paddingTop="2dp"
-                android:paddingBottom="2dp"
-                android:text="Your Stats"
-                android:textColor="#fff"
-                android:textSize="15dp"
-                android:textStyle="bold"></TextView>
-        </LinearLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/completestats"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginRight="10dp"
-            android:background="@drawable/details_items"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout6">
-
-            <!--            <TextView-->
-            <!--                android:id="@+id/textView13"-->
-            <!--                android:layout_width="wrap_content"-->
-            <!--                android:layout_height="wrap_content"-->
-            <!--                android:layout_marginStart="5dp"-->
-            <!--                android:layout_marginLeft="5dp"-->
-            <!--                android:layout_marginBottom="5dp"-->
-            <!--                android:text="Show more details"-->
-            <!--                android:textSize="10dp"-->
-            <!--                android:textColor="@color/secondary"-->
-            <!--                app:layout_constraintBottom_toBottomOf="parent"-->
-            <!--                app:layout_constraintStart_toStartOf="parent" />-->
-
-            <LinearLayout
-                android:id="@+id/outLL"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="8dp"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="2dp"
+                    android:text="Profile"
+                    android:textColor="#fff"
+                    android:textSize="15dp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/details_items"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout5">
+
+                <TextView
+                    android:id="@+id/fname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
+                    android:text="SAI"
+                    android:textColor="@color/primary"
+                    android:textSize="16dp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/sname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="5dp"
+                    android:text="TEJA N"
+                    android:textColor="@color/primary"
+                    android:textSize="16dp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toEndOf="@+id/fname"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/gmail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="3dp"
+                    android:text="4ni17cs076_b@nie.ac.in"
+                    android:textColor="@color/primary"
+                    android:textSize="12dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/fname" />
+
+                <TextView
+                    android:id="@+id/usn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="3dp"
+                    android:text="4NI17CS076"
+                    android:textColor="@color/primary"
+                    android:textSize="12dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/gmail" />
+
+                <TextView
+                    android:id="@+id/section"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="3dp"
+                    android:text="B"
+                    android:textColor="@color/primary"
+                    android:textSize="12dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/usn" />
+
+
+                <TextView
+                    android:id="@+id/textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="3dp"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginTop="3dp"
+                    android:text="Section"
+                    android:textColor="@color/primary"
+                    android:textSize="12dp"
+                    app:layout_constraintStart_toEndOf="@+id/section"
+                    app:layout_constraintTop_toBottomOf="@+id/usn" />
+
+                <TextView
+                    android:id="@+id/branch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@color/primary"
+                    android:padding="2dp"
+                    android:text="Computer Science"
+                    android:textColor="#fff"
+                    android:textSize="10dp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/sem"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginRight="10dp"
+                    android:text="Current \Semester 8"
+                    android:textColor="@color/primary"
+                    android:textSize="12dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/usn" />
+
+                <TextView
+                    android:id="@+id/cgpa"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginRight="10dp"
+                    android:text="CGPA 9.1"
+                    android:textColor="@color/primary"
+                    android:textSize="12dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/sem" />
+
+                <TextView
+                    android:id="@+id/phone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="3dp"
+                    android:text="Phone No. 9008600439"
+                    android:textColor="@color/primary"
+                    android:textSize="12dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/section" />
+
+                <TextView
+                    android:id="@+id/pemail"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="3dp"
+                    android:text="saitejusridhar@gmail.com"
+                    android:textColor="@color/primary"
+                    android:textSize="12dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/phone" />
+
+                <TextView
+                    android:id="@+id/backlog"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginRight="10dp"
+                    android:text="Number of backlogs 0"
+                    android:textColor="@color/primary"
+                    android:textSize="12dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/cgpa" />
+
+                <TextView
+                    android:id="@+id/batch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="2021 Batch"
+                    android:textColor="@color/primary"
+                    android:textSize="12dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/pemail" />
+
+                <TextView
+                    android:id="@+id/compro"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:clickable="true"
+                    android:text="Click to view detailed Information"
+                    android:textColor="@color/secondary"
+                    android:textSize="12dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/backlog" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@color/primary"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout5">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="8dp"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="2dp"
+                    android:text="Your Stats"
+                    android:textColor="#fff"
+                    android:textSize="15dp"
+                    android:textStyle="bold"></TextView>
+            </LinearLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/completestats"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/details_items"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout6">
+
+                <!--            <TextView-->
+                <!--                android:id="@+id/textView13"-->
+                <!--                android:layout_width="wrap_content"-->
+                <!--                android:layout_height="wrap_content"-->
+                <!--                android:layout_marginStart="5dp"-->
+                <!--                android:layout_marginLeft="5dp"-->
+                <!--                android:layout_marginBottom="5dp"-->
+                <!--                android:text="Show more details"-->
+                <!--                android:textSize="10dp"-->
+                <!--                android:textColor="@color/secondary"-->
+                <!--                app:layout_constraintBottom_toBottomOf="parent"-->
+                <!--                app:layout_constraintStart_toStartOf="parent" />-->
 
                 <LinearLayout
-                    android:id="@+id/chartLL"
+                    android:id="@+id/outLL"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
 
-                    <com.github.mikephil.charting.charts.PieChart
-                        android:id="@+id/pieChart"
-                        android:layout_width="111dp"
+                    <LinearLayout
+                        android:id="@+id/chartLL"
+                        android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent">
 
-                </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:orientation="vertical"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/pieChart"
-                    app:layout_constraintTop_toTopOf="parent">
+                        <com.github.mikephil.charting.charts.PieChart
+                            android:id="@+id/pieChart"
+                            android:layout_width="111dp"
+                            android:layout_height="match_parent"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:orientation="vertical"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/pieChart"
-                        tools:layout_editor_absoluteY="0dp">
-
+                        app:layout_constraintTop_toTopOf="parent">
 
                         <LinearLayout
-                            android:id="@+id/linearLayout4"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="10dp"
-                            android:layout_marginLeft="10dp"
-                            android:orientation="vertical"
-                            android:text="Applied"
-                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toEndOf="@+id/pieChart"
-                            app:layout_constraintTop_toTopOf="parent">
+                            tools:layout_editor_absoluteY="0dp">
 
-                            <TextView
-                                android:id="@+id/applied"
+
+                            <LinearLayout
+                                android:id="@+id/linearLayout4"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:text="13"
-                                android:textColor="@color/primary"
-                                android:textSize="25dp"
-                                android:textStyle="bold" />
+                                android:layout_marginStart="10dp"
+                                android:layout_marginLeft="10dp"
+                                android:orientation="vertical"
+                                android:text="Applied"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toEndOf="@+id/pieChart"
+                                app:layout_constraintTop_toTopOf="parent">
 
-                            <TextView
-                                android:id="@+id/textView10"
-                                android:layout_width="80dp"
+                                <TextView
+                                    android:id="@+id/applied"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:text="13"
+                                    android:textColor="@color/primary"
+                                    android:textSize="25dp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/textView10"
+                                    android:layout_width="80dp"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:text="Applied" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/linearLayout111"
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:gravity="center"
-                                android:text="Applied" />
+                                android:layout_marginStart="10dp"
+                                android:layout_marginLeft="10dp"
+                                android:orientation="vertical"
+                                android:text="Applied"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toEndOf="@+id/linearLayout9"
+                                app:layout_constraintTop_toTopOf="parent">
+
+                                <TextView
+                                    android:id="@+id/inprogtext"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:textColor="#FFC154"
+                                    android:textSize="25dp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="80dp"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:text="In Progress" />
+
+                            </LinearLayout>
 
                         </LinearLayout>
 
                         <LinearLayout
-                            android:id="@+id/linearLayout111"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="10dp"
-                            android:layout_marginLeft="10dp"
-                            android:orientation="vertical"
-                            android:text="Applied"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintStart_toEndOf="@+id/linearLayout9"
-                            app:layout_constraintTop_toTopOf="parent">
+                            tools:layout_editor_absoluteX="189dp"
+                            tools:layout_editor_absoluteY="101dp">
 
-                            <TextView
-                                android:id="@+id/inprogtext"
+
+                            <LinearLayout
+                                android:id="@+id/linearLayout7"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:textColor="#FFC154"
-                                android:textSize="25dp"
-                                android:textStyle="bold" />
+                                android:layout_marginStart="10dp"
+                                android:layout_marginLeft="10dp"
+                                android:orientation="vertical"
+                                android:text="Applied"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toEndOf="@+id/linearLayout4"
+                                app:layout_constraintTop_toTopOf="parent">
 
-                            <TextView
-                                android:layout_width="80dp"
+                                <TextView
+                                    android:id="@+id/accepted"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:text="2"
+                                    android:textColor="#47B39C"
+                                    android:textSize="25dp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/textView39"
+                                    android:layout_width="80dp"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:text="Accepted" />
+
+                            </LinearLayout>
+
+
+                            <LinearLayout
+                                android:id="@+id/linearLayout9"
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:gravity="center"
-                                android:text="In Progress" />
+                                android:layout_marginStart="10dp"
+                                android:layout_marginLeft="10dp"
+                                android:orientation="vertical"
+                                android:text="Applied"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toEndOf="@+id/linearLayout7"
+                                app:layout_constraintTop_toTopOf="parent">
+
+                                <TextView
+                                    android:id="@+id/rejected"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:text="8"
+                                    android:textColor="#EC6B56"
+                                    android:textSize="25dp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/textView49"
+                                    android:layout_width="80dp"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:text="Rejected" />
+
+                            </LinearLayout>
 
                         </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/totcomp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:text="Click to get useful insights"
+                    android:textColor="@color/secondary"
+                    android:textSize="12dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/outLL" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <LinearLayout
+                android:id="@+id/linearLayout27"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@color/primary"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/completestats">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="8dp"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="2dp"
+                    android:text="College Stats"
+                    android:textColor="#fff"
+                    android:textSize="15dp"
+                    android:textStyle="bold"></TextView>
+            </LinearLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/details_items"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout27">
+
+                <LinearLayout
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintBottom_toTopOf="@+id/linearLayout15"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:text="Applied"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <TextView
+                            android:id="@+id/visited"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="20"
+                            android:textColor="@color/primary"
+                            android:textSize="30dp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Visited Companies"
+                            android:textColor="@color/primary"
+                            android:textSize="9dp" />
 
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        tools:layout_editor_absoluteX="189dp"
-                        tools:layout_editor_absoluteY="101dp">
+                        android:layout_marginStart="20dp"
+                        android:layout_marginLeft="20dp"
+                        android:orientation="vertical"
+                        android:text="Applied"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/linearLayout41"
+                        app:layout_constraintTop_toTopOf="parent">
 
-
-                        <LinearLayout
-                            android:id="@+id/linearLayout7"
+                        <TextView
+                            android:id="@+id/placedstudents"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="10dp"
-                            android:layout_marginLeft="10dp"
-                            android:orientation="vertical"
-                            android:text="Applied"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintStart_toEndOf="@+id/linearLayout4"
-                            app:layout_constraintTop_toTopOf="parent">
+                            android:layout_gravity="center"
+                            android:text="387"
+                            android:textColor="@color/primary"
+                            android:textSize="30dp"
+                            android:textStyle="bold" />
 
-                            <TextView
-                                android:id="@+id/accepted"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:text="2"
-                                android:textColor="#47B39C"
-                                android:textSize="25dp"
-                                android:textStyle="bold" />
-
-                            <TextView
-                                android:id="@+id/textView39"
-                                android:layout_width="80dp"
-                                android:layout_height="wrap_content"
-                                android:gravity="center"
-                                android:text="Accepted" />
-
-                        </LinearLayout>
-
-
-                        <LinearLayout
-                            android:id="@+id/linearLayout9"
+                        <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="10dp"
-                            android:layout_marginLeft="10dp"
-                            android:orientation="vertical"
-                            android:text="Applied"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintStart_toEndOf="@+id/linearLayout7"
-                            app:layout_constraintTop_toTopOf="parent">
-
-                            <TextView
-                                android:id="@+id/rejected"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:text="8"
-                                android:textColor="#EC6B56"
-                                android:textSize="25dp"
-                                android:textStyle="bold" />
-
-                            <TextView
-                                android:id="@+id/textView49"
-                                android:layout_width="80dp"
-                                android:layout_height="wrap_content"
-                                android:gravity="center"
-                                android:text="Rejected" />
-
-                        </LinearLayout>
+                            android:text="Placed Students"
+                            android:textColor="@color/primary"
+                            android:textSize="9dp" />
 
                     </LinearLayout>
 
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginLeft="20dp"
+                        android:orientation="vertical"
+                        android:text="Applied"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/linearLayout71"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <TextView
+                            android:id="@+id/unplaced"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="789"
+                            android:textColor="@color/primary"
+                            android:textSize="30dp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Unplaced Students"
+                            android:textColor="@color/primary"
+                            android:textSize="9dp" />
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginLeft="20dp"
+                        android:orientation="vertical"
+                        android:text="Applied"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/linearLayout8"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <TextView
+                            android:id="@+id/totalapplications"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="89"
+                            android:textColor="@color/primary"
+                            android:textSize="30dp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Total applications"
+                            android:textColor="@color/primary"
+                            android:textSize="9dp" />
+
+                    </LinearLayout>
+
+
                 </LinearLayout>
 
-            </LinearLayout>
+                <LinearLayout
 
-            <TextView
-                android:id="@+id/totcomp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"
-                android:text="Click to get useful insights"
-                android:textColor="@color/secondary"
-                android:textSize="12dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/outLL" />
+                    android:id="@+id/linearLayout15"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent">
+
+                    <LinearLayout
+                        android:id="@+id/linearLayout41"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:text="Applied"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <TextView
+                            android:id="@+id/highpack"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="20"
+                            android:textColor="@color/primary"
+                            android:textSize="30dp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Highest Package"
+                            android:textColor="@color/primary"
+                            android:textSize="9dp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/linearLayout71"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginLeft="20dp"
+                        android:orientation="vertical"
+                        android:text="Applied"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/linearLayout41"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <TextView
+                            android:id="@+id/avgpack"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="387"
+                            android:textColor="@color/primary"
+                            android:textSize="30dp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Average Package"
+                            android:textColor="@color/primary"
+                            android:textSize="9dp" />
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:id="@+id/linearLayout8"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginLeft="20dp"
+                        android:orientation="vertical"
+                        android:text="Applied"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/linearLayout71"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <TextView
+                            android:id="@+id/dreamcom"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="789"
+                            android:textColor="@color/primary"
+                            android:textSize="30dp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Dream Companies"
+                            android:textColor="@color/primary"
+                            android:textSize="9dp" />
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginLeft="20dp"
+                        android:orientation="vertical"
+                        android:text="Applied"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/linearLayout8"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <TextView
+                            android:id="@+id/corecomp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="89"
+                            android:textColor="@color/primary"
+                            android:textSize="30dp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Core Companies"
+                            android:textColor="@color/primary"
+                            android:textSize="9dp" />
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-        <LinearLayout
-            android:id="@+id/linearLayout27"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginRight="10dp"
-            android:background="@color/primary"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/completestats">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingLeft="8dp"
-                android:paddingTop="2dp"
-                android:paddingBottom="2dp"
-                android:text="College Stats"
-                android:textColor="#fff"
-                android:textSize="15dp"
-                android:textStyle="bold"></TextView>
-        </LinearLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginRight="10dp"
-            android:background="@drawable/details_items"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout27">
-
-            <LinearLayout
-
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:orientation="horizontal"
-                app:layout_constraintBottom_toTopOf="@+id/linearLayout15"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:text="Applied"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
-
-                    <TextView
-                        android:id="@+id/visited"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="20"
-                        android:textColor="@color/primary"
-                        android:textSize="30dp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Visited Companies"
-                        android:textColor="@color/primary"
-                        android:textSize="9dp" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginLeft="20dp"
-                    android:orientation="vertical"
-                    android:text="Applied"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/linearLayout41"
-                    app:layout_constraintTop_toTopOf="parent">
-
-                    <TextView
-                        android:id="@+id/placedstudents"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="387"
-                        android:textColor="@color/primary"
-                        android:textSize="30dp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Placed Students"
-                        android:textColor="@color/primary"
-                        android:textSize="9dp" />
-
-                </LinearLayout>
-
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginLeft="20dp"
-                    android:orientation="vertical"
-                    android:text="Applied"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/linearLayout71"
-                    app:layout_constraintTop_toTopOf="parent">
-
-                    <TextView
-                        android:id="@+id/unplaced"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="789"
-                        android:textColor="@color/primary"
-                        android:textSize="30dp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Unplaced Students"
-                        android:textColor="@color/primary"
-                        android:textSize="9dp" />
-
-                </LinearLayout>
-
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginLeft="20dp"
-                    android:orientation="vertical"
-                    android:text="Applied"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/linearLayout8"
-                    app:layout_constraintTop_toTopOf="parent">
-
-                    <TextView
-                        android:id="@+id/totalapplications"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="89"
-                        android:textColor="@color/primary"
-                        android:textSize="30dp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Total applications"
-                        android:textColor="@color/primary"
-                        android:textSize="9dp" />
-
-                </LinearLayout>
-
-
-            </LinearLayout>
-
-            <LinearLayout
-
-                android:id="@+id/linearLayout15"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:orientation="horizontal"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent">
-
-                <LinearLayout
-                    android:id="@+id/linearLayout41"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:text="Applied"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
-
-                    <TextView
-                        android:id="@+id/highpack"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="20"
-                        android:textColor="@color/primary"
-                        android:textSize="30dp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Highest Package"
-                        android:textColor="@color/primary"
-                        android:textSize="9dp" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/linearLayout71"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginLeft="20dp"
-                    android:orientation="vertical"
-                    android:text="Applied"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/linearLayout41"
-                    app:layout_constraintTop_toTopOf="parent">
-
-                    <TextView
-                        android:id="@+id/avgpack"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="387"
-                        android:textColor="@color/primary"
-                        android:textSize="30dp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Average Package"
-                        android:textColor="@color/primary"
-                        android:textSize="9dp" />
-
-                </LinearLayout>
-
-
-                <LinearLayout
-                    android:id="@+id/linearLayout8"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginLeft="20dp"
-                    android:orientation="vertical"
-                    android:text="Applied"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/linearLayout71"
-                    app:layout_constraintTop_toTopOf="parent">
-
-                    <TextView
-                        android:id="@+id/dreamcom"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="789"
-                        android:textColor="@color/primary"
-                        android:textSize="30dp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Dream Companies"
-                        android:textColor="@color/primary"
-                        android:textSize="9dp" />
-
-                </LinearLayout>
-
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginLeft="20dp"
-                    android:orientation="vertical"
-                    android:text="Applied"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/linearLayout8"
-                    app:layout_constraintTop_toTopOf="parent">
-
-                    <TextView
-                        android:id="@+id/corecomp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="89"
-                        android:textColor="@color/primary"
-                        android:textSize="30dp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Core Companies"
-                        android:textColor="@color/primary"
-                        android:textSize="9dp" />
-
-                </LinearLayout>
-
-
-            </LinearLayout>
-
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 
     <ProgressBar
         android:id="@+id/progbar"

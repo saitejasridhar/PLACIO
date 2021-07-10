@@ -602,8 +602,7 @@ public class Studentstats extends AppCompatActivity {
                                             else
                                             {
                                                 dreamaccper.setText(String.valueOf((pladream.size()/(double)appdream.size())*100)+"%");
-                                                Log.d("placed",String.valueOf(pladream.size()));
-                                                Log.d("applied",String.valueOf(appdream.size()));
+
                                             }
 
                                             if(appcore.size()==0){
@@ -681,8 +680,6 @@ public class Studentstats extends AppCompatActivity {
                                         }
                                     }
                                 });
-
-
 
                     } else {
                         Log.d("please", "help");
